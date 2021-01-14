@@ -1,0 +1,4 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/klet/files/github/voidrice/config/.otherfiles'
+let g:netrw_dirhist_2='/home/klet/.config/sucklessutils/slstatus'

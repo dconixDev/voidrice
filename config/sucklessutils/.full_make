@@ -1,0 +1,16 @@
+#!/bin/bash
+
+chmod +x $HOME/.config/sucklessutils/addons_dwm/* & chmod +x $HOME/.config/sucklessutils/addons_dwm/.dmenu.conf
+sudo cp $HOME/.config/sucklessutils/addons_dwm/* /bin/
+
+rm $HOME/.config/sucklessutils/slstatus/config.h
+cd $HOME/.config/sucklessutils/slstatus/
+make
+sudo cp $HOME/.config/sucklessutils/slstatus/slstatus /bin/slstatus
+cd $HOME
+
+rm $HOME/.config/sucklessutils/dwm-6.2/config.h
+cd $HOME/.config/sucklessutils/dwm-6.2/
+make
+sudo cp $HOME/.config/sucklessutils/dwm-6.2/dwm /bin/dwm
+cd $HOME

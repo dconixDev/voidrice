@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+DpreCONFfile="$HOME/.config/sucklessutils/addons_dwm/.dmenu.conf"
+[ -f $DpreCONFfile ] && DpreCONF=$(bash $DpreCONFfile)
+
+DOVAR=$(echo -e "kill dwm\npoweroff\nreboot\nhalt" | $DpreCONF -l 4 )
+# echo $DOVAR
+if [[ $DOVAR = "kill dwm" ]]; then
+	pkill dwm
+else
+	sudo $DOVAR
+fi

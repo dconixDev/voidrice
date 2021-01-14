@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# DMENU conf
+DpreCONFfile="$HOME/.config/sucklessutils/addons_dwm/.dmenu.conf"
+[ -f $DpreCONFfile ] && DpreCONF=$(bash $DpreCONFfile)
+
+# set -e
+
+# User and Hostname
+WHOAMI=( $(whoami) $(hostname) )
+
+# Uptime
+UPTIME=$(uptime | awk '{print($3)}' | sed -r 's/,//g')
+SINCE=( $(uptime -s) )
+
+# Disk Usage
+# Change 'NR==5' to the correct disk line in df -h
+DISKLINE=( $(df -h | awk 'NR==5') )
+
+# Ram Memory
+MEMORY=( $(free -m | awk 'NR==2') )
+
+# Xbps packages
+XBPSPKGS=$(xbps-query -l | wc -l)
+
+SOUT="${WHOAMI[0]}@${WHOAMI[1]}
+[Packages:] $XBPSPKGS
+[Uptime:] $UPTIME [Since:] ${SINCE[1]} ${SINCE[0]}
+[Ram Usage:] ${MEMORY[2]}MB/${MEMORY[1]}MB [Ram Available:] ${MEMORY[6]}MB
+[Disk Usage:] ${DISKLINE[2]}/${DISKLINE[1]}(${DISKLINE[4]}%) [Disk Available:] ${DISKLINE[3]}"
+
+printf "$SOUT" | $DpreCONF -l 9 -p Statistics 

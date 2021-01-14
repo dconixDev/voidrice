@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Editor
+alias \
+	vim=nvim \
+	v=nvim \
+	e=nvim 
+
+# PKG Manager
+alias \
+	xbi="sudo xbps-install -S" \
+	xbr="sudo xbps-remove" \
+	xbq="xbps-query" \
+	xbqr="xbps-query -Rs" \
+	xbql="xbps-query -l"
+
+# CDs
+alias \
+	cddwm="cd $HOME/.config/sucklessutils/dwm-6.2/" \
+	cdsl="cd $HOME/.config/sucklessutils/" \
+	cdz="cd $HOME/.config/zsh/" \
+	cdg="cd $HOME/files/github/" \
+	cdf="cd $HOME/files/" \
+	cdh="cd $HOME"
+
+# Random
+alias \
+	ls="ls --color=auto" \
+	ll="ls -lGh" \
+	lla="ll -a" \
+	cl=clear \
+	neofetchb="neofetch --config $HOME/.config/neofetch/config_big.conf" \
+	am="alsamixer"
