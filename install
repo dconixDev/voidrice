@@ -1,0 +1,35 @@
+#!/bin/bash
+
+echo -e "AutoRiceVoidDesktopLinux\n<>  <>  <>\n<>  <>  <>\n<>  <>  <>"
+
+# Update system
+sudo xbps-install -Su
+
+# Install packages I like
+sudo xbps-install -Sy alsa-utils base-devel dmenu feh firefox font-awesome font-inconsolata-otf git github-cli htop libXft-devel libXinerama-devel libinput-gestures mpv neofetch neovim rxvt-unicode urxvt-perls wget xbanish xdotool xorg xsel zsh zsh-autosuggestions
+
+# Copy config/* to $HOME/.config/
+[ ! -d $HOME/.config/ ] && mkdir $HOME/.config/
+cp -r ./config/* $HOME/.config/
+
+# Sending files to specific locations
+[ ! -d $HOME/files ] && mkdir $HOME/files/ $HOME/files/pictures/ $HOME/files/downloads/ $HOME/files/backups/ $HOME/files/github/
+cp -r ./backgrounds/ $HOME/files/pictures/
+
+# Sending .otherfiles to specific locations
+sudo cp $HOME/.config/.otherfiles/sudoers /etc/sudoers
+cp $HOME/.config/.otherfiles/font-size $HOME/.urxvt/ext/font-size
+sudo cp -r $HOME/.config/.otherfiles/Sweet-cursors /usr/share/icons/
+
+# Symbolic link xinitrc
+ln -sf $HOME/.config/X11/xinitrc $HOME/.xinitrc
+
+# Symbolic link the zshrc files
+ln -sf $HOME/.config/zsh/zshrc $HOME/.zshrc
+# ln -sf $HOME/.config/zsh/zcompdump $HOME/.zcompdump
+sudo chsh -s /bin/zsh
+
+# Recompile everything in suckelessutils/
+bash $HOME/.config/sucklessutils/.full_make
+
+echo -e "<>  <>  <>\n<>  <>  <>\n<>  <>  <>\nHope all went well!"
