@@ -1,6 +1,6 @@
 # Automatic Void Ricer
 
-This repo contains my personal build of my dotfiles, dwm, slstatus, and a bunch of custom bashscripts (two from [ChanderG](https://github.com/ChanderG/my-dwm))
+This repo contains my dotfiles, dwm, slstatus, and a bunch of custom bashscripts (two from [ChanderG](https://github.com/ChanderG/my-dwm))
 
 ## Void Linux
 
