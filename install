@@ -18,6 +18,7 @@ cp -r ./backgrounds/ $HOME/files/pictures/
 
 # Sending .otherfiles to specific locations
 sudo cp $HOME/.config/.otherfiles/sudoers /etc/sudoers
+# Change font-size dir in urxvt conf
 cp $HOME/.config/.otherfiles/font-size $HOME/.urxvt/ext/font-size
 sudo cp -r $HOME/.config/.otherfiles/Sweet-cursors /usr/share/icons/
 

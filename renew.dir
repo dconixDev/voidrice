@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cp -r $HOME/.config/X11 ./config/
+cp -r $HOME/.config/neofetch ./config/
+cp -r $HOME/.config/nvim ./config/
+cp -r $HOME/.config/sucklessutils ./config/
+cp -r $HOME/.config/zsh ./config/
+rm ./config/zsh/.histfile

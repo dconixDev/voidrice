@@ -19,6 +19,7 @@ alias \
 	cddwm="cd $HOME/.config/sucklessutils/dwm-6.2/" \
 	cdsl="cd $HOME/.config/sucklessutils/" \
 	cdz="cd $HOME/.config/zsh/" \
+	cdx="cd $HOME/.config/X11/" \
 	cdg="cd $HOME/files/github/" \
 	cdf="cd $HOME/files/" \
 	cdh="cd $HOME"
