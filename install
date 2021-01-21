@@ -6,7 +6,7 @@ echo -e "AutoRiceVoidDesktopLinux\n<>  <>  <>\n<>  <>  <>\n<>  <>  <>"
 sudo xbps-install -Su
 
 # Install packages I like
-sudo xbps-install -Sy alsa-utils base-devel dmenu feh firefox font-awesome font-inconsolata-otf git github-cli htop libXft-devel libXinerama-devel libinput-gestures mpv neofetch neovim rxvt-unicode urxvt-perls wget xbanish xdotool xorg xsel zsh zsh-autosuggestions
+sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu feh firefox font-awesome font-inconsolata-otf giflib-devel git github-cli grub htop imlib-devel libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim rxvt-unicode urxvt-perls wget xbanish xdotool xorg xsel zsh zsh-autosuggestion
 
 # Copy config/* to $HOME/.config/
 [ ! -d $HOME/.config/ ] && mkdir $HOME/.config/
