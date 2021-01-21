@@ -2,6 +2,7 @@
 
 Xcursor.theme: Sweet-cursors
 
+URxvt.perl-lib: ~/.config/X11/Xresources/font-size
 ! URxvt termname
 URxvt*termName: rxvt-256color
 ! URxvt font
