@@ -24,13 +24,15 @@ I hold no responsibility over anything that gets broken during the install. If a
 
 ## DWM/HWM(The Holy Window Manager of Linux "Elitists")
 
-This Window Manager is *extremely* hard to use and configure. I am a certified System Engineer and have been using GNU/Linux 1990 so for you to understand and configure dwm to my level is just unimaginable.
+This Window Manager is *extremely* hard to use and configure. I am a certified System Engineer and have been using GNU/Linux since 1990 so for you to understand and configure dwm to my level is just unimaginable.
 
 Jokes aside, there isn't much you're going to configure dwm, just apply some patches and change the colors and some keybindings and youre set. There are some custom bashscripts in config/sucklessutils/addons\_dwm/ which don't really require a lot of bash scripting knowledge but may come in handy from time to time.
 
 Patches used in this build:
 > Attachaside
+
 > Pertag
+
 > Uselessgap
 
 I change the config.deh.h of dwm (and slstatus too) which in return doesnt break my dwm when applying patches. If youre going to use this build continue editing everything in config.def.h preferably.
