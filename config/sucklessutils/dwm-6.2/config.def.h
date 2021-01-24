@@ -30,6 +30,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* { "sxiv",     NULL,       NULL,       0,            1,           -1 }, */
 };
 
 /* layout(s) */
@@ -62,10 +63,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "urxvtc", NULL };
 // Firefox
 static const char *browsercmd[] = { "firefox", NULL };
-// Dismiss
-static const char *dismisscmd[] = { "dismiss" , NULL };
-// Summon
-static const char *summoncmd[] = { "summon" , NULL };
 // Pmenu
 static const char *pmenu[] = { "pmenu", NULL };
 
@@ -76,10 +73,6 @@ static Key keys[] = {
 	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
 	// Firefox
 	{ MODKEY|ShiftMask,             XK_f, 	   spawn,          {.v = browsercmd } },
-	// Dismiss
-	{ MODKEY|ShiftMask,             XK_d, 	   spawn,          {.v = dismisscmd } },
-	// Summon
-	{ MODKEY|ShiftMask,             XK_s, 	   spawn,          {.v = summoncmd } },
 	// Pmenu
 	{ MODKEY,	                XK_q, 	   spawn,          {.v = pmenu } },
 	// End
