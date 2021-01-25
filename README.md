@@ -1,5 +1,7 @@
 # Automatic Void Ricer
 
+![alt text](https://github.com/dconixDev/voidrice/blob/config/.otherfiles/Rice.png?raw=true)
+
 Have you heard of ricing? Maybe from r/unixporn, or maybe from your favorite unixTuber?? Then you've come to the right place.
 
 This is a KISS autoricer which was written from scratch in like 2 weeks(it's not really that hard it's just simple bashscripting).
@@ -36,3 +38,6 @@ Patches used in this build:
 > Uselessgap
 
 I change the config.deh.h of dwm (and slstatus too) which in return doesnt break my dwm when applying patches. If youre going to use this build continue editing everything in config.def.h preferably.
+
+
+*Disclaimer* None of the backgrounds in the folder **backgrounds/** are property of mine, they belong to their respective artists.
