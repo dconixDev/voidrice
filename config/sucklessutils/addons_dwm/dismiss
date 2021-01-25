@@ -1,4 +1,0 @@
-#!/bin/bash
-WMI=$(whoami)
-
-xdotool selectwindow getwindowname >> $HOME/.config/sucklessutils/addons_dwm/.windowlist windowunmap
