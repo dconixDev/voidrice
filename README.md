@@ -1,6 +1,6 @@
 # Automatic Void Ricer
 
-![alt text](https://github.com/dconixDev/voidrice/blob/config/.otherfiles/Rice.png?raw=true)
+![Rice](https://github.com/dconixDev/voidrice/blob/main/config/.otherfiles/Rice.png?raw=true)
 
 Have you heard of ricing? Maybe from r/unixporn, or maybe from your favorite unixTuber?? Then you've come to the right place.
 
