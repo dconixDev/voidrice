@@ -83,7 +83,7 @@ root ALL=(ALL) ALL
 
 Defaults !tty_tickets
 
-%wheel ALL=NOPASSWD: /sbin/halt, /sbin/power, /sbin/poweroff
+%wheel ALL=NOPASSWD: /sbin/halt, /sbin/reboot, /sbin/poweroff
 
 ## Same thing without a password
 # %wheel ALL=(ALL) NOPASSWD: ALL

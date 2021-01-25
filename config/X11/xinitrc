@@ -28,7 +28,9 @@ libinput-gestures-setup start &
 xbanish &
 xset r rate 280 40 &
 
-#set bg, --no-fehbg doesnt create a ~/.fehbg file
-feh --no-fehbg --bg-center $HOME/files/pictures/backgrounds/background3.jpg &
+## Start the bgchange script with an argument (e.g. 5s, 5m,...)
+# bash $HOME/.config/sucklessutils/addons_dwm/.bgchange 15m &
+## Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
+feh --no-fehbg --bg-center $HOME/files/pictures/backgrounds/background_11.jpg &
 exec slstatus &
 exec dwm

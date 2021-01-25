@@ -6,5 +6,5 @@ DpreCONFfile="$HOME/.config/sucklessutils/addons_dwm/.dmenu.conf"
 # Dont forget the slash at the end
 BGDIR="$HOME/files/pictures/backgrounds/"
 
-BGSEL=$(ls $BGDIR | $DpreCONF -l 25)
+BGSEL=$(ls $BGDIR | $DpreCONF -l 10)
 feh --no-fehbg --bg-center $BGDIR$BGSEL
