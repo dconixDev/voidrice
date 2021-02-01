@@ -12,7 +12,7 @@ static const char col_gray1[]       = "#d8dee9";
 static const char col_gray2[]       = "#d8dee9";
 static const char col_gray3[]       = "#4c566a";
 static const char col_gray4[]       = "#eceff4";
-static const char col_cyan[]        = "#d08770"; //"#f59542"; 
+static const char col_cyan[]        = "#e84545"; //"#f59542";   bet col#d08770 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 }, // unselected bar color
