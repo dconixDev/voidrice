@@ -2,13 +2,12 @@
 
 set -e
 
-DpreCONFfile="$HOME/.config/sucklessutils/addons_dwm/.dmenu.conf"
-[ -f $DpreCONFfile ] && DpreCONF=$(bash $DpreCONFfile)
+DpreCONF=$(dwmcfg dmenucolor)
 
 DOVAR=$(echo -e "kill dwm\npoweroff\nreboot\nhalt" | $DpreCONF -l 4 )
-# echo $DOVAR
-if [[ $DOVAR = "kill dwm" ]]; then
-	pkill dwm
+echo $DOVAR
+if [[ $DOVAR == "kill dwm" ]]; then
+	pkill xinit
 else
 	sudo $DOVAR
 fi

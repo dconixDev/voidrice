@@ -1,0 +1,156 @@
+#!/bin/bash
+
+## Requires full_make script
+
+
+# Init Variables
+
+# DWM temporary file location
+swpPATH="$HOME/.dwmswp"
+
+# check if it's day or night
+_TIME=$(date +%H)
+if [[ $_TIME < 8 || $_TIME > 18 ]];
+then
+	# Night
+	ToD=1
+else
+	# Day
+	ToD=0
+fi
+
+
+# DWM Colors
+
+#Colors	Day[0]    Night[1]  Custom[2]
+GRAY1=( "#d8dee9" "#130308" "#8a584c" )
+GRAY2=( "#eceff4" "#444444" "#ffffff" ) #Obsolete color, used only for the border which can not be specified
+GRAY3=( "#4c566a" "#bbbbbb" "#f5eacf" )
+GRAY4=( "#eceff4" "#130308" "#8a584c" )
+CYAN=(  "#5e81ac" "#d08770" "#85865f" )
+
+# Border color must be changed at dwm config.h
+# 			  fg     bg     border
+# unselected bar color	{ GRAY3, GRAY1, GRAY2 }
+# selected bar color 	{ GRAY4, CYAN,  CYAN  }
+
+
+# Stands for Theme DWM
+function Tdwm {
+	# Checks length of list in GRAY1 because theyre most likely the same length
+	if [ $1 -gt $((${#GRAY1[@]}-1)) ];
+	then
+		echo "Not enough themes"
+	else
+	#                    UnSel FG         UnSel BG          UnSel Dmenu FG & BG                Sel FG           Sel BG           Sel Dmenu FG & BG
+		exec dwm -nf ${GRAY3[$1]} -nb ${GRAY1[$1]} -dnf ${GRAY3[$1]} -dnb ${GRAY1[$1]} -sf ${GRAY4[$1]} -sb ${CYAN[$1]} -dsf ${GRAY4[$1]} -dsb ${CYAN[$1]};
+	fi
+}
+
+# Stands for Theme Dmenu
+function Tdmenu {
+	if [ $1 -gt $((${#GRAY1[@]}-1)) ];
+	then
+		echo "Not enough themes"
+	else
+		#              UnSel BG         Unsel FG         Sel BG          UnSel FG
+		echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]};
+	fi
+}
+
+# check if its day or night then start the appropriate DWM theme
+# Stands for Day 'n Night DWM
+function DNdwm {
+	if [ -f $swpPATH ];
+	then
+		themeDWM=$(cat $swpPATH | awk '{print($2)}')
+		Tdwm $themeDWM
+	else
+		Tdwm $ToD
+	fi;
+}
+
+# check if its day or night then start the appropriate Dmenu theme
+# Stands for Day 'n Night Dmenu
+function DNdmenu {
+	if [ -f $swpPATH ];
+	then
+		themeDWM=$(cat $swpPATH | awk '{print($2)}')
+		Tdmenu $themeDWM
+	else
+		Tdmenu $ToD
+	fi;
+}
+
+# check if DWM is running and if it is then pkill it
+function pkillDWM {
+	if [ $(($(pgrep dwm | wc -l)-2)) == 0 ];
+	then
+		echo "dwm isn't running" 
+	else
+		pkill dwm
+	fi
+}
+
+# function to input "x"(kill) or "theme 0/1/.."
+function swpMOD {
+	rm $swpPATH
+	if [[ $1 == "x" ]];
+	then
+		echo $1 >> $swpPATH
+	else
+	echo "theme $1" >> $swpPATH;
+	fi
+}
+
+# Arguments for the script
+case $1 in
+	"")
+		DNdwm;;
+ 	theme)
+		pkillDWM
+		swpMOD $2
+		Tdwm $2;;
+	compile)
+		pkillDWM
+		bash full_make dwm
+		DNdwm;;
+	rload|rset)
+		pkillDWM
+		DNdwm;;
+	dmenucolor)
+		DNdmenu;;
+	pkill)
+		pkillDWM;;
+	swpPATH)
+		echo $swpPATH;;
+	swpMOD)
+		swpMOD $2;;
+esac
+
+
+# Use cases
+
+# Compile and then starts DWM with last applied theme/ and if not specified starts the day/night theme appropriately
+# dwmcfg compile
+
+# Simple kill and reset/reload of the DWM config
+# dwmcfg rload/rset
+
+# Apply a theme set at the Color Lists based on the List index
+# dwmcfg theme 0/1/..
+
+
+# External Bash scripts arguments
+
+# Call the Dmenu pre configured arguments based on the current theme
+# dwmcfg dmenucolor
+
+# Kill DWM if it's running, without killing the X server (Useful if it's used in bashscripts that don't want the X server to go down after DWM is killed)
+# dwmcfg pkill
+
+# Call the .dwmswp file path (Useful for bashscripts)
+# dwmcfg swpPATH
+
+# Specify in the .dwmswp file "0/1/.." to select a new theme or specify "x" to kill DWM(and the X server, if killing the X server is unnecessary look at the "dwmcfg pkill" argument)
+# dwmcfg swpMOD x/0/1/..

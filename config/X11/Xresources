@@ -2,71 +2,9 @@
 
 Xcursor.theme: Sweet-cursors
 
-URxvt.perl-lib: ~/.config/X11/Xresources/font-size
-! URxvt termname
-URxvt*termName: rxvt-256color
-! URxvt font
-URxvt.font: xft:inconsolata:size=12:xft:FontAwesome:size=10:antialias=true:autohint=true
-! do not scroll with output
-URxvt*scrollTtyOutput: false
-! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
-URxvt*scrollWithBuffer: true
-! scroll back to the bottom on keypress
-URxvt*scrollTtyKeypress: true
-! ! scrollback buffer in secondary screen
-! URxvt.secondaryScreen: 1
-! URxvt.secondaryScroll: 0
-! perl extensions
-URxvt.perl-ext-common: default,matcher,clipboard,searchable-scrollback,font-size
-! clickable urls
-URxvt.url-launcher: /bin/firefox
-URxvt.matcher.button: 2
-! to open and list recent urls via keyboard
-URxvt.keysym.C-Delete: perl:matcher:last
-URxvt.keysym.M-Delete: perl:matcher:list
-! color matching links
-URxvt.matcher.rend.0: Uline Bold fg5
-! yankable URLs
-URxvt.perl-ext: default,url-select
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: /bin/firefox
-URxvt.url-select.underline: true
-! cursor underline
-! URxvt*cursorUnderline: true
-! scrollbar position
-URxvt*scrollBar: false
-! no borders
-URxvt*internalBorder: 5
-URxvt*externalBorder: 0px
-URxvt*borderLess: false
-! fullscreen
-! URxvt.keysym.F11: perl:fullscreen:switch
-! ! tab colors
-! URxvt.tabbed.tabbar-fg: 2
-! URxvt.tabbed.tabbar-bg: 0
-! URxvt.tabbed.tab-fg: 3
-! URxvt.tabbed.tab-bg: 0
-! clipboard
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-! larger history
-URxvt.saveLines: 9999
-! scroll with shift
-URxvt.keysym.M-k: command:\033]720;1\007
-URxvt.keysym.M-j: command:\033]721;1\007
-! font size NOT WORKING automatically works with Control
-URxvt.keysym.M-plus:   font-size:increase
-URxvt.keysym.M-minus:  font-size:decrease
-! URxvt.keysym.M-S-Up:   font-size:incglobal
-! URxvt.keysym.M-S-Down: font-size:decglobal
-URxvt.keysym.M-equal:  font-size:reset
-! URxvt.keysym.M-slash:  font-size:show
-
 ! special
 *.foreground:   #ada9b0
-! *.background:   #130308
-*.background:   #021b21
+*.background:   #0e0d18
 *.cursorColor:  #ada9b0
 
 ! black

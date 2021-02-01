@@ -3,10 +3,10 @@
 echo -e "AutoRiceVoidDesktopLinux\n<>  <>  <>\n<>  <>  <>\n<>  <>  <>"
 
 # Update system
-sudo xbps-install -Su
+sudo xbps-install -Syu
 
 # Install packages I like
-sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu feh firefox font-awesome font-inconsolata-otf giflib-devel git github-cli grub htop imlib-devel libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim rxvt-unicode urxvt-perls wget xbanish xdotool xorg xsel zsh zsh-autosuggestion
+sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu feh firefox font-awesome font-inconsolata-otf giflib-devel git github-cli grub htop imlib2-devel libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim vim wget xbanish xdotool xorg xsel zsh
 
 # Copy config/* to $HOME/.config/
 [ ! -d $HOME/.config/ ] && mkdir $HOME/.config/
@@ -24,11 +24,11 @@ sudo cp -r $HOME/.config/.otherfiles/Sweet-cursors /usr/share/icons/
 # Symbolic link xinitrc
 ln -sf $HOME/.config/X11/xinitrc $HOME/.xinitrc
 
-# Symbolic link the zshrc files
+# Symbolic link the zshrc file
 ln -sf $HOME/.config/zsh/zshrc $HOME/.zshrc
 sudo chsh -s /bin/zsh
 
 # Recompile everything in suckelessutils/
-bash $HOME/.config/sucklessutils/.full_make
+bash $HOME/.config/sucklessutils/addons_dwm/full_make
 
 echo -e "<>  <>  <>\n<>  <>  <>\n<>  <>  <>\nHope all went well!"

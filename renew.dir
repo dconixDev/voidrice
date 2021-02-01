@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cp -r $HOME/.config/X11 ./config/
+cp -r $HOME/.config/neofetch ./config/
+cp -r $HOME/.config/nvim ./config/
+cp -r $HOME/.config/sucklessutils ./config/
+cp -r $HOME/.config/zsh ./config/
+cp -r $HOME/files/pictures/backgrounds/ ./
+sudo cp /etc/sudoers ./config/.otherfiles/sudoers
+rm ./config/nvim/.netrwhist
+rm ./config/zsh/.histfile
+
+EXPLpkgs=$(xbps-query -m | sed -r 's/[0-9\._]//g' | sed -r 's/.$//g' | sed -r 's/imlib-devel/imlib2-devel/g')
+echo $EXPLpkgs

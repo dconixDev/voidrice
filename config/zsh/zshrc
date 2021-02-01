@@ -26,7 +26,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 autoload -Uz promptinit
 promptinit
-prompt redhat
+# prompt redhat
+PROMPT='[%F{#5e81ac}%n%f@%F{#5e81ac}%m%f %F{#d08770}%1~%f]%F{#5e81ac}$%f '
 
 # function zle-keymap-select () {
 #     case $KEYMAP in
@@ -37,4 +38,4 @@ prompt redhat
 # zle -N zle-keymap-select
 
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
-source $HOME/.config/zsh/.aliases
+source $HOME/.config/zsh/aliases

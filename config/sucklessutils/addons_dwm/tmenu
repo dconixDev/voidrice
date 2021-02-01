@@ -1,0 +1,23 @@
+#!/bin/bash
+
+## Requires dwmcfg script
+
+set -e
+
+DpreCONF=$(dwmcfg dmenucolor)
+
+DOVAR=$(echo -e "restart\ncompile\nday\nnight\ntheme1" | $DpreCONF -l 5 )
+
+case $DOVAR in
+	"");;
+	day)
+		bash dwmcfg theme 0;;
+	night)
+		bash dwmcfg theme 1;;
+	theme1)
+		bash dwmcfg theme 2;;
+	restart)
+		bash dwmcfg rload;;
+	compile)
+		bash dwmcfg compile;;
+esac

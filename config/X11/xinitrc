@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # ~/.xinitrc
 #
@@ -13,6 +13,9 @@ fi
 userresources=$HOME/.config/X11/Xresources
 usermodmap=$HOME/.config/X11/Xmodmap
 
+swpPATH=$(dwmcfg swpPATH)
+swpCHECK=$(($(cat $swpPATH | grep "x" | wc -l)-2))
+
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
@@ -22,7 +25,6 @@ if [ -f "$usermodmap" ]; then
 fi
  
 xrandr -s 1600x900 &
-urxvtd -q &
 
 libinput-gestures-setup start &
 xbanish &
@@ -32,5 +34,18 @@ xset r rate 280 40 &
 # bash $HOME/.config/sucklessutils/addons_dwm/.bgchange 15m &
 ## Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
 feh --no-fehbg --bg-center $HOME/files/pictures/backgrounds/background_11.jpg &
+
+# if [[ $time -gt 16 && $time -lt 12 ]];
+# then
+
 exec slstatus &
-exec dwm
+# exec dwm
+rm $swpPATH &
+exec bash dwmcfg &
+while [ $swpCHECK != 0 ];
+do
+	swpCHECK=$(($(cat $swpPATH | grep "x" | wc -l)-2))
+	sleep 1s
+done
+rm $swpPATH &
+pkill xinit
