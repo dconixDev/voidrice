@@ -26,4 +26,4 @@ SOUT="${WHOAMI[0]}@${WHOAMI[1]}   ////   [Theme:] $dwmTHEME
 [Ram Usage:] ${MEMORY[2]}MB/${MEMORY[1]}MB [Ram Available:] ${MEMORY[6]}MB
 [Disk Usage:] ${DISKLINE[2]}/${DISKLINE[1]}(${DISKLINE[4]}%) [Disk Available:] ${DISKLINE[3]}"
 
-printf "$SOUT" | $DpreCONF -l 9 -p Statistics 
+echo -e "$SOUT" | $DpreCONF -l 9 -p Statistics

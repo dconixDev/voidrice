@@ -11,13 +11,14 @@ listNAME=( $(bash dwmcfg allthemes) )
 # Replace the spaces between names with a new line(\n)
 themeSTR=$(echo ${listNAME[@]} | sed -r 's/ /\\n/g')
 
-DOVAR=$(echo -e $themeSTR | $DpreCONF -l 5 )
+doVAR=$(echo -e $themeSTR | $DpreCONF -l 5 )
 
 i=0
 while [[ $i < ${#listNAME[@]} ]];
 do
-	echo ${listNAME[$i]}
-	if [[ $DOVAR == ${listNAME[$i]} ]];
+#   Testing purposes
+#	echo ${listNAME[$i]}
+	if [[ $doVAR == ${listNAME[$i]} ]];
 	then
 		bash dwmcfg theme $i
 		break

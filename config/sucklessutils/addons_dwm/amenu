@@ -1,11 +1,14 @@
 #!/bin/bash
 
-set -e 
+## Requires dwmcfg script
+
+set -e
 
 DpreCONF=$(bash dwmcfg dmenucolor)
 
 # A list of all custom Bashscripts
 menuLIST=( "tmenu" "bmenu" "smenu" "pmenu" )
+menuSTR=$(echo ${menuLIST[@]} | sed -r 's/ /\\n/g')
 
-menuSEL=$(echo -e "${menuLIST[0]}\n${menuLIST[1]}\n${menuLIST[2]}\n${menuLIST[3]}" | $DpreCONF -l 5)
+menuSEL=$(echo -e "$menuSTR" | $DpreCONF -l 5)
 bash $menuSEL
