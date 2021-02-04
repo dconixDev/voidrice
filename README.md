@@ -24,12 +24,6 @@ I hold no responsibility over anything that gets broken during the install. If a
 
 DWM is great customizable Window Manager for Xorg and has needs a bit of time to learn how to configure(in my opinion, less than others).
 
-Patches used in this build:
-
-> Attachaside
-
-> Pertag
-
-> Uselessgap
+DWM patches used in this build: actualfullscreen, alttagsdecoration, attachaside, pertag, selfrestart, uselessgap, xrdb
 
 *Disclaimer* None of the backgrounds in the folder **backgrounds/** are property of mine, they belong to their respective artists.
