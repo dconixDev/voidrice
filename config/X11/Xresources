@@ -2,6 +2,13 @@
 
 Xcursor.theme: Sweet-cursors
 
+dwm.normbordercolor:#111111
+dwm.normbgcolor:#111111
+dwm.normfgcolor:#5d5d5d
+dwm.selbordercolor:#536878
+dwm.selbgcolor:#536878
+dwm.selfgcolor:#111111
+
 ! special
 *.foreground:   #ada9b0
 *.background:   #0e0d18

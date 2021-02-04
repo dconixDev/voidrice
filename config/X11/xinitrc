@@ -13,8 +13,8 @@ fi
 userresources=$HOME/.config/X11/Xresources
 usermodmap=$HOME/.config/X11/Xmodmap
 
-swpPATH=$(dwmcfg swpPATH)
-swpCHECK=$(($(cat $swpPATH | grep "x" | wc -l)-2))
+# swpPATH=$(dwmcfg swpPATH)
+# swpCHECK=$(($(cat $swpPATH | grep "x" | wc -l)-2))
 
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
@@ -33,19 +33,10 @@ xset r rate 280 40 &
 ## Start the bgchange script with an argument (e.g. 5s, 5m,...)
 # bash $HOME/.config/sucklessutils/addons_dwm/.bgchange 15m &
 ## Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
-feh --no-fehbg --bg-center $HOME/files/pictures/backgrounds/background_11.jpg &
-
-# if [[ $time -gt 16 && $time -lt 12 ]];
-# then
+feh --no-fehbg --bg-center $HOME/files/pictures/backgrounds/JapaneseLitUpNight.png &
 
 exec slstatus &
-# exec dwm
-rm $swpPATH &
-exec bash dwmcfg &
-while [ $swpCHECK != 0 ];
+while :;
 do
-	swpCHECK=$(($(cat $swpPATH | grep "x" | wc -l)-2))
-	sleep 1s
+	ssh-agent dwm
 done
-rm $swpPATH &
-pkill xinit

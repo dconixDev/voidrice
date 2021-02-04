@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DpreCONF=$(dwmcfg dmenucolor)
+DpreCONF=$(bash dwmcfg dmenucolor)
 
 # User and Hostname
 WHOAMI=( $(whoami) $(hostname) )

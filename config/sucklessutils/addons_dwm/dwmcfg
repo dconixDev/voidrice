@@ -5,8 +5,9 @@
 
 # Init Variables
 
-# DWM temporary file location
+# Paths to some files
 swpPATH="$HOME/.dwmswp"
+xresPATH="$HOME/.config/X11/Xresources"
 
 # check if it's day or night
 _TIME=$(date +%H)
@@ -22,17 +23,36 @@ fi
 
 # DWM Colors
 
-#Colors	Day[0]    Night[1]  Custom[2]
-GRAY1=( "#d8dee9" "#130308" "#130308" ) #2b2e4a
-GRAY2=( "#eceff4" "#444444" "#ffffff" ) #Obsolete color, used only for the border which can not be specified
-GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" )
-GRAY4=( "#eceff4" "#130308" "#130308" )
-CYAN=(  "#5e81ac" "#d08770" "#903749" )
+
+# 111111
+# 111111
+# 5d5d5d
+# 536878
+# 536878
+# 111111
+
+#Colors	Day[0]    Night[1]  Custom[2] Custom[3]
+GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" )
+GRAY2=( "#eceff4" "#444444" "#ffffff" "#111111" ) 
+GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" "#5d5d5d" )
+GRAY4=( "#eceff4" "#130308" "#130308" "#111111" )
+CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" )
 
 # Border color must be changed at dwm config.h
 # 			  fg     bg     border
 # unselected bar color	{ GRAY3, GRAY1, GRAY2 }
 # selected bar color 	{ GRAY4, CYAN,  CYAN  }
+
+
+function xrdbMOD {
+	sed -i "s/dwm\.normbordercolor\:.*$/dwm\.normbordercolor\:${GRAY2[$1]}/g" $xresPATH
+	sed -i "s/dwm\.normbgcolor\:.*$/dwm\.normbgcolor\:${GRAY1[$1]}/g" $xresPATH
+	sed -i "s/dwm\.normfgcolor\:.*$/dwm\.normfgcolor\:${GRAY3[$1]}/g" $xresPATH
+	sed -i "s/dwm\.selbordercolor\:.*$/dwm\.selbordercolor\:${CYAN[$1]}/g" $xresPATH
+	sed -i "s/dwm\.selbgcolor\:.*$/dwm\.selbgcolor\:${CYAN[$1]}/g" $xresPATH
+	sed -i "s/dwm\.selfgcolor\:.*$/dwm\.selfgcolor\:${GRAY4[$1]}/g" $xresPATH
+	xrdb -merge $xresPATH
+}
 
 
 # Stands for Theme DWM
@@ -42,8 +62,7 @@ function Tdwm {
 	then
 		echo "Not enough themes"
 	else
-	#                    UnSel FG         UnSel BG          UnSel Dmenu FG & BG                Sel FG           Sel BG           Sel Dmenu FG & BG
-		exec dwm -nf ${GRAY3[$1]} -nb ${GRAY1[$1]} -dnf ${GRAY3[$1]} -dnb ${GRAY1[$1]} -sf ${GRAY4[$1]} -sb ${CYAN[$1]} -dsf ${GRAY4[$1]} -dsb ${CYAN[$1]};
+		xrdbMOD $1
 	fi
 }
 
@@ -92,15 +111,10 @@ function pkillDWM {
 	fi
 }
 
-# function to input "x"(kill) or "theme 0/1/.."
+# function to input "theme 0/1/.."
 function swpMOD {
 	rm $swpPATH
-	if [[ $1 == "x" ]];
-	then
-		echo $1 >> $swpPATH
-	else
 	echo "theme $1" >> $swpPATH;
-	fi
 }
 
 # Arguments for the script
@@ -108,16 +122,16 @@ case $1 in
 	"")
 		DNdwm;;
  	theme)
-		pkillDWM
 		swpMOD $2
-		Tdwm $2;;
+		Tdwm $2
+		pkillDWM;;
 	compile)
-		pkillDWM
 		bash full_make dwm
-		DNdwm;;
+		DNdwm
+		pkillDWM;;
 	rload|rset)
-		pkillDWM
-		DNdwm;;
+		DNdwm
+		pkillDWM;;
 	dmenucolor)
 		DNdmenu;;
 	pkill)
@@ -152,5 +166,5 @@ esac
 # Call the .dwmswp file path (Useful for bashscripts)
 # dwmcfg swpPATH
 
-# Specify in the .dwmswp file "0/1/.." to select a new theme or specify "x" to kill DWM(and the X server, if killing the X server is unnecessary look at the "dwmcfg pkill" argument)
-# dwmcfg swpMOD x/0/1/..
+# Specify in the .dwmswp file "0/1/.." to select a new theme
+# dwmcfg swpMOD 0/1/2/3..

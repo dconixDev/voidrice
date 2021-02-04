@@ -2,7 +2,7 @@
 
 # Sucklessutils make install function
 function makeInstall {
-	rm -f $HOME/.config/sucklessutils/$1/config.h
+	# rm -f $HOME/.config/sucklessutils/$1/config.h
 	cd $HOME/.config/sucklessutils/$1/
 	sudo make install
 	cd $HOME

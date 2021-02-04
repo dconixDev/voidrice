@@ -4,9 +4,9 @@
 
 set -e
 
-DpreCONF=$(dwmcfg dmenucolor)
+DpreCONF=$(bash dwmcfg dmenucolor)
 
-DOVAR=$(echo -e "restart\ncompile\nday\nnight\ntheme1" | $DpreCONF -l 5 )
+DOVAR=$(echo -e "restart\ncompile\nday\nnight\ntheme1\ntheme2" | $DpreCONF -l 5 )
 
 case $DOVAR in
 	"");;
@@ -16,6 +16,8 @@ case $DOVAR in
 		bash dwmcfg theme 1;;
 	theme1)
 		bash dwmcfg theme 2;;
+	theme2)
+		bash dwmcfg theme 3;;
 	restart)
 		bash dwmcfg rload;;
 	compile)

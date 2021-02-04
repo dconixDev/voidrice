@@ -27,7 +27,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 autoload -Uz promptinit
 promptinit
 # prompt redhat
-PROMPT='[%F{#5e81ac}%n%f@%F{#5e81ac}%m%f %F{#d08770}%1~%f]%F{#5e81ac}$%f '
+PROMPT='%F{#5d5d5d}[%f%F{#5e81ac}%n%f%F{#5d5d5d}@%f%F{#5e81ac}%m%f %F{#903749}%1~%f%F{#5d5d5d}]%f%F{#5e81ac}$%f '
 
 # function zle-keymap-select () {
 #     case $KEYMAP in

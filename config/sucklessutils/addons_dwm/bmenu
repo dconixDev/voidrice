@@ -1,9 +1,14 @@
 #!/bin/bash
 
-DpreCONF=$(dwmcfg dmenucolor)
+set -e 
+
+DpreCONF=$(bash dwmcfg dmenucolor)
 
 # Dont forget the slash at the end
 BGDIR="$HOME/files/pictures/backgrounds/"
 
 BGSEL=$(ls $BGDIR | $DpreCONF -l 10)
-feh --no-fehbg --bg-fill $BGDIR$BGSEL
+if [ -n $BGSEL ];
+then
+	feh --no-fehbg --bg-fill $BGDIR$BGSEL
+fi

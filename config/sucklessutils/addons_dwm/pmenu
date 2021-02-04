@@ -2,7 +2,7 @@
 
 set -e
 
-DpreCONF=$(dwmcfg dmenucolor)
+DpreCONF=$(bash dwmcfg dmenucolor)
 
 DOVAR=$(echo -e "kill dwm\npoweroff\nreboot\nhalt" | $DpreCONF -l 4 )
 echo $DOVAR
