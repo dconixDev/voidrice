@@ -74,6 +74,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_f, 	   spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_q,      spawn,          SHCMD("pmenu") },
+	{ MODKEY|ShiftMask,             XK_a,      spawn,          SHCMD("amenu") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },

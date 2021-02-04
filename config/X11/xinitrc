@@ -13,9 +13,6 @@ fi
 userresources=$HOME/.config/X11/Xresources
 usermodmap=$HOME/.config/X11/Xmodmap
 
-# swpPATH=$(dwmcfg swpPATH)
-# swpCHECK=$(($(cat $swpPATH | grep "x" | wc -l)-2))
-
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
