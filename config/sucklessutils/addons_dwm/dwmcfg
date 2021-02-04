@@ -23,16 +23,13 @@ fi
 
 # DWM Colors
 
-# Custom[2]: Dark Purple
-# Custom[3]: Gray Nights
-#Colors	Day[0]    Night[1]  Custom[2] Custom[3]
-themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" )
+themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" "Trash_DAY" )
 themeSEL="n/a"
-GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" )
-GRAY2=( "#eceff4" "#444444" "#ffffff" "#111111" ) 
-GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" "#5d5d5d" )
-GRAY4=( "#eceff4" "#130308" "#130308" "#111111" )
-CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" )
+GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" "#d8dee9" )
+GRAY2=( "#eceff4" "#444444" "#ffffff" "#111111" "#eceff4" ) 
+GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" "#5d5d5d" "#4c566a" )
+GRAY4=( "#eceff4" "#130308" "#130308" "#111111" "#eceff4" )
+CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" "#5e81ac" )
 
 # Border color must be changed at dwm config.h
 # 			  fg     bg     border
@@ -114,6 +111,12 @@ function swpMOD {
 	echo "theme $1" >> $swpPATH;
 }
 
+function FthemeSEL {
+	swpCHECK=$(cat $swpPATH | awk '{print($2)}')
+	themeSEL=${themeNAME[$swpCHECK]}
+	echo $themeSEL;
+}
+
 # Arguments for the script
 case $1 in
 	"")
@@ -141,11 +144,11 @@ case $1 in
 		swpMOD $2;;
 	allthemes)
 		echo "${themeNAME[@]}";;
+	seltheme)
+		FthemeSEL;;
 esac
 
 
-
-# ADD CURRENT THEME SELECTED TO SMENU
 
 # Use cases
 
@@ -166,6 +169,9 @@ esac
 
 # Echo string of all the themes configured in dwmcfg
 # dwmcfg allthemes
+
+# Echo selected theme name
+# dwmcfg seltheme
 
 # Kill DWM if it's running, without killing the X server (Useful if it's used in bashscripts that don't want the X server to go down after DWM is killed)
 # dwmcfg pkill

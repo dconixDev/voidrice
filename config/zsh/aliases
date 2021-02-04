@@ -23,6 +23,7 @@ alias \
 	cdz="cd $HOME/.config/zsh/" \
 	cdx="cd $HOME/.config/X11/" \
 	cdg="cd $HOME/files/github/" \
+	cdv="cd $HOME/files/github/voidrice" \
 	cdf="cd $HOME/files/" \
 	cdh="cd $HOME"
 

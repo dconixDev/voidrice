@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DpreCONF=$(bash dwmcfg dmenucolor)
+dwmTHEME=$(bash dwmcfg seltheme)
 
 # User and Hostname
 WHOAMI=( $(whoami) $(hostname) )
@@ -19,7 +20,7 @@ MEMORY=( $(free -m | awk 'NR==2') )
 # Xbps packages
 XBPSPKGS=$(xbps-query -l | wc -l)
 
-SOUT="${WHOAMI[0]}@${WHOAMI[1]}
+SOUT="${WHOAMI[0]}@${WHOAMI[1]}   ////   [Theme:] $dwmTHEME
 [Packages:] $XBPSPKGS
 [Uptime:] $UPTIME [Since:] ${SINCE[1]} ${SINCE[0]}
 [Ram Usage:] ${MEMORY[2]}MB/${MEMORY[1]}MB [Ram Available:] ${MEMORY[6]}MB
