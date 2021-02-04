@@ -1,5 +1,8 @@
 syntax on
 
+set clipboard+=unnamedplus
+set noswapfile
+
 set nocompatible
 set encoding=utf-8
 

@@ -28,6 +28,13 @@ alias \
 	cdf="cd $HOME/files/" \
 	cdh="cd $HOME"
 
+# GitHub
+alias \
+    ga="git add" \
+    gs="git status" \
+    gc="git commit -m" \
+    gp="git push -u origin main"
+
 # Random
 alias \
 	ls="ls --color=auto" \

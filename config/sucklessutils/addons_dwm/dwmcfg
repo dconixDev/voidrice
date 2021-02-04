@@ -25,11 +25,11 @@ fi
 
 themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" "Trash_DAY" )
 themeSEL="n/a"
-GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" "#d8dee9" )
-GRAY2=( "#eceff4" "#444444" "#ffffff" "#111111" "#eceff4" ) 
-GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" "#5d5d5d" "#4c566a" )
-GRAY4=( "#eceff4" "#130308" "#130308" "#111111" "#eceff4" )
-CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" "#5e81ac" )
+GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" "#130308" )
+GRAY2=( "#d8dee9" "#130308" "#130308" "#111111" "#130308" )
+GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" "#5d5d5d" "#5d5d5d" )
+GRAY4=( "#eceff4" "#130308" "#130308" "#111111" "#444444" )
+CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" "#d08770" )
 
 # Border color must be changed at dwm config.h
 # 			  fg     bg     border
@@ -98,7 +98,7 @@ function DNdmenu {
 function pkillDWM {
 	if [ $(($(pgrep dwm | wc -l)-2)) == 0 ];
 	then
-		echo "dwm isn't running" 
+		echo "dwm isn't running"
 	else
 		pkill dwm
 	fi;
