@@ -23,14 +23,8 @@ fi
 
 # DWM Colors
 
-
-# 111111
-# 111111
-# 5d5d5d
-# 536878
-# 536878
-# 111111
-
+# Custom[2]: Dark Purple
+# Custom[3]: Gray Nights
 #Colors	Day[0]    Night[1]  Custom[2] Custom[3]
 GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" )
 GRAY2=( "#eceff4" "#444444" "#ffffff" "#111111" ) 

@@ -6,20 +6,18 @@ set -e
 
 DpreCONF=$(bash dwmcfg dmenucolor)
 
-DOVAR=$(echo -e "restart\ncompile\nday\nnight\ntheme1\ntheme2" | $DpreCONF -l 5 )
+themeList=( "Day" "Night" "Dark Purple" "Gray Nights" )
+
+DOVAR=$(echo -e "${themeList[3]}\n${themeList[2]}\n${themeList[0]}\n${themeList[1]}" | $DpreCONF -l 5 )
 
 case $DOVAR in
 	"");;
-	day)
+	${themeList[0]})
 		bash dwmcfg theme 0;;
-	night)
+	${themeList[1]})
 		bash dwmcfg theme 1;;
-	theme1)
+	${themeList[2]})
 		bash dwmcfg theme 2;;
-	theme2)
+	${themeList[3]})
 		bash dwmcfg theme 3;;
-	restart)
-		bash dwmcfg rload;;
-	compile)
-		bash dwmcfg compile;;
 esac
