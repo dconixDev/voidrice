@@ -27,7 +27,7 @@ fi
 # Custom[3]: Gray Nights
 #Colors	Day[0]    Night[1]  Custom[2] Custom[3]
 themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" )
-themeSEL=""
+themeSEL="n/a"
 GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" )
 GRAY2=( "#eceff4" "#444444" "#ffffff" "#111111" ) 
 GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" "#5d5d5d" )
@@ -47,7 +47,7 @@ function xrdbMOD {
 	sed -i "s/dwm\.selbordercolor\:.*$/dwm\.selbordercolor\:${CYAN[$1]}/g" $xresPATH
 	sed -i "s/dwm\.selbgcolor\:.*$/dwm\.selbgcolor\:${CYAN[$1]}/g" $xresPATH
 	sed -i "s/dwm\.selfgcolor\:.*$/dwm\.selfgcolor\:${GRAY4[$1]}/g" $xresPATH
-	xrdb -merge $xresPATH
+	xrdb -merge $xresPATH;
 }
 
 
@@ -59,7 +59,7 @@ function Tdwm {
 		echo "Not enough themes"
 	else
 		xrdbMOD $1
-	fi
+	fi;
 }
 
 # Stands for Theme Dmenu
@@ -69,8 +69,8 @@ function Tdmenu {
 		echo "Not enough themes"
 	else
 		#              UnSel BG         Unsel FG         Sel BG          UnSel FG
-		echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]};
-	fi
+		echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]}
+	fi;
 }
 
 # check if its day or night then start the appropriate DWM theme
@@ -104,7 +104,7 @@ function pkillDWM {
 		echo "dwm isn't running" 
 	else
 		pkill dwm
-	fi
+	fi;
 }
 
 # function to input "theme 0/1/.."
@@ -143,6 +143,9 @@ case $1 in
 		echo "${themeNAME[@]}";;
 esac
 
+
+
+# ADD CURRENT THEME SELECTED TO SMENU
 
 # Use cases
 
