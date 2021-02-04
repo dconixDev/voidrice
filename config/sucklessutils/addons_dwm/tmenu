@@ -4,20 +4,23 @@
 
 set -e
 
+# DpreCONF String and all themes specified in dwmcfg
 DpreCONF=$(bash dwmcfg dmenucolor)
+listNAME=( $(bash dwmcfg allthemes) )
 
-themeList=( "Day" "Night" "Dark Purple" "Gray Nights" )
+# Replace the spaces between names with a new line(\n)
+themeSTR=$(echo ${listNAME[@]} | sed -r 's/ /\\n/g')
 
-DOVAR=$(echo -e "${themeList[3]}\n${themeList[2]}\n${themeList[0]}\n${themeList[1]}" | $DpreCONF -l 5 )
+DOVAR=$(echo -e $themeSTR | $DpreCONF -l 5 )
 
-case $DOVAR in
-	"");;
-	${themeList[0]})
-		bash dwmcfg theme 0;;
-	${themeList[1]})
-		bash dwmcfg theme 1;;
-	${themeList[2]})
-		bash dwmcfg theme 2;;
-	${themeList[3]})
-		bash dwmcfg theme 3;;
-esac
+i=0
+while [[ $i < ${#listNAME[@]} ]];
+do
+	echo ${listNAME[$i]}
+	if [[ $DOVAR == ${listNAME[$i]} ]];
+	then
+		bash dwmcfg theme $i
+		break
+	fi
+	i=$(( $i + 1 ))
+done

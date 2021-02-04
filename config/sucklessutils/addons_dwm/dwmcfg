@@ -26,6 +26,8 @@ fi
 # Custom[2]: Dark Purple
 # Custom[3]: Gray Nights
 #Colors	Day[0]    Night[1]  Custom[2] Custom[3]
+themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" )
+themeSEL=""
 GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" )
 GRAY2=( "#eceff4" "#444444" "#ffffff" "#111111" ) 
 GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" "#5d5d5d" )
@@ -51,8 +53,8 @@ function xrdbMOD {
 
 # Stands for Theme DWM
 function Tdwm {
-	# Checks length of list in GRAY1 because theyre most likely the same length
-	if [ $1 -gt $((${#GRAY1[@]}-1)) ];
+	# Checks length of list in themeNAME
+	if [ $1 -gt $((${#themeNAME[@]}-1)) ];
 	then
 		echo "Not enough themes"
 	else
@@ -62,7 +64,7 @@ function Tdwm {
 
 # Stands for Theme Dmenu
 function Tdmenu {
-	if [ $1 -gt $((${#GRAY1[@]}-1)) ];
+	if [ $1 -gt $((${#themeNAME[@]}-1)) ];
 	then
 		echo "Not enough themes"
 	else
@@ -108,6 +110,7 @@ function pkillDWM {
 # function to input "theme 0/1/.."
 function swpMOD {
 	rm $swpPATH
+	themeSEL=${themeNAME[$1]}
 	echo "theme $1" >> $swpPATH;
 }
 
@@ -123,9 +126,11 @@ case $1 in
 		bash full_make dwm
 		DNdwm
 		pkillDWM;;
+	# Deprecated since useless {
 	rload|rset)
 		DNdwm
 		pkillDWM;;
+	# }
 	dmenucolor)
 		DNdmenu;;
 	pkill)
@@ -134,6 +139,8 @@ case $1 in
 		echo $swpPATH;;
 	swpMOD)
 		swpMOD $2;;
+	allthemes)
+		echo "${themeNAME[@]}";;
 esac
 
 
@@ -153,6 +160,9 @@ esac
 
 # Call the Dmenu pre configured arguments based on the current theme
 # dwmcfg dmenucolor
+
+# Echo string of all the themes configured in dwmcfg
+# dwmcfg allthemes
 
 # Kill DWM if it's running, without killing the X server (Useful if it's used in bashscripts that don't want the X server to go down after DWM is killed)
 # dwmcfg pkill
