@@ -26,4 +26,6 @@ DWM is great customizable Window Manager for Xorg and needs a bit of time to lea
 
 DWM patches used in this build: *actualfullscreen, alttagsdecoration, attachaside, pertag, selfrestart, uselessgap, xrdb*
 
+ST patches used in this build: *clipboard, font2, scrollback*
+
 ***Disclaimer*** None of the backgrounds in the folder **backgrounds/** are property of mine, they belong to their respective artists.

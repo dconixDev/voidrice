@@ -18,6 +18,7 @@ alias \
 # CDs
 alias \
 	cddwm="cd $HOME/.config/sucklessutils/dwm/" \
+	cdst="cd $HOME/.config/sucklessutils/st/" \
 	cdad="cd $HOME/.config/sucklessutils/addons_dwm/" \
 	cdsl="cd $HOME/.config/sucklessutils/" \
 	cdz="cd $HOME/.config/zsh/" \
