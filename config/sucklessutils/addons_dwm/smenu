@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Requires dwmcfg script
+
 DpreCONF=$(bash dwmcfg dmenucolor)
 dwmTHEME=$(bash dwmcfg seltheme)
 

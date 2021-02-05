@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Requires dwmcfg script
+
 set -e
 
 DpreCONF=$(bash dwmcfg dmenucolor)
