@@ -20,16 +20,23 @@ else
 	ToD=0
 fi
 
+# If swpPATH exists already set the themeDWM
+if [ -f $swpPATH ];
+then
+	themeDWM=$(cat $swpPATH | awk '{print($2)}')
+fi
+
 
 # DWM Colors
 
-themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" "Trash_DAY" )
+# Dont put any spaces between names
+themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" "Calm_Purple" )
 themeSEL="n/a"
-GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" "#130308" )
-GRAY2=( "#d8dee9" "#130308" "#130308" "#111111" "#130308" )
+GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" "#111111" )
+GRAY2=( "#d8dee9" "#130308" "#130308" "#111111" "#111111" )
 GRAY3=( "#4c566a" "#bbbbbb" "#f2dcbb" "#5d5d5d" "#5d5d5d" )
-GRAY4=( "#eceff4" "#130308" "#130308" "#111111" "#444444" )
-CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" "#d08770" )
+GRAY4=( "#eceff4" "#130308" "#130308" "#111111" "#111111" )
+CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" "#903749" )
 
 # Border color must be changed at dwm config.h
 # 			  fg     bg     border
@@ -61,13 +68,30 @@ function Tdwm {
 
 # Stands for Theme Dmenu
 function Tdmenu {
-	if [ $1 -gt $((${#themeNAME[@]}-1)) ];
-	then
-		echo "Not enough themes"
-	else
-		#              UnSel BG         Unsel FG         Sel BG          UnSel FG
-		echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]}
-	fi;
+    case $1 in
+        "");;
+        *[0-9]*)
+            if [ $1 -gt $((${#themeNAME[@]}-1)) ];
+            then
+	        	echo "Not enough themes"
+            else
+		        #              UnSel BG         Unsel FG         Sel BG          UnSel FG
+		        echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]}
+            fi;;
+        "nb")
+            # Set $1 to the current DWM theme
+            set $themeDWM
+		    echo dmenu -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]};;
+        "nf")
+            set $themeDWM
+		    echo dmenu -nb ${GRAY1[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]};;
+        "sb")
+            set $themeDWM
+		    echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sf ${GRAY4[$1]};;
+        "sf")
+            set $themeDWM
+		    echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]};;
+    esac;
 }
 
 # check if its day or night then start the appropriate DWM theme
@@ -136,6 +160,8 @@ case $1 in
 	# }
 	dmenucolor)
 		DNdmenu;;
+    tdmenu)
+        Tdmenu $2;;
 	pkill)
 		pkillDWM;;
 	swpPATH)

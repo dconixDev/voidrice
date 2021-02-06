@@ -83,7 +83,8 @@ root ALL=(ALL) ALL
 
 Defaults !tty_tickets
 
-%wheel ALL=NOPASSWD: /sbin/halt, /sbin/reboot, /sbin/poweroff
+## Not safe to leave /sbin/make without password
+%wheel ALL=NOPASSWD: /sbin/halt, /sbin/reboot, /sbin/poweroff, /sbin/make
 
 ## Same thing without a password
 # %wheel ALL=(ALL) NOPASSWD: ALL

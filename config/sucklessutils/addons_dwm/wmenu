@@ -1,0 +1,229 @@
+#!/bin/bash
+
+## Requires dwmcfg script
+
+set -e
+
+todayDATE=$(date +%D)
+todayDAY=$(date +%d)
+todayMONTH=$(date +%m)
+todayYEAR=$(date +%y)
+todayHOUR=$(date +%H)
+todayMIN=$(date +%M)
+extraDAY=0
+
+premadeHOUR=( 1 2 6 12 18 )
+for hour in "${premadeHOUR[@]}";
+do
+    hourSTR+="$hour Hour(s) from now\n"
+done
+echo $hourSTR
+
+premadeDAY=( 1 2 3 4 5 9 27 )
+for day in "${premadeDAY[@]}";
+do
+    daySTR+="$day Day(s) from now\n"
+done
+echo $daySTR
+
+# DpreCONF String and task path
+DpreCONF=$(bash dwmcfg dmenucolor)
+DpreCONFsb=$(bash dwmcfg tdmenu sb)
+
+# Unfinished tasks path
+taskPATH="$HOME/.tasks"
+
+# Finished tasks path
+ftasksPATH="$HOME/.ftasks"
+
+function checkFILE {
+    if [ ! -f $taskPATH ];
+    then
+        MTselCHOICE=$(echo "Create New Task" | $DpreCONF -l 1 -p "0-tasks")
+        touch $taskPATH
+        if [[ $MTselCHOICE == "Create New Task" ]];
+        then
+            createTASK
+        fi
+    else
+        initMENU
+    fi;
+}
+
+function taskDATEf {
+    taskDAY="false"
+    while [[ $taskDAY = "false" ]];
+    do
+        taskDAY=$(echo -e "$daySTR""Input date DD/MM/YY e.g. 04/05/14" | $DpreCONFsb -sb "#5e81ac" -l 10 -p "Task Date")
+        for days in ${premadeDAY[@]};
+        do
+#            echo "\$days: $days"
+#            echo "\$taskDAY: $taskDAY"
+#            echo "\$dayVAR: $dayVAR"
+#            echo "\$monthVAR: $monthVAR"
+#            echo "\$yearVAR: $yearVAR"
+            monthVAR=$(date +%m)
+            echo "start of for loop" $monthVAR "days" $days
+            if [[ $taskDAY = *"Day(s) from now"* ]];
+            then
+                echo "in if1"
+                if [[ $taskDAY = "$days Day(s) from now" ]];
+                then
+                    echo "in if2" "days79" $days
+                    if [[ $monthVAR == 2 && $(($days+$extraDAY)) -gt 28 ]];
+                    then
+                        echo "FEB" $monthVAR $days
+                        taskDAY="$(($(date +%d)+$days+$extraDAY-28))/$(($(date +%m)+1))/$(date +%y)"
+                        break
+                    elif [[ $(($monthVAR%2)) == 1 && $(($days+$extraDAY)) -gt 30 ]];
+                    then
+                        echo "EVEN" $monthVAR $days
+                        taskDAY="$(($(date +%d)+$days+$extraDAY-30))/$(($(date +%m)+1))/$(date +%y)"
+                        break
+                    elif [[ $(($days+$extraDAY)) -gt 31 ]];
+                    then
+                        echo "ODD" $monthVAR $days
+                        taskDAY="$(($(date +%d)+$days+$extraDAY-31))/$(($(date +%m)+1))/$(date +%y)"
+                        break
+                    else
+                        echo "ELSE3"
+                        taskDAY="$(($(date +%d)+$days+$extraDAY))/$(date +%m)/$(date +%y)"
+                        break
+                    fi
+                fi
+            else
+                echo "ELSE1"
+                dayVAR=$(echo $taskDAY   | sed -r 's|/.*$||g')
+                monthVAR=$(echo "$taskDAY" | awk -F'/' '{print $2}' )
+                # monthVAR=$(echo $taskDAY | sed -Ee 's|.*/(..)/.*|\1|g')
+                yearVAR=$(echo $taskDAY  | sed -r 's|.*/||g')
+                echo $monthVAR
+                break
+            fi
+        done
+        echo "while loop break"
+
+        if [[ -n ${dayVAR+x} && -n ${dayVAR+x} && -n ${dayVAR+x} ]];
+        then
+            if [[ $yearVAR -lt $todayYEAR || $yearVAR -gt 99 ]];
+            then
+                taskDAY="false"
+            elif [[ $yearVAR == $todayYEAR ]];
+            then
+                isThisYEAR=1
+            elif [[ ( $isthisYEAR == 1 && $monthVAR -lt $todayMONTH ) || $monthVAR -gt 12 ]];
+            then
+                taskDAY="false"
+            elif [[ $monthVAR == $todayMONTH ]];
+            then
+                isThisMONTH=1
+            elif [[ $isthisMONTH == 1 && $dayVAR -lt $todayDAY ]];
+            then
+                taskDAY="false"
+            elif [[ ( $monthVAR == 2 && $dayVAR -gt 28 ) || ( $(($monthVAR%2)) == 1 && $dayVAR -gt 30 ) || $dayVAR -gt 31 ]];
+            then
+                taskDAY="false"
+            elif [[ $dayVAR == $todayDAY ]];
+            then
+                isThisDAY=1
+            elif [[ $isThisDAY == 1 && $hourVAR -lt $todayHOUR ]];
+            then
+                taskHOURf
+            elif [[ $hourVAR == $todayHOUR ]];
+            then
+                isThisHOUR=1
+            elif [[ $isThisHOUR == 1 && $minVAR -lt $todayMIN ]];
+            then
+                taskHOURf
+            fi
+        fi
+    done;
+}
+
+function taskHOURf {
+    taskHOUR="false"
+    while [[ $taskHOUR = "false" ]];
+    do
+        taskHOUR=$(echo -e "$hourSTR""Input hour e.g. 19:20" | $DpreCONFsb -sb "#903749" -l 10 -p "Task Hour")
+        for hours in ${premadeHOUR[@]};
+        do
+            echo "hours" $hours
+            if [[ $taskHOUR = *"Hour(s) from now"* ]];
+            then
+                if [[ $taskHOUR = "$hours Hour(s) from now" ]];
+                then
+                    echo $(($(date +%H)+$hours))
+                    if [[ $(($(date +%H)+$hours)) -gt 23 ]];
+                    then
+                        extraDAY=1
+                        taskHOUR="$(($(date +%H)+$(($hours-24)))):$(date +%M)"
+                        echo "greater than 23:" $taskHOUR
+                        break
+                    else
+                        echo "less than 23:" "h" $hours "taskHOUR" $taskHOUR
+                        taskHOUR="$(($(date +%H)+$hours)):$(date +%M)"
+                        break
+                    fi
+                fi
+            else
+                hourVAR=$(echo $taskHOUR | sed -r 's/:.*$//g')
+                minVAR=$(echo $taskHOUR | sed -r 's/.*://g')
+            fi
+        done
+        if [[ -z ${hourVAR+x} || -z ${minVAR+x} ]];
+        then
+            if [[ $hourVAR -gt 23 || $minVAR -gt 59 ]];
+            then
+                taskHOUR="false"
+            fi
+        fi
+    done;
+}
+
+function createTASK {
+    echo "createTASK1"
+    # function to create tasks
+    taskTITLE=$(cat /dev/null | $DpreCONFsb -sb "#d08770" -p "Task Title" )
+    echo "createTASK2"
+    taskDESCRIPTION=$(cat /dev/null | $DpreCONFsb -sb "#536878" -p "Task Description" )
+    echo "createTASK3"
+    taskHOURf
+    echo "createTASK4"
+    taskDATEf
+    echo "createTASK5"
+    echo "$taskTITLE|$taskDESCRIPTION|$taskHOUR|$taskDAY" >> $taskPATH
+    echo "createTASK6"
+}
+
+function initMENU {
+    # Menu when initialized
+    selCHOICE=$(echo -e "Create New Task\nList Tasks" | $DpreCONF -l 2 -p "Start Menu")
+    case $selCHOICE in
+        "");;
+        "Create New Task")
+            bash wmenu create;;
+        "List Tasks")
+            bash wmenu list;;
+    esac;
+}
+
+case $1 in
+    "")
+        checkFILE;;
+    create)
+        createTASK;;
+    menu)
+        initMENU;;
+esac
+
+# Use cases
+# If 0 tasks, prompt to create a new task
+# TODO
+# stop hour and day from going over Today
+# if month == 2
+# taskDay == false
+# else if $(($month%2)) == 0
+# taskDay == false
+# else if $month -gt ......
+
+# line 104-140 not working properly
