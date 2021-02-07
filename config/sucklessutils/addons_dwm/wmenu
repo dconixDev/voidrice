@@ -2,60 +2,71 @@
 
 ## Requires dwmcfg script
 
+set -e
+
+
+### 3-# mark the variables that can be modified
+
+# DpreCONF String and task path
+# Modify if not using the dwmcfg script:
+DpreCONF=$(bash dwmcfg dmenucolor)
+DpreCONFsb=$(bash dwmcfg tdmenu sb)
+
+# Unfinished tasks path:
+taskPATH="$HOME/.tasks"
+
+# Finished tasks path:
+ftasksPATH="$HOME/.ftasks"
+
+# Set createTASK function colors:
+colors=( "#d08770" "#536878" "#903749" "#5e81ac" )
+
+# Easy way to set the task 1/2/3/4/5/.. hours from now
+premadeHOUR=( 1 2 3 4 5 6 12 )
+# Do not change:
+for hour in "${premadeHOUR[@]}";
+do
+    hourSTR+="$hour Hour(s) from now\n"
+done
+
+# Easy way to set the task 1/2/3/4/5/.. days from now:
+premadeDAY=( 1 2 3 4 5 10 30 )
+# Do not change:
+for day in "${premadeDAY[@]}";
+do
+    daySTR+="$day Day(s) from now\n"
+done
+
+###
+
 # The 2 below functions are for arithmetic purposes
 function checkNremoveZERO {
-    if [[ $1 -lt 10 ]];
+    if [[ $1 -ge 10 ]];
     then
+        echo $1
+    else
         tmpVAR0=$(echo $1 | sed -r 's/0//g')
         echo $tmpVAR0
-    else
-        echo $1
     fi
 }
 
 function checkNaddZERO {
-    if [[ $1 -lt 10 ]];
+    if [[ $1 -ge 10 ]];
     then
+        echo $1
+    else
         tmpVAR1+="0$1"
         echo $tmpVAR1
-    else
-        echo $1
     fi
 }
 
-set -e
-
-todayDATE=$(checkNremoveZERO $(date +%D))
+# todayDATE=$(checkNremoveZERO $(date +%D))
 todayDAY=$(checkNremoveZERO $(date +%d))
 todayMONTH=$(checkNremoveZERO $(date +%m))
 todayYEAR=$(checkNremoveZERO $(date +%y))
 todayHOUR=$(checkNremoveZERO $(date +%H))
 todayMIN=$(checkNremoveZERO $(date +%M))
 extraDAY=0
-
-premadeHOUR=( 1 2 6 12 18 )
-for hour in "${premadeHOUR[@]}";
-do
-    hourSTR+="$hour Hour(s) from now\n"
-done
-echo $hourSTR
-
-premadeDAY=( 1 2 3 4 5 9 27 )
-for day in "${premadeDAY[@]}";
-do
-    daySTR+="$day Day(s) from now\n"
-done
-echo $daySTR
-
-# DpreCONF String and task path
-DpreCONF=$(bash dwmcfg dmenucolor)
-DpreCONFsb=$(bash dwmcfg tdmenu sb)
-
-# Unfinished tasks path
-taskPATH="$HOME/.tasks"
-
-# Finished tasks path
-ftasksPATH="$HOME/.ftasks"
 
 function checkFILE {
     if [ ! -f $taskPATH ];
@@ -78,21 +89,17 @@ function taskDATEf {
     globalYEAR=0
     while [[ $taskDAY = "false" ]];
     do
-        taskDAY=$(echo -e "$daySTR""Input date DD/MM/YY e.g. 04/05/14" | $DpreCONFsb -sb "#5e81ac" -l 10 -p "Task Date")
+        taskDAY=$(echo -e "$daySTR""Input date DD/MM/YY e.g. 4/5/14" | $DpreCONFsb -sb ${colors[3]} -l 10 -p "Task Date")
         for days in ${premadeDAY[@]};
         do
             if [[ $taskDAY = *"Day(s) from now"* ]];
             then
-                echo "in if1"
                 if [[ $taskDAY = "$days Day(s) from now" ]];
                 then
-                    echo "in if2 //  days  $days"
                     accurateDAY=$(($todayDAY+$days+$extraDAY))
                     daysPlusExtraDAY=$(checkNremoveZERO $accurateDAY)
-                    echo "accurateday: $accurateDAY // d+xtra: $daysPlusExtraDAY // taskDAY: $taskDAY"
                     if [[ $todayMONTH == 2 && $daysPlusExtraDAY -gt 28 ]];
                     then
-                        echo "FEB" $todayMONTH $days
                         globalDAY=$(($todayDAY+$days+$extraDAY-28))
                         globalMONTH=$(($todayMONTH+1))
                         globalYEAR=$todayYEAR
@@ -100,7 +107,6 @@ function taskDATEf {
                         break
                     elif [[ $(($todayMONTH%2)) == 1 && $daysPlusExtraDAY -gt 30 ]];
                     then
-                        echo "EVEN" $todayMONTH $days
                         globalDAY=$(($todayDAY+$days+$extraDAY-30))
                         globalMONTH=$(($todayMONTH+1))
                         globalYEAR=$todayYEAR
@@ -108,14 +114,12 @@ function taskDATEf {
                         break
                     elif [[ $daysPlusExtraDAY -gt 31 ]];
                     then
-                        echo "ODD" $todayMONTH $days
                         globalDAY=$(($todayDAY+$days+$extraDAY-31))
                         globalMONTH=$(($todayMONTH+1))
                         globalYEAR=$todayYEAR
                         taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
                         break
                     else
-                        echo "ELSE3"
                         globalDAY=$(($todayDAY+$days+$extraDAY))
                         globalMONTH=$(($todayMONTH))
                         globalYEAR=$todayYEAR
@@ -124,62 +128,55 @@ function taskDATEf {
                     fi
                 fi
             else
-                echo "ELSE1"
                 dayVAR=$(echo $taskDAY   | sed -r 's|/.*$||g')
                 monthVAR=$(echo "$taskDAY" | awk -F'/' '{print $2}' )
-                # monthVAR=$(echo $taskDAY | sed -Ee 's|.*/(..)/.*|\1|g')
                 yearVAR=$(echo $taskDAY  | sed -r 's|.*/||g')
                 dayVAR=$(checkNremoveZERO $dayVAR)
                 monthVAR=$(checkNremoveZERO $monthVAR)
                 yearVAR=$(checkNremoveZERO $yearVAR)
-                echo $monthVAR
                 break
             fi
         done
 
+        # Check if dayVAR, monthVAR and yearVAR are ALL declared
         if [[ -n ${dayVAR+x} && -n ${dayVAR+x} && -n ${dayVAR+x} ]];
         then
-            echo "Declared"
             if [[ $yearVAR -lt $todayYEAR || $yearVAR -gt 99 ]];
             then
-                echo "lt todayYEAR || gt 99"
                 taskDAY="false"
             elif [[ $yearVAR == $todayYEAR ]];
             then
-                echo "yearVAR == todayYEAR"
                 isThisYEAR=1
-            elif [[ ( $isthisYEAR == 1 && $monthVAR -lt $todayMONTH ) || $monthVAR -gt 12 ]];
-            then
-                echo "its this year && montvar is less than todaysmonth or monthvar is greater than 12"
-                taskDAY="false"
-            elif [[ $monthVAR == $todayMONTH ]];
-            then
-                echo "monthVAR == todayMONTH"
-                isThisMONTH=1
-            elif [[ $isthisMONTH == 1 && $dayVAR -lt $todayDAY ]];
-            then
-                echo "its this motnh and dayvar is lower than todayday"
-                taskDAY="false"
-            elif [[ ( $monthVAR == 2 && $dayVAR -gt 28 ) || ( $(($monthVAR%2)) == 1 && $dayVAR -gt 30 ) || $dayVAR -gt 31 ]];
-            then
-                echo "its FEB or its an even days month or odd"
-                taskDAY="false"
-            elif [[ $dayVAR == $todayDAY ]];
-            then
-                echo "its todaay"
-                isThisDAY=1
-            elif [[ $isThisDAY == 1 && $hourVAR -lt $todayHOUR ]];
-            then
-                echo "its today and hourvar is lt todayshour"
-                taskHOURf
-            elif [[ $hourVAR == $todayHOUR ]];
-            then
-                echo "its this hour"
-                isThisHOUR=1
-            elif [[ $isThisHOUR == 1 && $minVAR -lt $todayMIN ]];
-            then
-                echo "its this hour and the minutes are less than rn mins"
-                taskHOURf
+                if [[ $monthVAR -lt $todayMONTH || $monthVAR -gt 12 ]];
+                then
+                    taskDAY="false"
+                elif [[ $monthVAR == $todayMONTH ]];
+                then
+                    isThisMONTH=1
+                    if [[ $dayVAR -lt $todayDAY ]];
+                    then
+                        taskDAY="false"
+                    elif [[ ( $monthVAR == 2 && $dayVAR -gt 28 ) || ( $(($monthVAR%2)) == 1 && $dayVAR -gt 30 ) || $dayVAR -gt 31 ]];
+                    then
+                        taskDAY="false"
+                    elif [[ $dayVAR == $todayDAY ]];
+                    then
+                        isThisDAY=1
+                        if [[ $hourVAR -lt $todayHOUR ]];
+                        then
+                            taskHOURf
+                            taskDAY="false"
+                        elif [[ $hourVAR == $todayHOUR ]];
+                        then
+                            isThisHOUR=1
+                            if [[ $isThisHOUR == 1 && $minVAR -lt $todayMIN ]];
+                            then
+                                taskHOURf
+                                taskDAY="false"
+                            fi
+                        fi
+                    fi
+                fi
             fi
         fi
     done;
@@ -191,7 +188,7 @@ function taskHOURf {
     taskHOUR="false"
     while [[ $taskHOUR = "false" ]];
     do
-        taskHOUR=$(echo -e "$hourSTR""Input hour e.g. 19:20" | $DpreCONFsb -sb "#903749" -l 10 -p "Task Hour")
+        taskHOUR=$(echo -e "$hourSTR""Input hour HH:MM e.g. 19:20" | $DpreCONFsb -sb ${colors[2]} -l 10 -p "Task Hour")
         for hours in ${premadeHOUR[@]};
         do
             echo "hours" $hours
@@ -238,9 +235,9 @@ function taskHOURf {
 function createTASK {
     echo "createTASK1"
     # function to create tasks
-    taskTITLE=$(cat /dev/null | $DpreCONFsb -sb "#d08770" -p "Task Title" )
+    taskTITLE=$(cat /dev/null | $DpreCONFsb -sb ${colors[0]} -p "Task Title" )
     echo "createTASK2"
-    taskDESCRIPTION=$(cat /dev/null | $DpreCONFsb -sb "#536878" -p "Task Description" )
+    taskDESCRIPTION=$(cat /dev/null | $DpreCONFsb -sb ${colors[1]} -p "Task Description" )
     echo "createTASK3"
     taskHOURf
     echo "createTASK4"
@@ -258,7 +255,7 @@ function initMENU {
         "Create New Task")
             createTASK;;
         "List Tasks")
-            bash wmenu list;;
+            listTASK;;
     esac;
 }
 
@@ -273,25 +270,6 @@ esac
 
 # Use cases
 # If 0 tasks, prompt to create a new task
-# TODO
-# stop hour and day from going over Today
-# if month == 2
-# taskDay == false
-# else if $(($month%2)) == 0
-# taskDay == false
-# else if $month -gt ......
 
-# line 104-140 not working properly
-# test the dates and hours, mainly the dates
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
-# REMOVE 0'S FROM DAYS/MONTHS/YEAR/HOURS/MINUTES IF THEYRE OF VALUE UNDER 10
+# TO-DO
+# add the list, finish, delete and edit functions

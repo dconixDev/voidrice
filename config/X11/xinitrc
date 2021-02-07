@@ -20,7 +20,7 @@ fi
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
- 
+
 xrandr -s 1600x900 &
 
 libinput-gestures-setup start &
@@ -30,7 +30,7 @@ xset r rate 280 40 &
 ## Start the bgchange script with an argument (e.g. 5s, 5m,...)
 # bash $HOME/.config/sucklessutils/addons_dwm/.bgchange 15m &
 ## Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
-feh --no-fehbg --bg-center $HOME/files/pictures/backgrounds/JapaneseLitUpNight.png &
+feh --no-fehbg --bg-fill $HOME/files/pictures/backgrounds/DessertNight.jpg &
 
 exec slstatus &
 while :;
