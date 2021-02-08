@@ -1,0 +1,9 @@
+# Zoom and Scroll step size
+set zoom-step 20
+set scroll-step 80
+
+# Zathura clipboard -> Sys clipboard
+set selection-clipboard clipboard
+
+# Enable incremental search
+set incremental-search true
