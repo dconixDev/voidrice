@@ -22,9 +22,9 @@ This install is meant for fresh installations of Void Linux and may overwrite yo
 
 ## DWM
 
-DWM is great customizable Window Manager for Xorg and needs a bit of time to learn how to configure(in my opinion, less than others).
+DWM a is great customizable Window Manager for Xorg and requires a bit of time to learn how to configure(in my opinion, less than others).
 
-DWM patches used in this build: *actualfullscreen, alttagsdecoration, attachaside, bottomstack, focusmaster, movestack, pertag, selfrestart, uselessgap, xrdb*
+DWM patches used in this build: *actualfullscreen, alttagsdecoration, attachaside, bottomstack, focusmaster, movestack, pertag, uselessgap, xrdb*
 
 ST patches used in this build: *clipboard, font2, scrollback*
 
