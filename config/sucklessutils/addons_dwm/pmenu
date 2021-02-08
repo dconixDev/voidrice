@@ -4,7 +4,7 @@ set -e
 
 DpreCONF=$(bash dwmcfg dmenucolor)
 
-doVAR=$(echo -e "kill dwm\ncompile dwm\npoweroff\nreboot\nhalt" | $DpreCONF -l 6 )
+doVAR=$(echo -e "kill dwm\ncompile dwm\npoweroff\nreboot\nhalt" | $DpreCONF -i -l 6 )
 
 case $doVAR in
 	"");;

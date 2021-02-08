@@ -1,9 +1,8 @@
 #!/bin/bash
 
-## Requires dwmcfg script
+## Requires dwmcfg script(for dmenu themeing)
 
 set -e
-
 
 ### 3-# mark the variables that can be modified
 
@@ -13,10 +12,10 @@ DpreCONF=$(bash dwmcfg dmenucolor)
 DpreCONFsb=$(bash dwmcfg tdmenu sb)
 
 # Unfinished tasks path:
-taskPATH="$HOME/.tasks"
+taskPATH="$HOME/files/.tasks"
 
 # Finished tasks path:
-ftasksPATH="$HOME/.ftasks"
+ftaskPATH="$HOME/files/.ftasks"
 
 # Set createTASK function colors:
 colors=( "#d08770" "#536878" "#903749" "#5e81ac" )
@@ -29,7 +28,7 @@ do
     hourSTR+="$hour Hour(s) from now\n"
 done
 
-# Easy way to set the task 1/2/3/4/5/.. days from now:
+# Easy way to set the task 1/2/3/4/5/../MAX:53 days from now:
 premadeDAY=( 1 2 3 4 5 10 30 )
 # Do not change:
 for day in "${premadeDAY[@]}";
@@ -41,7 +40,7 @@ done
 
 # The 2 below functions are for arithmetic purposes
 function checkNremoveZERO {
-    if [[ $1 -ge 10 ]];
+    if [ $1 -ge 10 ];
     then
         echo $1
     else
@@ -51,7 +50,7 @@ function checkNremoveZERO {
 }
 
 function checkNaddZERO {
-    if [[ $1 -ge 10 ]];
+    if [ $1 -ge 10 ];
     then
         echo $1
     else
@@ -60,7 +59,7 @@ function checkNaddZERO {
     fi
 }
 
-# todayDATE=$(checkNremoveZERO $(date +%D))
+# Get today's date and hour in proper format
 todayDAY=$(checkNremoveZERO $(date +%d))
 todayMONTH=$(checkNremoveZERO $(date +%m))
 todayYEAR=$(checkNremoveZERO $(date +%y))
@@ -69,6 +68,10 @@ todayMIN=$(checkNremoveZERO $(date +%M))
 extraDAY=0
 
 function checkFILE {
+    if [ ! -f $ftaskPATH ];
+    then
+        touch $ftaskPATH
+    fi
     if [ ! -f $taskPATH ];
     then
         MTselCHOICE=$(echo "Create New Task" | $DpreCONF -l 1 -p "0-tasks")
@@ -109,7 +112,13 @@ function taskDATEf {
                     then
                         globalDAY=$(($todayDAY+$days+$extraDAY-30))
                         globalMONTH=$(($todayMONTH+1))
-                        globalYEAR=$todayYEAR
+                        if [[ $globalMONTH -gt 12 ]];
+                        then
+                            globalMONTH=$(($todayMONTH+$(($days%30))-12))
+                            globalYEAR=$(($todayYEAR+1))
+                        else
+                            globalYEAR=$todayYEAR
+                        fi
                         taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
                         break
                     elif [[ $daysPlusExtraDAY -gt 31 ]];
@@ -128,9 +137,9 @@ function taskDATEf {
                     fi
                 fi
             else
-                dayVAR=$(echo $taskDAY   | sed -r 's|/.*$||g')
+                dayVAR=$(echo $taskDAY   | awk -F'/' '{print $1}' )
                 monthVAR=$(echo "$taskDAY" | awk -F'/' '{print $2}' )
-                yearVAR=$(echo $taskDAY  | sed -r 's|.*/||g')
+                yearVAR=$(echo $taskDAY  | awk -F'/' '{print $3}' )
                 dayVAR=$(checkNremoveZERO $dayVAR)
                 monthVAR=$(checkNremoveZERO $monthVAR)
                 yearVAR=$(checkNremoveZERO $yearVAR)
@@ -191,22 +200,18 @@ function taskHOURf {
         taskHOUR=$(echo -e "$hourSTR""Input hour HH:MM e.g. 19:20" | $DpreCONFsb -sb ${colors[2]} -l 10 -p "Task Hour")
         for hours in ${premadeHOUR[@]};
         do
-            echo "hours" $hours
             if [[ $taskHOUR = *"Hour(s) from now"* ]];
             then
                 if [[ $taskHOUR = "$hours Hour(s) from now" ]];
                 then
-                    echo $(($todayHOUR+$hours))
                     if [[ $(($todayHOUR+$hours)) -gt 23 ]];
                     then
-                        echo "greater than 23:" $taskHOUR
                         extraDAY=1
                         globalHOUR=$(($todayHOUR+$hours-24))
                         globalMIN=$todayMIN
                         taskHOUR="$globalHOUR:$globalMIN"
                         break
                     else
-                        echo "less than 23:" "h" $hours "taskHOUR" $taskHOUR
                         globalHOUR=$(($todayHOUR+$hours))
                         globalMIN=$todayMIN
                         taskHOUR="$globalHOUR:$globalMIN"
@@ -214,8 +219,8 @@ function taskHOURf {
                     fi
                 fi
             else
-                hourVAR=$(echo $taskHOUR | sed -r 's/:.*$//g')
-                minVAR=$(echo $taskHOUR | sed -r 's/.*://g')
+                hourVAR=$(echo $taskHOUR | awk -F':' '{print $1}' )
+                minVAR=$(echo $taskHOUR | awk -F':' '{print $2}' )
             fi
         done
         if [[ -n ${hourVAR+x} && -n ${minVAR+x} ]];
@@ -233,24 +238,36 @@ function taskHOURf {
 }
 
 function createTASK {
-    echo "createTASK1"
     # function to create tasks
     taskTITLE=$(cat /dev/null | $DpreCONFsb -sb ${colors[0]} -p "Task Title" )
-    echo "createTASK2"
     taskDESCRIPTION=$(cat /dev/null | $DpreCONFsb -sb ${colors[1]} -p "Task Description" )
-    echo "createTASK3"
     taskHOURf
-    echo "createTASK4"
     taskDATEf
-    echo "createTASK5"
-    echo "$taskTITLE|$taskDESCRIPTION|$taskHOUR|$taskDAY" >> $taskPATH
-    echo "createTASK6"
+    echo "$taskTITLE|$taskDESCRIPTION|$taskHOUR|$taskDAY" >> $taskPATH;
+}
+
+
+function listTASK {
+    selListCHOICE=$(cat $taskPATH | $DpreCONF -l 10 -p "Select Task" )
+    itemSelNrLINE=$(cat -n $taskPATH | grep "$selListCHOICE" | awk '{print($1)}')
+    itemSelNrLINE=$(echo $itemSelNrLINE | sed -r 's/ /\d;/g' )
+    itemSelNrLINE+="d"
+    modTASK=$(echo -e "$selListCHOICE\nFinish\nDelete" | $DpreCONF -l 3 -p "Modify Task" )
+    case $modTASK in
+        "");;
+        "Finish")
+            sed -i "$itemSelNrLINE" $taskPATH
+            echo "$selListCHOICE" >> $ftaskPATH;;
+        "Delete")
+            sed -i "$itemSelNrLINE" $taskPATH;;
+        *);;
+    esac;
 }
 
 function initMENU {
     # Menu when initialized
-    selCHOICE=$(echo -e "Create New Task\nList Tasks" | $DpreCONF -l 2 -p "Start Menu")
-    case $selCHOICE in
+    selMenuCHOICE=$(echo -e "Create New Task\nList Tasks" | $DpreCONF -l 2 -p "Start Menu")
+    case $selMenuCHOICE in
         "");;
         "Create New Task")
             createTASK;;
@@ -272,4 +289,5 @@ esac
 # If 0 tasks, prompt to create a new task
 
 # TO-DO
-# add the list, finish, delete and edit functions
+# add the list, finish, delete and  functions
+# Simple Task Manager: edit functionality

@@ -6,7 +6,7 @@
 # Init Variables
 
 # Paths to some files
-swpPATH="$HOME/.dwmswp"
+swpPATH="$HOME/files/.dwmswp"
 xresPATH="$HOME/.config/X11/Xresources"
 
 # check if it's day or night
