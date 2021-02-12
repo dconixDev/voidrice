@@ -21,7 +21,7 @@ ftaskPATH="$HOME/files/.ftasks"
 colors=( "#d08770" "#536878" "#903749" "#5e81ac" )
 
 # Easy way to set the task 1/2/3/4/5/.. hours from now
-premadeHOUR=( 1 2 3 4 5 6 12 )
+premadeHOUR=( 1 2 3 6 12 )
 # Do not change:
 for hour in "${premadeHOUR[@]}";
 do
@@ -60,12 +60,12 @@ function checkNaddZERO {
 }
 
 # Get today's date and hour in proper format
-todayDAY=$(checkNremoveZERO $(date +%d))
-todayMONTH=$(checkNremoveZERO $(date +%m))
-todayYEAR=$(checkNremoveZERO $(date +%y))
-todayHOUR=$(checkNremoveZERO $(date +%H))
-todayMIN=$(checkNremoveZERO $(date +%M))
-extraDAY=0
+todayDAY=$(date +%_d)
+todayMONTH=$(date +%_m)
+todayYEAR=$(date +%_y)
+todayHOUR=$(date +%_H)
+todayMIN=$(date +%_M)
+extraDAYS=0
 
 function checkFILE {
     if [ ! -f $ftaskPATH ];
@@ -87,68 +87,43 @@ function checkFILE {
 
 function taskDATEf {
     taskDAY="false"
-    globalDAY=0
-    globalMONTH=0
-    globalYEAR=0
     while [[ $taskDAY = "false" ]];
     do
-        taskDAY=$(echo -e "$daySTR""Input date DD/MM/YY e.g. 4/5/14" | $DpreCONFsb -sb ${colors[3]} -l 10 -p "Task Date")
+        taskDAY=$(echo -e "Today\n${daySTR}Input date DD/MM/YY e.g. 4/5/14" | $DpreCONFsb -sb ${colors[3]} -l 10 -p "Task Date")
         for days in ${premadeDAY[@]};
         do
-            if [[ $taskDAY = *"Day(s) from now"* ]];
+            if [[ $taskDAY = "Today" ]];
+            then
+                globalDAY=$(date -d "+${extraDAYS}days" +%d)
+                globalMONTH=$(date -d "+${extraDAYS}days" +%m)
+                globalYEAR=$(date -d "+${extraDAYS}days" +%y)
+                taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
+                break
+            elif [[ $taskDAY = *"Day(s) from now"* ]];
             then
                 if [[ $taskDAY = "$days Day(s) from now" ]];
                 then
-                    accurateDAY=$(($todayDAY+$days+$extraDAY))
-                    daysPlusExtraDAY=$(checkNremoveZERO $accurateDAY)
-                    if [[ $todayMONTH == 2 && $daysPlusExtraDAY -gt 28 ]];
-                    then
-                        globalDAY=$(($todayDAY+$days+$extraDAY-28))
-                        globalMONTH=$(($todayMONTH+1))
-                        globalYEAR=$todayYEAR
-                        taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
-                        break
-                    elif [[ $(($todayMONTH%2)) == 1 && $daysPlusExtraDAY -gt 30 ]];
-                    then
-                        globalDAY=$(($todayDAY+$days+$extraDAY-30))
-                        globalMONTH=$(($todayMONTH+1))
-                        if [[ $globalMONTH -gt 12 ]];
-                        then
-                            globalMONTH=$(($todayMONTH+$(($days%30))-12))
-                            globalYEAR=$(($todayYEAR+1))
-                        else
-                            globalYEAR=$todayYEAR
-                        fi
-                        taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
-                        break
-                    elif [[ $daysPlusExtraDAY -gt 31 ]];
-                    then
-                        globalDAY=$(($todayDAY+$days+$extraDAY-31))
-                        globalMONTH=$(($todayMONTH+1))
-                        globalYEAR=$todayYEAR
-                        taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
-                        break
-                    else
-                        globalDAY=$(($todayDAY+$days+$extraDAY))
-                        globalMONTH=$(($todayMONTH))
-                        globalYEAR=$todayYEAR
-                        taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
-                        break
-                    fi
+                    additionDAY=$(($days+$extraDAYS))
+                    globalDAY=$(date -d "+${additionDAY}days" +%d)
+                    globalMONTH=$(date -d "+${additionDAY}days" +%m)
+                    globalYEAR=$(date -d "+${additionDAY}days" +%y)
+                    taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
+                    break
                 fi
             else
                 dayVAR=$(echo $taskDAY   | awk -F'/' '{print $1}' )
                 monthVAR=$(echo "$taskDAY" | awk -F'/' '{print $2}' )
                 yearVAR=$(echo $taskDAY  | awk -F'/' '{print $3}' )
-                dayVAR=$(checkNremoveZERO $dayVAR)
-                monthVAR=$(checkNremoveZERO $monthVAR)
-                yearVAR=$(checkNremoveZERO $yearVAR)
+                globalDAY=$(date -d "${yearVAR}-${monthVAR}-${dayVAR}+${extraDAYS}days" +%d)
+                globalMONTH=$(date -d "${yearVAR}-${monthVAR}-${dayVAR}+${extraDAYS}days" +%m)
+                globalYEAR=$(date -d "$(date +%Y | cut -c1-2)${yearVAR}-${monthVAR}-${dayVAR}+${extraDAYS}days" +%y)
+                taskDAY="$globalDAY/$globalMONTH/$globalYEAR"
                 break
             fi
         done
 
         # Check if dayVAR, monthVAR and yearVAR are ALL declared
-        if [[ -n ${dayVAR+x} && -n ${dayVAR+x} && -n ${dayVAR+x} ]];
+        if [[ -n ${dayVAR+x} && -n ${monthVAR+x} && -n ${yearVAR+x} ]];
         then
             if [[ $yearVAR -lt $todayYEAR || $yearVAR -gt 99 ]];
             then
@@ -197,7 +172,7 @@ function taskHOURf {
     taskHOUR="false"
     while [[ $taskHOUR = "false" ]];
     do
-        taskHOUR=$(echo -e "$hourSTR""Input hour HH:MM e.g. 19:20" | $DpreCONFsb -sb ${colors[2]} -l 10 -p "Task Hour")
+        taskHOUR=$(echo -e "${hourSTR}Input hour HH:MM e.g. 19:20" | $DpreCONFsb -sb ${colors[2]} -l 10 -p "Task Hour")
         for hours in ${premadeHOUR[@]};
         do
             if [[ $taskHOUR = *"Hour(s) from now"* ]];
@@ -206,14 +181,14 @@ function taskHOURf {
                 then
                     if [[ $(($todayHOUR+$hours)) -gt 23 ]];
                     then
-                        extraDAY=1
-                        globalHOUR=$(($todayHOUR+$hours-24))
-                        globalMIN=$todayMIN
+                        extraDAYS=$(($(date -d "+${hours}hours" +%_d)-${todayDAY}))
+                        globalHOUR=$(date -d "+${hours}hours" +%H)
+                        globalMIN=$(date -d "+${hours}hours" +%M)
                         taskHOUR="$globalHOUR:$globalMIN"
                         break
                     else
-                        globalHOUR=$(($todayHOUR+$hours))
-                        globalMIN=$todayMIN
+                        globalHOUR=$(($(date +%H)+${hours}))
+                        globalMIN=$(date +%M)
                         taskHOUR="$globalHOUR:$globalMIN"
                         break
                     fi
@@ -252,7 +227,7 @@ function listTASK {
     itemSelNrLINE=$(cat -n $taskPATH | grep "$selListCHOICE" | awk '{print($1)}')
     itemSelNrLINE=$(echo $itemSelNrLINE | sed -r 's/ /\d;/g' )
     itemSelNrLINE+="d"
-    modTASK=$(echo -e "$selListCHOICE\nFinish\nDelete" | $DpreCONF -l 3 -p "Modify Task" )
+    modTASK=$(echo -e "Selected Task: $selListCHOICE\nFinish\nDelete" | $DpreCONF -l 3 -p "Modify Task" )
     case $modTASK in
         "");;
         "Finish")

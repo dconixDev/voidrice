@@ -5,7 +5,8 @@ alias \
 	vim=nvim \
 	v=nvim \
 	e=nvim \
-	x=startx
+	x=startx \
+    z=zathura
 
 # PKG Manager
 alias \
