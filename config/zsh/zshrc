@@ -22,20 +22,17 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# End of lines configured by zsh-newuser-install
-
 autoload -Uz promptinit
 promptinit
-# prompt redhat
 PROMPT='%F{#5d5d5d}[%f%F{#5e81ac}%n%f%F{#5d5d5d}@%f%F{#5e81ac}%m%f %F{#903749}%1~%f%F{#5d5d5d}]%f%F{#5e81ac}$%f '
 
-# function zle-keymap-select () {
-#     case $KEYMAP in
-#         vicmd) echo -ne '\e[5 q';;      # block
-#         viins|main) echo -ne '\e[1 q';; # beam
-#     esac
-# }
-# zle -N zle-keymap-select
+function zle-keymap-select () {
+    case $KEYMAP in
+        vicmd) echo -ne '\e[1 q';;      # beam
+        viins|main) echo -ne '\e[5 q';; # block
+    esac
+}
+zle -N zle-keymap-select
 
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 source $HOME/.config/zsh/aliases

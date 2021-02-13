@@ -30,6 +30,17 @@ set wildmode=longest            " auto completion
 " disable auto commenting
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" cursor highlight line
+hi CursorLine   cterm=NONE ctermbg=236
+" hi CursorColumn cterm=NONE ctermbg=236
+nnoremap <Leader>c :set cursorline! <CR>
+" local cursor line
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
 " plugins
 "    call plug#begin('~/.vim/plugged')
 "

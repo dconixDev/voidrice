@@ -42,5 +42,7 @@ alias \
 	ll="ls -lGh" \
 	lla="ll -a" \
 	cl=clear \
-	neofetchb="neofetch --config $HOME/.config/neofetch/config_big.conf" \
+    br="bash ./renew.dir" \
+    fetch=neofetch \
+	fetchb="neofetch --config $HOME/.config/neofetch/config_big.conf" \
 	am="alsamixer"
