@@ -29,7 +29,7 @@ function checkFILE {
     fi
     if [ ! -f $taskPATH ];
     then
-        MTselCHOICE=$(echo "Create New Task" | $DpreCONF -l 1 -p "0-tasks")
+        MTselCHOICE=$(echo "Create New Task" | $DpreCONF -l 1 -p "0 Tasks")
         touch $taskPATH
         if [[ $MTselCHOICE = "Create New Task" ]];
         then
@@ -64,15 +64,31 @@ function listTASK {
     esac;
 }
 
+function listFTASK {
+    finishedSelCHOICE=$(cat $ftaskPATH | $DpreCONF -l 10 -p "Select Finished Task" )
+    finishedItemSelNrLINE=$(cat -n $ftaskPATH | grep "$finishedSelCHOICE" | awk '{print($1)}')
+    finishedItemSelNrLINE=$(echo $finishedItemSelNrLINE | sed -r 's/ /\d;/g' )
+    finishedItemSelNrLINE+="d"
+    modTASK=$(echo -e "Selected Finished Task: $finishedSelCHOICE\nDelete" | $DpreCONF -l 3 -p "Modify Finished Task" )
+    case $modTASK in
+        "");;
+        "Delete")
+            sed -i "$finishedItemSelNrLINE" $ftaskPATH;;
+        *);;
+    esac;
+}
+
 function initMENU {
     # Menu when initialized
-    selMenuCHOICE=$(echo -e "Create New Task\nList Tasks" | $DpreCONF -l 2 -p "Start Menu")
+    selMenuCHOICE=$(echo -e "Create New Task\nList Tasks\nList Finished Tasks" | $DpreCONF -l 3 -p "Start Menu")
     case $selMenuCHOICE in
         "");;
         "Create New Task")
             createTASK;;
         "List Tasks")
             listTASK;;
+        "List Finished Tasks")
+            listFTASK;;
     esac;
 }
 
