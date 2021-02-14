@@ -76,6 +76,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_f, 	   spawn,          SHCMD("firefox") },
 	{ MODKEY,                       XK_q,      spawn,          SHCMD("pmenu") },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          SHCMD("amenu") },
+	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },
+    // Amixer controls
+	{ MODKEY,                       XK_minus,  spawn,          SHCMD("amixer set Master 5%-") },
+	{ MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("amixer set Master 15%-") },
+	{ MODKEY,                       XK_equal,  spawn,          SHCMD("amixer set Master 5%+") },
+	{ MODKEY|ShiftMask,             XK_equal,  spawn,          SHCMD("amixer set Master 15%+") },
+	{ MODKEY,                       XK_BackSpace,  spawn,      SHCMD("amixer set Master toggle") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
