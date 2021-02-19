@@ -27,7 +27,7 @@ alias \
 	cdg="cd $HOME/files/github/" \
 	cdv="cd $HOME/files/github/voidrice" \
 	cdf="cd $HOME/files/" \
-	cdh="cd $HOME"
+	cdh="cd $HOME && clear"
 
 # GitHub
 alias \
@@ -40,9 +40,10 @@ alias \
 alias \
 	ls="ls --color=auto" \
 	ll="ls -lGh" \
-	lla="ll -a" \
+	la="ll -a" \
 	cl=clear \
     br="bash ./renew.dir" \
     fetch=neofetch \
 	fetchb="neofetch --config $HOME/.config/neofetch/config_big.conf" \
+    tclock="tty-clock -Dc -C 6" \
 	am="alsamixer"

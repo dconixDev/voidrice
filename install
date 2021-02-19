@@ -7,7 +7,7 @@ sudo xbps-install -Syu
 
 # Install packages I like
 sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu feh firefox font-awesome font-inconsolata-otf giflib-devel git github-cli grub htop imlib2-devel libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim vim wget xbanish xdotool xorg xsel zathura zathura-pdf-poppler zsh
-
+sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst feh firefox font-awesome font-inconsolata-otf giflib-devel git github-cli grub htop imlib2-devel libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim tty-clock vim wget xbanish xdotool xorg xsel zathura zathura-pdf-poppler zsh
 # Copy config/* to $HOME/.config/
 [ ! -d $HOME/.config/ ] && mkdir $HOME/.config/
 cp -r ./config/* $HOME/.config/

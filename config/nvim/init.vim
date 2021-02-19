@@ -22,7 +22,7 @@ set wildmode=longest            " auto completion
     set nowrap
 
 " spelling n shit
-    map π :setlocal spell! spelllang=en_us<CR>
+    map <Leader>p :setlocal spell! spelllang=en_us<CR>
 
 " removing white spaces
     autocmd BufWritePre * %s/\s\+$//e
