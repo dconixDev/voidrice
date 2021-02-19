@@ -9,11 +9,11 @@ sudo xbps-install -Syu
 sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu feh firefox font-awesome font-inconsolata-otf giflib-devel git github-cli grub htop imlib2-devel libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim vim wget xbanish xdotool xorg xsel zathura zathura-pdf-poppler zsh
 sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst feh firefox font-awesome font-inconsolata-otf giflib-devel git github-cli grub htop imlib2-devel libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim tty-clock vim wget xbanish xdotool xorg xsel zathura zathura-pdf-poppler zsh
 # Copy config/* to $HOME/.config/
-[ ! -d $HOME/.config/ ] && mkdir $HOME/.config/
+mkdir -p $HOME/.config/
 cp -r ./config/* $HOME/.config/
 
 # Sending files to specific locations
-[ ! -d $HOME/files ] && mkdir $HOME/files/ $HOME/files/pictures/ $HOME/files/downloads/ $HOME/files/backups/ $HOME/files/github/
+mkdir -p $HOME/files/ $HOME/files/pictures/ $HOME/files/downloads/ $HOME/files/backups/ $HOME/files/github/ $HOME/files/writing
 cp -r ./backgrounds/ $HOME/files/pictures/
 
 # Sending .otherfiles to specific locations
