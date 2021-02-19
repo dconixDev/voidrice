@@ -35,7 +35,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Sxiv",     NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Sxiv",     NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -48,7 +48,7 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "Γ",      tile },    /*  first entry is default */
 	{ "Δ",      NULL },    /*  no layout function means floating behavior */
-	{ "Π",    monocle }, /* Original look  "[]=" "><>" "[M]" "TTT" "===" "τ" "υ" "μ" "δ" "ω"  */
+	{ "Π",      monocle }, /* Original look  "[]=" "><>" "[M]" "TTT" "===" "τ" "υ" "μ" "δ" "ω"  */
 	{ "Ω",      bstack },
 	{ "Ξ",      bstackhoriz },
 };
@@ -79,10 +79,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          SHCMD("amenu") },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },
     // Amixer controls
-	{ MODKEY,                       XK_minus,  spawn,          SHCMD("amixer set Master 5%-") },
-	{ MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("amixer set Master 15%-") },
-	{ MODKEY,                       XK_equal,  spawn,          SHCMD("amixer set Master 5%+") },
-	{ MODKEY|ShiftMask,             XK_equal,  spawn,          SHCMD("amixer set Master 15%+") },
+	{ MODKEY,                       XK_minus,  spawn,          SHCMD("vol dec 5") },
+	{ MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("vol dec 15") },
+	{ MODKEY,                       XK_equal,  spawn,          SHCMD("vol inc 5") },
+	{ MODKEY|ShiftMask,             XK_equal,  spawn,          SHCMD("vol inc 15") },
 	{ MODKEY,                       XK_BackSpace,  spawn,      SHCMD("amixer set Master toggle") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },

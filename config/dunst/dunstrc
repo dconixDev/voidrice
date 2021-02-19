@@ -61,10 +61,10 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 0
+    frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#aaaaaa"
+    frame_color = "#5d5d5d"
 
     # Define a color for the separator.
     # possible values are:
@@ -126,7 +126,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>%s %n</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -222,7 +222,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 5
+    corner_radius = 1
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -292,23 +292,23 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#130308"
-    foreground = "#bbbbbb"
+    background = "#111111"
+    foreground = "#d08770"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     icon = /usr/share/icons/Adwaita/16x16/legacy/go-bottom.png
 
 [urgency_normal]
     background = "#111111"
-    foreground = "#5d5d5d"
+    foreground = "#536878"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     icon = /usr/share/icons/Adwaita/16x16/legacy/go-home.png
 
 [urgency_critical]
     background = "#111111"
-    foreground = "#5d5d5d"
-    frame_color = "#ff0000"
+    foreground = "#903749"
+    frame_color = "#903749"
     timeout = 5
     # Icon for notifications with critical urgency, uncomment to enable
     icon = /usr/share/icons/Adwaita/16x16/legacy/media-playback-stop.png

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+tmpPATH="/var/tmp/vol"
+
+if [ -f $tmpPATH ];
+then
+    currentVOL=$(cat $tmpPATH | grep "VOL" | awk '{print($2)}')
+    prevNotifID=$(cat $tmpPATH | grep "ID" | awk '{print($2)}')
+    dunstify -C $prevNotifID
+else
+    currentVOL=100
+fi
+
+function volMOD {
+    amixer set Master $currentVOL%
+    notifID=$(dunstify -i /dev/null " Volume: $currentVOL%" -p)
+    rm $tmpPATH
+    touch $tmpPATH
+    echo -e "VOL $currentVOL\nID $notifID" >> $tmpPATH
+}
+
+case $1 in
+    "")
+        ;;
+    inc)
+       currentVOL=$(($currentVOL+$2))
+       if [ $currentVOL -ge 100 ];
+       then
+           currentVOL=100
+       fi
+       volMOD;;
+    dec)
+       currentVOL=$(($currentVOL-$2))
+       if [ $currentVOL -le 0 ];
+       then
+           currentVOL=0
+       fi
+       volMOD;;
+   vol)
+       echo $currentVOL;;
+esac
+
+
+# vol inc/dec {0..100}%
+# Maybe add capability of showing if its on mute or not
