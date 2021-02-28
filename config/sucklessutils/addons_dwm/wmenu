@@ -100,3 +100,5 @@ case $1 in
     menu)
         initMENU;;
 esac
+
+# FUCKING CLI TRANSFER

@@ -33,10 +33,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Sxiv",     NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance    title       tags mask     iscentered   isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
+	{ "Sxiv",     NULL,       NULL,       0,            1,           1,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
 };
 
 /* layout(s) */
@@ -84,6 +84,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,  spawn,          SHCMD("vol inc 5") },
 	{ MODKEY|ShiftMask,             XK_equal,  spawn,          SHCMD("vol inc 15") },
 	{ MODKEY,                       XK_BackSpace,  spawn,      SHCMD("amixer set Master toggle") },
+    //Scrot
+	{ MODKEY,                       XK_s,      spawn,          SHCMD("scrot 'fullscreenss_\%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'") },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("scrot -u 'windowss_\%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -111,7 +114,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY|ControlMask,           XK_space,  focusmaster,    {0} },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

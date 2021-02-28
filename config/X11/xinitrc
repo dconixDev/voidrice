@@ -31,6 +31,8 @@ xset r rate 280 40 &
 # bash $HOME/.config/sucklessutils/addons_dwm/.bgchange 15m &
 ## Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
 feh --no-fehbg --bg-fill $HOME/files/pictures/backgrounds/DarkConstellation.png &
+# I dont use a picom config
+picom &
 
 exec slstatus &
 while :;

@@ -5,9 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Inconsolata:pixelsize=16:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
+	"fontawesome:pixelsize=16:antialias=true:autohint=true",
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
 /*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
 };
@@ -99,44 +100,52 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+/* terminal.sexy */
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
 
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+  /* 8 normal colors */
+  [0] = "#0e0816", /* black   */
+  [1] = "#b4437f", /* red     */
+  [2] = "#539162", /* green   */
+  [3] = "#df5c22", /* yellow  */
+  [4] = "#5871a5", /* blue    */
+  [5] = "#864c99", /* magenta */
+  [6] = "#b288f9", /* cyan    */
+  [7] = "#7a7280", /* white   */
 
-	[255] = 0,
+  /* 8 bright colors */
+  [8]  = "#f5a991", /* black   */
+  [9]  = "#cd689e", /* red     */
+  [10] = "#78bf89", /* green   */
+  [11] = "#df7c50", /* yellow  */
+  [12] = "#7786a5", /* blue    */
+  [13] = "#8e6e99", /* magenta */
+  [14] = "#c7a6ff", /* cyan    */
+  [15] = "#cdc9d1", /* white   */
 
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
+  /* special colors */
+  [256] = "#0e0d18", /* background */
+  [257] = "#ada9b0", /* foreground */
 };
-
 
 /*
  * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
+ * foreground, background, cursor
  */
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+static unsigned int defaultcs = 257;
+static unsigned int defaultrcs = 256;
+
+/*
+ * Colors used, when the specific fg == defaultfg. So in reverse mode this
+ * will reverse too. Another logic would only make the simple feature too
+ * complex.
+ */
+static unsigned int defaultitalic = 7;
+static unsigned int defaultunderline = 7;
+/* terminal.sexy */
 
 /*
  * Default shape of cursor
@@ -205,6 +214,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
