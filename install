@@ -11,6 +11,7 @@ sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst feh fir
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/
 cp -r ./config/* $HOME/.config/
+sudo mv .config/zsh/.* /root/
 
 # Sending files to specific locations
 mkdir -p    $HOME/files/ \

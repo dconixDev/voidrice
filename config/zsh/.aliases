@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Short aliases
+alias \
+	vim=nvim \
+	v=nvim \
+	e=nvim \
+	x=startx \
+        z=zathura
+
+# PKG Manager
+alias \
+	xbi="sudo xbps-install -S" \
+	xbr="sudo xbps-remove" \
+	xbq="xbps-query" \
+	xbqr="xbps-query -Rs" \
+	xbql="xbps-query -l"
+
+# CDs
+alias \
+	cdh="cd $HOME && clear"
+
+# Random
+alias \
+	ls="ls --color=auto" \
+	ll="ls -lGh" \
+	la="ll -a" \
+	cl=clear \
+	am="alsamixer"
