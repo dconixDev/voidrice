@@ -19,7 +19,7 @@ set wildmode=longest            " auto completion
     set tabstop=4 softtabstop=4
     set shiftwidth=4
     set expandtab
-    set nowrap
+"    set nowrap
 
 " spelling n shit
     map <Leader>p :setlocal spell! spelllang=en_us<CR>

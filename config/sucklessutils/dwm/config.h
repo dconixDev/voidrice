@@ -36,6 +36,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     iscentered   isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
 	{ "Sxiv",     NULL,       NULL,       0,            1,           1,           -1 },
+	{ "mpv",      NULL,       NULL,       1 << 3,       0,           0,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
 };
 
@@ -78,16 +79,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,      spawn,          SHCMD("pmenu") },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          SHCMD("amenu") },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },
-    // Amixer controls
-	{ MODKEY,                       XK_minus,  spawn,          SHCMD("vol dec 5") },
-	{ MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("vol dec 15") },
-	{ MODKEY,                       XK_equal,  spawn,          SHCMD("vol inc 5") },
-	{ MODKEY|ShiftMask,             XK_equal,  spawn,          SHCMD("vol inc 15") },
-	{ MODKEY,                       XK_BackSpace,  spawn,      SHCMD("amixer set Master toggle") },
-    //Scrot
-	{ MODKEY,                       XK_s,      spawn,          SHCMD("scrot 'fullscreenss_\%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'") },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("scrot -u 'windowss_\%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'") },
-
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

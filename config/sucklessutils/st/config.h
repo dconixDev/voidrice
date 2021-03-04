@@ -98,10 +98,10 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 4;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.8, alphaUnfocused = 0.7;
 
 /* terminal.sexy */
 /* Terminal colors (16 first used in escape sequence) */
@@ -140,6 +140,7 @@ unsigned int defaultfg = 257;
 unsigned int defaultbg = 256;
 static unsigned int defaultcs = 257;
 static unsigned int defaultrcs = 256;
+unsigned int bg = 256, bgUnfocused = 256;
 
 /*
  * Colors used, when the specific fg == defaultfg. So in reverse mode this

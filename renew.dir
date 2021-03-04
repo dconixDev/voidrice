@@ -14,5 +14,11 @@ sudo cp /root/.aliases ./config/zsh/
 rm ./config/nvim/.netrwhist
 rm ./config/zsh/.histfile
 
-EXPLpkgs=$(xbps-query -m | sed -r 's/[0-9\._]//g' | sed -r 's/.$//g' | sed -r 's/imlib-devel/imlib2-devel/g')
-echo $EXPLpkgs
+pkgList=( $(xbps-query -m) )
+pkgCList=()
+for item in ${pkgList[@]};
+do
+    b=${item%-*}
+    pkgCList+=( $b )
+done
+echo ${pkgCList[*]}

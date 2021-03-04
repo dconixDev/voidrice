@@ -21,18 +21,17 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-xrandr -s 1600x900 &
+xrandr -s 1600x900 & # Screen resolution
+sxhkd -c $HOME/.config/X11/sxhkrc & # Some keybinds
 
-libinput-gestures-setup start &
-xbanish &
-xset r rate 280 40 &
+libinput-gestures-setup start & # Prevent accidental touchpad touches
+xbanish & # Hide cursor when using keyboard
+xset r rate 280 40 & # Change key press rate
 
-## Start the bgchange script with an argument (e.g. 5s, 5m,...)
-# bash $HOME/.config/sucklessutils/addons_dwm/.bgchange 15m &
-## Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
+# Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
 feh --no-fehbg --bg-fill $HOME/files/pictures/backgrounds/DarkConstellation.png &
 # I dont use a picom config
-picom &
+#picom &
 
 exec slstatus &
 while :;

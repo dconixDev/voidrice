@@ -1,0 +1,18 @@
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+    vol {inc,dec} 10
+
+XF86AudioMute
+    vol toggle
+
+Print
+    scrot 'fullscreenss_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
+
+shift + Print
+    scrot -s 'areass_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
+
+ctrl + Print
+    scrot -u 'windowss_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
+# XF86Calculator
+# XF86AudioPrev
+# XF86AudioPlay
+# XF86AudioNext

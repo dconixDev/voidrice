@@ -38,6 +38,7 @@ alias \
 
 # Random
 alias \
+    yt="ytfzf -t" \
 	ls="ls --color=auto" \
 	ll="ls -lGh" \
 	la="ll -a" \

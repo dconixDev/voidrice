@@ -6,17 +6,25 @@ if [ -f $tmpPATH ];
 then
     currentVOL=$(cat $tmpPATH | grep "VOL" | awk '{print($2)}')
     prevNotifID=$(cat $tmpPATH | grep "ID" | awk '{print($2)}')
+    muteVOL=$(cat $tmpPATH | grep "MUTE" | awk '{print($2)}')
     dunstify -C $prevNotifID
 else
+    muteVOL=0
     currentVOL=100
 fi
 
+
 function volMOD {
     amixer set Master $currentVOL%
-    notifID=$(dunstify -i /dev/null " Volume: $currentVOL%" -p)
+    if [[ $muteVOL -eq 1 ]];
+    then
+        notifID=$(dunstify -i /dev/null " Volume: $currentVOL%" -p)
+    else
+        notifID=$(dunstify -i /dev/null " Volume: $currentVOL%" -p)
+    fi
     rm $tmpPATH
     touch $tmpPATH
-    echo -e "VOL $currentVOL\nID $notifID" >> $tmpPATH
+    echo -e "VOL $currentVOL\nID $notifID\nMUTE $muteVOL" >> $tmpPATH
 }
 
 case $1 in
@@ -36,6 +44,20 @@ case $1 in
            currentVOL=0
        fi
        volMOD;;
+   toggle)
+       if [[ $muteVOL -eq 1 ]];
+       then
+           muteVOL=0
+           notifID=$(dunstify -i /dev/null " Unmuted" -p)
+       amixer set Master unmute
+       else
+           muteVOL=1
+           notifID=$(dunstify -i /dev/null " Muted" -p)
+       amixer set Master mute
+       fi
+       rm $tmpPATH
+       touch $tmpPATH
+       echo -e "VOL $currentVOL\nID $notifID\nMUTE $muteVOL" >> $tmpPATH;;
    vol)
        echo $currentVOL;;
 esac

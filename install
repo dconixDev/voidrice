@@ -6,7 +6,7 @@ echo -e "AutoRiceVoidDesktopLinux\n<>  <>  <>\n<>  <>  <>\n<>  <>  <>"
 sudo xbps-install -Syu
 
 # Install packages I like
-sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst feh firefox font-awesome font-inconsolata-otf giflib-devel git github-cli grub htop imlib2-devel libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim picom scrot tty-clock vim wget xbanish xdotool xorg xsel zathura zathura-pdf-poppler zsh
+sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst feh firefox font-awesome font-inconsolata-otf fzf giflib-devel git github-cli grub htop imlib2-devel jq lf libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim picom scrot sxhkd tty-clock ueberzug vim wget wifish xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zsh
 
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/
@@ -34,6 +34,14 @@ ln -sf $HOME/.config/X11/xinitrc $HOME/.xinitrc
 # Symbolic link the zshrc file
 ln -sf $HOME/.config/zsh/zshrc $HOME/.zshrc
 sudo chsh -s /bin/zsh
+
+# Install YTFZF
+git clone https://github.com/pystardust/ytfzf.git
+cd ytfzf
+chmod +x ytfzf
+sudo cp ytfzf /usr/local/bin/
+cd ..
+rm -rf ytfzf
 
 # Recompile everything in suckelessutils/
 bash $HOME/.config/sucklessutils/addons_dwm/full_make
