@@ -18,7 +18,7 @@ pkgList=( $(xbps-query -m) )
 pkgCList=()
 for item in ${pkgList[@]};
 do
-    b=${item%-*}
-    pkgCList+=( $b )
+    a=${item%-*}
+    pkgCList+=( $a )
 done
 echo ${pkgCList[*]}

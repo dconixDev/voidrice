@@ -1,9 +1,11 @@
+# Volume control
 {XF86AudioRaiseVolume,XF86AudioLowerVolume}
     vol {inc,dec} 10
 
 XF86AudioMute
     vol toggle
 
+# Scrot
 Print
     scrot 'fullscreenss_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
 
