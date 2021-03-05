@@ -6,12 +6,15 @@ echo -e "AutoRiceVoidDesktopLinux\n<>  <>  <>\n<>  <>  <>\n<>  <>  <>"
 sudo xbps-install -Syu
 
 # Install packages I like
-sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst feh firefox font-awesome font-inconsolata-otf fzf giflib-devel git github-cli grub htop imlib2-devel jq lf libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim picom scrot sxhkd tty-clock ueberzug vim wget wifish xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zsh
+sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst emacs fd feh firefox font-awesome font-inconsolata-otf fzf giflib-devel git github-cli grub htop imlib2-devel jq lf libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim picom ripgrep scrot sxhkd tty-clock ueberzug vim wget wifish xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zsh
 
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/
 cp -r ./config/* $HOME/.config/
-sudo mv .config/zsh/.* /root/
+sudo mv $HOME/.config/zsh/.zshrc /root/
+sudo ln -s $HOME/.config/zsh/aliases /root/.aliases
+mkdir -p /root/.config/
+sudo ln -s $HOME/.config/nvim/ /root/.config/nvim
 
 # Sending files to specific locations
 mkdir -p    $HOME/files/ \

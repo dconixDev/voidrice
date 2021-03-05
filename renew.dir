@@ -10,7 +10,6 @@ cp -r $HOME/.config/dunst ./config/
 cp -r $HOME/files/pictures/backgrounds/ ./
 sudo cp /etc/sudoers ./config/.otherfiles/sudoers
 sudo cp /root/.zshrc ./config/zsh/
-sudo cp /root/.aliases ./config/zsh/
 rm ./config/nvim/.netrwhist
 rm ./config/zsh/.histfile
 

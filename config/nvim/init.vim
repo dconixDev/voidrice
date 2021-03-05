@@ -1,5 +1,9 @@
 syntax on
 
+let g:hybrid_custom_term_colors=1
+set background=dark
+colorscheme hybrid
+
 set clipboard+=unnamedplus
 set noswapfile
 
@@ -56,6 +60,7 @@ augroup END
 
     " quick save and exit
     map zz :wq<CR>
+    map zx :q!<CR>
 
     " replace all
     nnoremap S :%s//g<Left><Left>
