@@ -23,7 +23,7 @@ fi
 
 xrandr -s 1600x900 & # Screen resolution
 sxhkd -c $HOME/.config/X11/sxhkrc & # Some keybinds
-amixer set Master 75% &
+vol set 75 &
 
 libinput-gestures-setup start & # Prevent accidental touchpad touches
 xbanish & # Hide cursor when using keyboard

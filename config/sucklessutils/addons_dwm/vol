@@ -30,6 +30,14 @@ function volMOD {
 case $1 in
     "")
         ;;
+    set)
+       amixer set Master unmute
+       amixer set Master $2%
+       muteVOL=0
+       currentVOL=$(echo $2)
+       rm $tmpPATH
+       touch $tmpPATH
+       echo -e "VOL $currentVOL\nID $notifID\nMUTE $muteVOL" >> $tmpPATH;;
     inc)
        currentVOL=$(($currentVOL+$2))
        if [ $currentVOL -ge 100 ];
@@ -49,7 +57,7 @@ case $1 in
        then
            muteVOL=0
            notifID=$(dunstify -i /dev/null " Unmuted" -p)
-       amixer set Master unmute
+           amixer set Master unmute
        else
            muteVOL=1
            notifID=$(dunstify -i /dev/null " Muted" -p)
@@ -61,7 +69,3 @@ case $1 in
    vol)
        echo $currentVOL;;
 esac
-
-
-# vol inc/dec {0..100}%
-# Maybe add capability of showing if its on mute or not

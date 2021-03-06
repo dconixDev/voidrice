@@ -15,21 +15,25 @@ shift + Print
 ctrl + Print
     scrot -u 'windowss_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
 
+# Lock screen
 Scroll_Lock
     env \
+    XSECURELOCK_FONT="inconsolata:size=12" \
     XSECURELOCK_PASSWORD_PROMPT=time_hex \
-    XSECURELOCK_FONT=inconsolata \
-    XSECURELOCK_DATETIME_FORMAT="%a %d-%b %T" \
+    XSECURELOCK_DATETIME_FORMAT="%A %d-%B %T" \
     XSECURELOCK_SHOW_DATETIME=1 \
+    XSECURELOCK_SHOW_HOSTNAME=0 \
+    XSECURELOCK_SINGLE_AUTH_WINDOW=1 \
     xsecurelock
 
+# Screenkey enable/disable
 XF86Calculator
     screenkey --font-color \#536878 -t 2 -s small -f inconsolata --opacity 0.8
 
 shift + XF86Calculator
     pkill screenkey
 
-# XF86Calculator
 # XF86AudioPrev
 # XF86AudioPlay
 # XF86AudioNext
+# Brightness
