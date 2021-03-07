@@ -68,4 +68,11 @@ case $1 in
        echo -e "VOL $currentVOL\nID $notifID\nMUTE $muteVOL" >> $tmpPATH;;
    vol)
        echo $currentVOL;;
+   volmute)
+       if [[ $muteVOL -eq 1 ]];
+       then
+           echo "off"
+       else
+           echo "on"
+       fi;;
 esac

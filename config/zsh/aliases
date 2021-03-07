@@ -2,6 +2,7 @@
 
 # Short aliases
 alias \
+    emacs=emacsclient \
 	vim=nvim \
 	v=nvim \
 	e=emacs \
@@ -24,6 +25,7 @@ alias \
 	cdsl="cd $HOME/.config/sucklessutils/" \
 	cdz="cd $HOME/.config/zsh/" \
 	cdx="cd $HOME/.config/X11/" \
+	cds="cd $HOME/files/pictures/screenshots/" \
 	cdg="cd $HOME/files/github/" \
 	cdv="cd $HOME/files/github/voidrice" \
 	cdf="cd $HOME/files/" \
@@ -46,5 +48,5 @@ alias \
     br="bash ./renew.dir" \
     fetch=neofetch \
 	fetchb="neofetch --config $HOME/.config/neofetch/config_big.conf" \
-    tclock="tty-clock -Dc -C 6" \
+    tclock="tty-clock -Dc -C 4" \
 	am="alsamixer"

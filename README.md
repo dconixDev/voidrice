@@ -8,7 +8,9 @@ TL;DR KISS autoricer "*made by me, for me*"
 
 Void Linux is a really stable and lightweight desktop oriented Linux Distro, great for beginners and "elitists" alike.
 
-Void Linux has the option of using musl C standard library instead of glibc, has runit as an init system and uses LibreSSL instead of OpenSSL, it has an extremely fast package manager and quite some packages too.
+Void Linux:
+* Simple distro
+* Fast package manager
 
 ## Installation
 

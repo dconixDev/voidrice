@@ -1,5 +1,5 @@
 # Volume control
-{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+XF86Audio{Raise,Lower}Volume
     vol {inc,dec} 10
 
 XF86AudioMute
@@ -7,16 +7,17 @@ XF86AudioMute
 
 # Scrot
 Print
-    scrot 'fullscreenss_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
+    scrot 'fullscreenss_%T_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
 
 shift + Print
-    scrot -s 'areass_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
+    scrot -s 'areass_%T_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
 
 ctrl + Print
-    scrot -u 'windowss_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
+    scrot -u 'windowss_%T_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
 
 # Lock screen
-Scroll_Lock
+XF86Sleep
+    pkill picom; \
     env \
     XSECURELOCK_FONT="inconsolata:size=12" \
     XSECURELOCK_PASSWORD_PROMPT=time_hex \
@@ -24,7 +25,8 @@ Scroll_Lock
     XSECURELOCK_SHOW_DATETIME=1 \
     XSECURELOCK_SHOW_HOSTNAME=0 \
     XSECURELOCK_SINGLE_AUTH_WINDOW=1 \
-    xsecurelock
+    xsecurelock; \
+    picom
 
 # Screenkey enable/disable
 XF86Calculator
@@ -33,7 +35,17 @@ XF86Calculator
 shift + XF86Calculator
     pkill screenkey
 
-# XF86AudioPrev
-# XF86AudioPlay
-# XF86AudioNext
+#BrightnessKEYS{up,down}
+#   xbacklight -{inc,dec} 10
+
+# Mpc settings
+XF86Audio{Next,Prev}
+    mpc {next,prev}
+
+shift + XF86Audio{Next,Prev}
+    mpc seek {+,-}5%
+
+XF86AudioPlay
+    mpc toggle
+
 # Brightness

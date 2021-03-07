@@ -23,19 +23,21 @@ fi
 
 xrandr -s 1600x900 & # Screen resolution
 sxhkd -c $HOME/.config/X11/sxhkrc & # Some keybinds
-vol set 75 &
+vol set 75 & # Custom script to set volume
+mpd & # Start mpd
+#emacs --daemon & # Start emacs daemon
 
 libinput-gestures-setup start & # Prevent accidental touchpad touches
 xbanish & # Hide cursor when using keyboard
 xset r rate 280 40 & # Change key press rate
 
 # Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
-feh --no-fehbg --bg-fill $HOME/files/pictures/backgrounds/DarkConstellation.png &
+feh --no-fehbg --bg-fill $HOME/files/pictures/backgrounds/DessertNight.jpg &
 # I dont use a picom config
-#picom &
+picom &
 
 exec slstatus &
 while :;
 do
-	ssh-agent dwm
+   ssh-agent dwm
 done

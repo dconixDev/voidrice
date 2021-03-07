@@ -30,13 +30,13 @@ fi
 # DWM Colors
 
 # Dont put any spaces between names
-themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" "Calm_Purple" )
+themeNAME=( "Day" "Night" "Dark_Purple" "Gray_Nights" "Calm_Purple" "Old" )
 themeSEL="n/a"
-GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" "#111111" )
-GRAY2=( "#d8dee9" "#130308" "#130308" "#111111" "#111111" )
-GRAY3=( "#5d5d5d" "#5d5d5d" "#5d5d5d" "#5d5d5d" "#5d5d5d" )
-GRAY4=( "#eceff4" "#130308" "#130308" "#111111" "#111111" )
-CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" "#903749" )
+GRAY1=( "#d8dee9" "#130308" "#130308" "#111111" "#111111" "#130308" )
+GRAY2=( "#d8dee9" "#130308" "#130308" "#111111" "#111111" "#444444" )
+GRAY3=( "#5d5d5d" "#5d5d5d" "#5d5d5d" "#5d5d5d" "#5d5d5d" "#bbbbbb" )
+GRAY4=( "#eceff4" "#130308" "#130308" "#111111" "#111111" "#eeeeee" )
+CYAN=(  "#5e81ac" "#d08770" "#903749" "#536878" "#903749" "#864c99" )
 
 #             			  fg     bg     border
 # unselected bar color	{ GRAY3, GRAY1, GRAY2 }

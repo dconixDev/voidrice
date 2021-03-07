@@ -2,7 +2,7 @@
 
 # zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' menu select
-zstyle :compinstall filename '/home/klet/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 zmodload zsh/complist
