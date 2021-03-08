@@ -1,19 +1,22 @@
 #!/bin/bash
 
-cp -r $HOME/.config/X11 ./config/
-cp -r $HOME/.config/neofetch ./config/
-cp -r $HOME/.config/nvim ./config/
-cp -r $HOME/.config/sucklessutils ./config/
-cp -r $HOME/.config/zsh ./config/
-cp -r $HOME/.config/zathura ./config/
-cp -r $HOME/.config/dunst ./config/
-cp -r $HOME/.config/mpd/mpd.conf ./config/
-cp -r $HOME/.config/ncmpcpp/config ./config/
-# cp -r $HOME/files/pictures/backgrounds/ ./
-sudo cp /etc/sudoers ./config/.otherfiles/sudoers
-sudo cp /root/.zshrc ./config/zsh/
-rm ./config/nvim/.netrwhist
-rm ./config/zsh/.histfile
+if [[ $1 != "pkg" ]];
+then
+    cp -r $HOME/.config/X11 ./config/
+    cp -r $HOME/.config/neofetch ./config/
+    cp -r $HOME/.config/nvim ./config/
+    cp -r $HOME/.config/sucklessutils ./config/
+    cp -r $HOME/.config/zsh ./config/
+    cp -r $HOME/.config/zathura ./config/
+    cp -r $HOME/.config/dunst ./config/
+    cp -r $HOME/.config/mpd/mpd.conf ./config/
+    cp -r $HOME/.config/ncmpcpp/config ./config/
+    # cp -r $HOME/files/pictures/backgrounds/ ./
+    sudo cp /etc/sudoers ./config/.otherfiles/sudoers
+    sudo cp /root/.zshrc ./config/zsh/
+    rm ./config/nvim/.netrwhist
+    rm ./config/zsh/.histfile
+fi
 
 pkgList=( $(xbps-query -m) )
 pkgCList=()

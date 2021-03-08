@@ -17,6 +17,13 @@ alias \
 	xbqr="xbps-query -Rs" \
 	xbql="xbps-query -l"
 
+# Navigation rel
+alias \
+	ls="ls --color=auto" \
+	ll="ls -lGh" \
+	la="ll -a" \
+	cl=clear \
+
 # CDs
 alias \
 	cddwm="cd $HOME/.config/sucklessutils/dwm/" \
@@ -38,15 +45,17 @@ alias \
     gc="git commit -m" \
     gp="git push -u origin main"
 
-# Random
+# Youtube rel
 alias \
     yt="ytfzf -t" \
-	ls="ls --color=auto" \
-	ll="ls -lGh" \
-	la="ll -a" \
-	cl=clear \
-    br="bash ./renew.dir" \
+    yta="bash ythelp a" \
+    ytv="bash ythelp v"
+
+# Random
+alias \
     fetch=neofetch \
 	fetchb="neofetch --config $HOME/.config/neofetch/config_big.conf" \
     tclock="tty-clock -Dc -C 4" \
+    br="bash ./renew.dir" \
 	am="alsamixer"
+

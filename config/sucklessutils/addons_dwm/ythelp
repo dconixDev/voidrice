@@ -1,0 +1,16 @@
+#!/bin/bash
+
+case $1 in
+    a)
+        youtube-dl \
+            --extract-audio --audio-format mp3 \
+            --restrict-filenames \
+            -o "~/files/music/%(title)s.%(ext)s" \
+            $( ytfzf -tL $2 );;
+    v)
+        youtube-dl \
+            -f mp4 \
+            --restrict-filenames \
+            -o "~/files/videos/%(title)s.%(ext)s" \
+            $( ytfzf -tL $2 );;
+esac

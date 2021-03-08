@@ -11,7 +11,7 @@ listNAME=( $(bash dwmcfg allthemes) )
 # Replace the spaces between names with a new line(\n)
 themeSTR=$(echo ${listNAME[@]} | sed -r 's/ /\\n/g')
 
-doVAR=$(echo -e $themeSTR | $DpreCONF -i -l 5 )
+doVAR=$(echo -e $themeSTR | $DpreCONF -i -l 10 )
 
 i=0
 while [[ $i < ${#listNAME[@]} ]];

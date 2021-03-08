@@ -6,7 +6,7 @@ echo -e "AutoRiceVoidDesktopLinux\n<>  <>  <>\n<>  <>  <>\n<>  <>  <>"
 sudo xbps-install -Syu
 
 # Install packages I like
-sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst emacs fd feh firefox font-awesome font-inconsolata-otf fzf giflib-devel git github-cli grub htop imlib2-devel jq lf libXft-devel libXinerama-devel libexif-devel libinput-gestures mpv neofetch neovim picom ripgrep scrot sxhkd tty-clock ueberzug vim wget wifish xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zsh
+sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst emacs fd feh firefox font-awesome font-inconsolata-otf fzf giflib-devel git github-cli grub htop imlib2-devel jq lf libXft-devel libXinerama-devel libexif-devel libinput-gestures mpc mpd mpv ncmpcpp neofetch neovim picom ripgrep screenkey scrot sxhkd tty-clock ueberzug vim wget wifish xbanish xdg-utils xdotool xorg xsecurelock xsel youtube-dl zathura zathura-pdf-poppler zsh
 
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/
@@ -23,7 +23,9 @@ mkdir -p    $HOME/files/ \
             $HOME/files/downloads/ \
             $HOME/files/backups/ \
             $HOME/files/github/ \
-            $HOME/files/writing
+            $HOME/files/music/ \
+            $HOME/files/videos/ \
+            $HOME/files/writing/
 cp -r ./backgrounds/ $HOME/files/pictures/
 
 # Sending .otherfiles to specific locations
