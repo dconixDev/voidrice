@@ -2,6 +2,9 @@
 
 echo -e "AutoRiceVoidDesktopLinux\n<>  <>  <>\n<>  <>  <>\n<>  <>  <>"
 
+# Fail proofing
+sudo xbps-install -Syu xbps
+
 # Update system
 sudo xbps-install -Syu
 
@@ -11,10 +14,6 @@ sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst emacs f
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/
 cp -r ./config/* $HOME/.config/
-sudo mv $HOME/.config/zsh/.zshrc /root/
-sudo ln -s $HOME/.config/zsh/aliases /root/.aliases
-mkdir -p /root/.config/
-sudo ln -s $HOME/.config/nvim/ /root/.config/nvim/
 
 # Creating Dirs and moving backgrounds
 mkdir -p    $HOME/files/ \
@@ -29,15 +28,21 @@ mkdir -p    $HOME/files/ \
 cp -r ./backgrounds/ $HOME/files/pictures/
 
 # Sending .otherfiles to specific locations
-sudo cp $HOME/.config/.otherfiles/sudoers /etc/sudoers
+sudo cp ./config/.otherfiles/sudoers /etc/sudoers
 # Send Sweet-cursors theme to defaults icons folder
-sudo cp -r $HOME/.config/.otherfiles/Sweet-cursors /usr/share/icons/
+sudo cp -r ./config/.otherfiles/Sweet-cursors /usr/share/icons/
 
 # Symbolic link xinitrc
 ln -sf $HOME/.config/X11/xinitrc $HOME/.xinitrc
 
 # Symbolic link the zshrc file
 ln -sf $HOME/.config/zsh/zshrc $HOME/.zshrc
+chsh -s /bin/zsh
+# Root stuff
+sudo mv $HOME/.config/zsh/.zshrc /root/
+sudo ln -s $HOME/.config/zsh/aliases /root/.aliases
+sudo mkdir -p /root/.config/
+sudo ln -s $HOME/.config/nvim/ /root/.config/
 sudo chsh -s /bin/zsh
 
 # Install YTFZF
@@ -51,4 +56,5 @@ rm -rf ytfzf
 # Recompile everything in suckelessutils/
 bash $HOME/.config/sucklessutils/addons_dwm/full_make
 
+echo -e "\nRun `\$ chsh -s /bin/zsh` if shell hasnt been changed for current user, do the same for root.\n"
 echo -e "<>  <>  <>\n<>  <>  <>\n<>  <>  <>\nHope all went well!"
