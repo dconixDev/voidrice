@@ -12,6 +12,7 @@ fi
 
 userresources=$HOME/.config/X11/Xresources
 usermodmap=$HOME/.config/X11/Xmodmap
+userexport=$HOME/.config/X11/Xports
 
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
@@ -19,6 +20,10 @@ fi
 
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
+fi
+
+if [ -f "$userexport" ]; then
+    . "$userexport"
 fi
 
 xrandr -s 1600x900 & # Screen resolution

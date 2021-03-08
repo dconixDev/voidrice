@@ -14,18 +14,13 @@ chmod +x ./*
 sudo cp ./* /usr/local/bin/
 cd $HOME
 
-case $1 in
-	"")
-		makeInstall dwm
-		makeInstall slstatus
-		makeInstall sxiv
-		makeInstall st;;
-	dwm)
-		makeInstall dwm;;
-	slstatus)
-		makeInstall slstatus;;
-	sxiv)
-		makeInstall sxiv;;
-	st)
-		makeInstall st;;
-esac
+if [[ $1 != "" ]];
+then
+    makeInstall $1
+else
+    # Manually add ones that arent here
+	makeInstall dwm
+	makeInstall slstatus
+	makeInstall sxiv
+	makeInstall st
+fi

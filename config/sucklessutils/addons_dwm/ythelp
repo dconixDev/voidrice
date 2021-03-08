@@ -1,16 +1,38 @@
 #!/bin/bash
 
+if [[ $1 == "a" || $1 == "v" ]];
+then
+    if [[ $2 == "urlz" ]];
+    then
+        ytURL=${@:3}
+    else
+        ytURL=$( ytfzf -tL ${@:2} )
+        if [[ $ytURL = "" ]];
+        then
+            echo "Choose something next time will ya?!"
+            exit
+        else
+            echo "Downloading thumbnails"
+        fi
+    fi
+else
+    echo "You're not using it correctly, are you?"
+    exit
+fi
+
 case $1 in
     a)
+        echo "Audio download"
         youtube-dl \
             --extract-audio --audio-format mp3 \
             --restrict-filenames \
             -o "~/files/music/%(title)s.%(ext)s" \
-            $( ytfzf -tL $2 );;
+            $ytURL;;
     v)
+        echo "Video download"
         youtube-dl \
             -f mp4 \
             --restrict-filenames \
             -o "~/files/videos/%(title)s.%(ext)s" \
-            $( ytfzf -tL $2 );;
+            $ytURL;;
 esac
