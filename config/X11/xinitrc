@@ -28,6 +28,8 @@ fi
 
 xrandr -s 1600x900 & # Screen resolution
 sxhkd -c $HOME/.config/X11/sxhkrc & # Some keybinds
+xautolock & # Autolock
+
 vol set 75 & # Custom script to set volume
 mpd & # Start mpd
 #emacs --daemon & # Start emacs daemon

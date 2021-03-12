@@ -37,6 +37,7 @@ GRAY2=( "#d8dee9" "#130308" "#111111" "#111111" "#444444" )
 GRAY3=( "#5d5d5d" "#5d5d5d" "#5d5d5d" "#5d5d5d" "#bbbbbb" )
 GRAY4=( "#eceff4" "#130308" "#111111" "#111111" "#eeeeee" )
 CYAN=(  "#5e81ac" "#d08770" "#536878" "#903749" "#864c99" )
+FONT="monospace:size=12"
 
 #             			  fg     bg     border
 # unselected bar color	{ GRAY3, GRAY1, GRAY2 }
@@ -74,22 +75,39 @@ function Tdmenu {
             then
 	        	echo "Not enough themes"
             else
-		        #              UnSel BG         Unsel FG         Sel BG          UnSel FG
-		        echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]}
+		        #                          UnSel BG         Unsel FG         Sel BG          UnSel FG
+		        echo dmenu -fn $FONT -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]}
             fi;;
         "nb")
             # Set $1 to the current DWM theme
             set $themeDWM
-		    echo dmenu -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]};;
+		    echo dmenu -fn $FONT -nf ${GRAY3[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]};;
         "nf")
             set $themeDWM
-		    echo dmenu -nb ${GRAY1[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]};;
+		    echo dmenu -fn $FONT -nb ${GRAY1[$1]} -sb ${CYAN[$1]} -sf ${GRAY4[$1]};;
         "sb")
             set $themeDWM
-		    echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sf ${GRAY4[$1]};;
+		    echo dmenu -fn $FONT -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sf ${GRAY4[$1]};;
         "sf")
             set $themeDWM
-		    echo dmenu -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]};;
+		    echo dmenu -fn $FONT -nb ${GRAY1[$1]} -nf ${GRAY3[$1]} -sb ${CYAN[$1]};;
+    esac;
+}
+
+function colorPrint {
+    case $1 in
+        "")
+            echo ${GRAY1[$swpCHECK]} ${GRAY2[$swpCHECK]} ${GRAY3[$swpCHECK]} ${GRAY4[$swpCHECK]} ${CYAN[$swpCHECK]};;
+        1)
+            echo ${GRAY1[$swpCHECK]};;
+        2)
+            echo ${GRAY2[$swpCHECK]};;
+        3)
+            echo ${GRAY3[$swpCHECK]};;
+        4)
+            echo ${GRAY4[$swpCHECK]};;
+        5)
+            echo ${CYAN[$swpCHECK]};;
     esac;
 }
 
@@ -136,8 +154,11 @@ function swpMOD {
 
 function FthemeSEL {
 	swpCHECK=$(cat $swpPATH | awk '{print($2)}')
-	themeSEL=${themeNAME[$swpCHECK]}
-	echo $themeSEL;
+    if [[ $1 != "echo" ]];
+    then
+        themeSEL=${themeNAME[$swpCHECK]}
+        echo $themeSEL
+    fi;
 }
 
 # Arguments for the script
@@ -171,6 +192,9 @@ case $1 in
 		echo "${themeNAME[@]}";;
 	seltheme)
 		FthemeSEL;;
+	colors)
+		FthemeSEL echo
+        colorPrint $2;;
 esac
 
 

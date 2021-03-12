@@ -9,6 +9,9 @@ dwm.selbordercolor:#536878
 dwm.selbgcolor:#536878
 dwm.selfgcolor:#111111
 
+Xautolock.time: 5
+Xautolock.locker: i3lock -u -B 10 -k --timepos 300:800 --timesize 96 --timecolor $(bash dwmcfg colors 5) --datepos 300:840 --datesize 36 --datecolor $(bash dwmcfg colors 3)
+
 ! special
 *.foreground:   #ada9b0
 *.background:   #0e0d18

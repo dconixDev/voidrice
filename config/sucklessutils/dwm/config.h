@@ -6,8 +6,8 @@ static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int snap      = 20;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10", "fontawesome:size=10:antialias=true:autohint=true" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=12", "fontawesome:size=12:antialias=true:autohint=true" };
+static const char dmenufont[]       = "monospace:size=12";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -76,6 +76,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_f, 	   spawn,          SHCMD("firefox") },
+	{ MODKEY|ShiftMask,             XK_v, 	   spawn,          SHCMD("firefox -P disc 'https://discord.com/login'") },
 	{ MODKEY,                       XK_q,      spawn,          SHCMD("pmenu") },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          SHCMD("amenu") },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },

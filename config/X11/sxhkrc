@@ -1,32 +1,35 @@
 # Volume control
 XF86Audio{Raise,Lower}Volume
-    vol {inc,dec} 10
+    vol {inc,dec} 3
 
 XF86AudioMute
     vol toggle
 
 # Scrot
 Print
-    scrot 'fullscreenss_%T_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
+    scrot 'fullscreenss_%T_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'; dunstify -i /dev/null "Screenshot"
 
 shift + Print
     scrot -s 'areass_%T_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
 
 ctrl + Print
-    scrot -u 'windowss_%T_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'
+    scrot -u 'windowss_%T_%d-%m-%Y_$wx$h.png' -e 'mv $f ~/files/pictures/screenshots/'; dunstify -i /dev/null "Screenshot"
 
 # Lock screen
-XF86Sleep
-    pkill picom; \
-    env \
-    XSECURELOCK_FONT="inconsolata:size=12" \
-    XSECURELOCK_PASSWORD_PROMPT=time_hex \
-    XSECURELOCK_DATETIME_FORMAT="%A %d-%B %T" \
-    XSECURELOCK_SHOW_DATETIME=1 \
-    XSECURELOCK_SHOW_HOSTNAME=0 \
-    XSECURELOCK_SINGLE_AUTH_WINDOW=1 \
-    xsecurelock; \
-    picom
+# XF86Sleep
+#     pkill picom; \
+#     env \
+#     XSECURELOCK_FONT="inconsolata:size=12" \
+#     XSECURELOCK_PASSWORD_PROMPT=time_hex \
+#     XSECURELOCK_DATETIME_FORMAT="%A %d-%B %T" \
+#     XSECURELOCK_SHOW_DATETIME=1 \
+#     XSECURELOCK_SHOW_HOSTNAME=0 \
+#     XSECURELOCK_SINGLE_AUTH_WINDOW=1 \
+#     xsecurelock; \
+#     picom
+
+Scroll_Lock
+    xautolock -locknow;
 
 # Screenkey enable/disable
 XF86Calculator
@@ -34,9 +37,6 @@ XF86Calculator
 
 shift + XF86Calculator
     pkill screenkey
-
-#BrightnessKEYS{up,down}
-#   xbacklight -{inc,dec} 10
 
 # Mpc settings
 XF86Audio{Next,Prev}
@@ -48,4 +48,5 @@ shift + XF86Audio{Next,Prev}
 XF86AudioPlay
     mpc toggle
 
-# Brightness
+XF86MonBrightness{Up,Down}
+    xbacklight -{inc,dec} 10
