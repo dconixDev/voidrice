@@ -1,0 +1,11 @@
+#!/bin/bash
+
+selDIR=( $(ls | grep .zip) )
+zipNR=${#selDIR[@]}
+for item in ${selDIR[@]};
+do
+    mkDIR=$(echo $item | sed -r 's/\.zip//g')
+    mkdir -p $mkDIR
+    unzip $item -d $mkDIR
+    rm $item
+done

@@ -12,7 +12,7 @@ _comp_options+=(globdots) #EX
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.config/zsh/.histfile
-HISTSIZE=9999
+HISTSIZE=99999
 SAVEHIST=9999
 setopt autocd
 bindkey -v

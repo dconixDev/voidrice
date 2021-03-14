@@ -1,6 +1,7 @@
 !.config/X11/Xresources
 
 Xcursor.theme: Sweet-cursors
+*.font: "Monospace 12"
 
 dwm.normbordercolor:#111111
 dwm.normbgcolor:#111111
@@ -9,7 +10,9 @@ dwm.selbordercolor:#536878
 dwm.selbgcolor:#536878
 dwm.selfgcolor:#111111
 
-Xautolock.time: 5
+Xautolock.time: 10
+Xautolock.notify: 60
+Xautolock.notifier: dunstify -i /dev/null "Screen locks in 1 min"
 Xautolock.locker: i3lock -u -B 10 -k --timepos 300:800 --timesize 96 --timecolor $(bash dwmcfg colors 5) --datepos 300:840 --datesize 36 --datecolor $(bash dwmcfg colors 3)
 
 ! special

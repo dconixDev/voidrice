@@ -9,7 +9,7 @@ sudo xbps-install -Syu xbps
 sudo xbps-install -Syu
 
 # Install packages I like
-sudo xbps-install -Sy alsa-utils base-devel base-system curl dmenu dunst emacs fd feh ffmpeg firefox font-awesome font-inconsolata-otf fzf giflib-devel git github-cli grub htop imlib2-devel jq libXft-devel libXinerama-devel libexif-devel libinput-gestures mpc mpd mpv ncmpcpp neofetch neovim picom ranger ripgrep screenkey scrot sxhkd tty-clock ueberzug vim wget wifish xbanish xdg-utils xdotool xorg xsecurelock xsel youtube-dl zathura zathura-pdf-poppler zsh
+sudo xbps-install -Sy VeraCrypt acpi alsa-utils base-devel base-system curl dmenu dunst fd feh ffmpeg firefox font-awesome font-inconsolata-otf fzf giflib-devel git github-cli grub-x86_64-efi htop i3lock-color imlib2-devel jq libXft-devel libXinerama-devel libexif-devel libinput-gestures mpc mpd mpv ncmpcpp neofetch neovim picom python3-pip ranger ripgrep screenkey scrot sxhkd tty-clock ueberzug vim wget xautolock xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zsh
 
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/

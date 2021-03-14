@@ -35,12 +35,14 @@ alias \
 	cdsl="cd $HOME/.config/sucklessutils/" \
 	cdz="cd $HOME/.config/zsh/" \
 	cdx="cd $HOME/.config/X11/" \
-	cds="cd $HOME/files/pictures/screenshots/" \
-	cdgv="cd $HOME/files/github/voidrice" \
+	cdf="cd $HOME/files/" \
 	cdg="cd $HOME/files/github/" \
 	cdv="cd $HOME/files/videos/" \
 	cdm="cd $HOME/files/music/" \
-	cdf="cd $HOME/files/" \
+	cdmm="cd $HOME/files/manga/" \
+	cds="cd $HOME/files/pictures/screenshots/" \
+	cdgv="cd $HOME/files/github/voidrice" \
+	cdd="cd $HOME/files/downloads/" \
 	cdh="cd $HOME && clear"
 
 # GitHub
@@ -49,6 +51,11 @@ alias \
     gs="git status" \
     gc="git commit -m" \
     gp="git push -u origin main"
+
+# Manga-py
+alias \
+    mgi="manga-py -d ~/files/manga -r -R" \
+    mgl="manga-py -d ~/files/manga -r -R -c 1"
 
 # Youtube rel
 alias \
