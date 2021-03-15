@@ -1,20 +1,26 @@
 #!/bin/bash
 
-xdotool key q
-sleep 0.2s
-xdotool key h
-sleep 0.2s
-xdotool key j
-sleep 0.2s
-xdotool key l
-sleep 0.2s
-xdotool key l
-sleep 0.2s
-xdotool key f
-sleep 0.2s
-xdotool key equal
-sleep 0.2s
-for ((i=0;i<=10;i++));
-do
-    xdotool key k
-done
+if [[ $1 = "chap" ]];
+then
+    sleep 0.3s
+    xdotool key q
+    sleep 0.1s
+    xdotool key h
+    sleep 0.1s
+    xdotool key j
+    sleep 0.1s
+    xdotool key l
+    sleep 0.1s
+    xdotool key l
+    sleep 0.1s
+    xdotool key f
+    sleep 0.1s
+    xdotool key equal
+    sleep 0.1s
+    xdotool key K
+else
+    sleep 0.3s
+    xdotool key n
+    sleep 0.1s
+    xdotool key K
+fi

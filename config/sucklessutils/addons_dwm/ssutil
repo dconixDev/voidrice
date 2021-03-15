@@ -1,0 +1,36 @@
+#!/bin/bash
+
+screenshotPATH=~/files/pictures/screenshots/
+recordingPATH=~/files/videos/
+case $1 in
+    ss)
+        case $2 in
+            full)
+                scrot -z 'fullscreenss_%T_%d-%m-%Y_$wx$h.png' \
+                    -e "mv \$f $screenshotPATH"
+                dunstify -i /dev/null "Screenshot"
+                ;;
+            area)
+                scrot -z -s 'areass_%T_%d-%m-%Y_$wx$h.png' \
+                    -e "mv \$f $screenshotPATH"
+                ;;
+            win)
+                scrot -z -u 'windowss_%T_%d-%m-%Y_$wx$h.png' \
+                    -e "mv \$f $screenshotPATH"
+                dunstify -i /dev/null "Screenshot"
+                ;;
+        esac;;
+    rec)
+        case $2 in
+            play)
+                dunstify -t 2000 -i /dev/null "  Recording Starting"
+                sleep 3s
+                ffmpeg -video_size 1600x900 -framerate 25 -f x11grab -i :0.0+0,0 ${recordingPATH}screenrecording_$(($(ls $recordingPATH | wc -l)+1)).mp4
+                ;;
+            pause)
+                pkill ffmpeg
+                dunstify -t 2000 -i /dev/null "  Recording Finished"
+                ;;
+        esac;;
+esac
+
