@@ -36,6 +36,7 @@ alias \
 	cdz="cd $HOME/.config/zsh/" \
 	cdx="cd $HOME/.config/X11/" \
 	cdf="cd $HOME/files/" \
+	cdp="cd $HOME/files/projects/" \
 	cdg="cd $HOME/files/github/" \
 	cdv="cd $HOME/files/videos/" \
 	cdm="cd $HOME/files/music/" \
@@ -63,7 +64,8 @@ alias \
     yta="bash ythelp a" \
     ytaa="bash ythelp a urlz" \
     ytv="bash ythelp v" \
-    ytvv="bash ythelp v urlz"
+    ytvv="bash ythelp v urlz" \
+    lofi="mpv --no-video \"https://www.youtube.com/watch?v=5qap5aO4i9A\""
 
 # Random
 alias \

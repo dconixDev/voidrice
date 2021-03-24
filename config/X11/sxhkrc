@@ -22,6 +22,7 @@ XF86TouchpadToggle
 shift + XF86TouchpadToggle
     bash ssutil rec pause
 
+# Manga
 alt + k
     bash mangareading chap
 
@@ -52,3 +53,7 @@ XF86AudioPlay
 # Change brightness
 XF86MonBrightness{Up,Down}
     xbacklight -{inc,dec} 10
+
+# Sleep
+XF86Sleep
+    sudo zzz

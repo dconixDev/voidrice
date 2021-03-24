@@ -39,7 +39,7 @@
 # Defaults env_keep += "LANG LANGUAGE LINGUAS LC_* _XKB_CHARSET"
 ##
 ## Run X applications through sudo; HOME is used to find the
-## .Xauthority file.  Note that other programs use HOME to find   
+## .Xauthority file.  Note that other programs use HOME to find
 ## configuration files and this may lead to privilege escalation!
 # Defaults env_keep += "HOME"
 ##
@@ -84,7 +84,7 @@ root ALL=(ALL) ALL
 Defaults !tty_tickets
 
 ## Not safe to leave /sbin/make without password
-%wheel ALL=NOPASSWD: /sbin/halt, /sbin/reboot, /sbin/poweroff, /sbin/make
+%wheel ALL=NOPASSWD: /sbin/halt, /sbin/reboot, /sbin/poweroff, /sbin/zzz
 
 ## Same thing without a password
 # %wheel ALL=(ALL) NOPASSWD: ALL

@@ -46,15 +46,27 @@ augroup CursorLine
 augroup END
 
 " plugins
-"    call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')
 "
-"    Plug 'vim-airline/vim-airline'
-"    Plug 'vim-airline/vim-airline-themes'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'rust-lang/rust.vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 "
-"    call plug#end()
+    call plug#end()
 
-" let g:airline_theme='deus'
+set noshowmode
+let g:syntastic_rust_checkers = ['cargo']
+let g:airline_theme='deus'
 " let g:airline_theme='minimalist'
+
+" coc completion with tab
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 
 " remaps
 

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rustc $1
+binary=$(echo $1 | sed -r 's/\.rs//g')
+./$binary

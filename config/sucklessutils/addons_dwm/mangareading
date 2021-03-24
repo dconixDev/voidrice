@@ -18,6 +18,8 @@ then
     xdotool key equal
     sleep 0.1s
     xdotool key K
+    sleep 0.1s
+    xdotool key b
 else
     sleep 0.3s
     xdotool key n
