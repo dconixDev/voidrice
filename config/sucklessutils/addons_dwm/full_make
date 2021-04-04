@@ -8,12 +8,6 @@ function makeInstall {
 	cd $HOME
 }
 
-# Addons_dwm
-cd $HOME/.config/sucklessutils/addons_dwm/
-chmod +x ./*
-sudo cp ./* /usr/local/bin/
-cd $HOME
-
 if [[ $1 != "" ]];
 then
     makeInstall $1

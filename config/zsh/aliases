@@ -5,6 +5,7 @@ alias \
     emacs=emacsclient \
 	e=emacs \
 	vim=nvim \
+	vi=nvim \
 	v=nvim \
 	x=startx \
     rg=ranger \
@@ -64,8 +65,7 @@ alias \
     yta="bash ythelp a" \
     ytaa="bash ythelp a urlz" \
     ytv="bash ythelp v" \
-    ytvv="bash ythelp v urlz" \
-    lofi="mpv --no-video \"https://www.youtube.com/watch?v=5qap5aO4i9A\""
+    ytvv="bash ythelp v urlz"
 
 # Random
 alias \

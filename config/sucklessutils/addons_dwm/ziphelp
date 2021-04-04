@@ -2,10 +2,23 @@
 
 selDIR=( $(ls | grep .zip) )
 zipNR=${#selDIR[@]}
+counter=0
+echo "Number of Zip files: "$zipNR
+echo "The found Zip files: "${selDIR[@]}
 for item in ${selDIR[@]};
 do
-    mkDIR=$(echo $item | sed -r 's/\.zip//g')
-    mkdir -p $mkDIR
-    unzip $item -d $mkDIR
-    rm $item
+    if [ $counter -lt $(($zipNR-2)) ];
+    then
+        echo "delete succeded"
+        mkDIR=$(echo $item | sed -r 's/\.zip//g')
+        mkdir -p $mkDIR
+        unzip $item -d $mkDIR
+        rm $item
+    else
+        echo "delete denied"
+        mkDIR=$(echo $item | sed -r 's/\.zip//g')
+        mkdir -p $mkDIR
+        unzip $item -d $mkDIR
+    fi
+    counter+=1
 done

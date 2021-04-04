@@ -324,6 +324,9 @@ exe "hi! TabLine"       .s:fg_foreground  .s:bg_darkcolumn  .s:fmt_revr
 "   TabLineSel"
 exe "hi! Title"         .s:fg_yellow      .s:bg_none        .s:fmt_none
 exe "hi! Visual"        .s:fg_none        .s:bg_selection   .s:fmt_none
+"
+" hi Visual term=reverse cterm=reverse guibg=Gray
+"
 "   VisualNos"
 exe "hi! WarningMsg"    .s:fg_red         .s:bg_none        .s:fmt_none
 " FIXME LongLineWarning to use variables instead of hardcoding
@@ -413,6 +416,10 @@ hi! link diffAdded Special
 "   diffLine
 "   diffSubname
 "   diffComment
+
+" Custom
+hi LineNr ctermfg=10
+"
 
 "}}}
 "

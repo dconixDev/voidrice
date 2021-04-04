@@ -56,4 +56,13 @@ XF86MonBrightness{Up,Down}
 
 # Sleep
 XF86Sleep
-    sudo zzz
+    sudo zzz;
+    xautolock -locknow
+
+# Play lofi stream
+XF86Launch3
+    lofi
+
+# Poweroff with button
+XF86PowerOff
+    sudo poweroff

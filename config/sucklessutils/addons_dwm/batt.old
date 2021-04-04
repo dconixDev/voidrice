@@ -6,11 +6,8 @@
 adapterON=$(acpi -a | awk '{print($3)}')
 if [[ $adapterON = "on-line" ]];
 then
-    outputVAR=" "
-else
-    outputVAR=" "
+    outputVAR=" "
 fi
-
 # Check current battery status
 battSTAT=$(acpi -b | awk '{print($4)}' | sed -r 's/,//g')
 # Arithmetic able variable
@@ -18,18 +15,18 @@ battART=$(echo $battSTAT | sed -r 's/%//g')
 
 if [[ $battART -lt 25 ]];
 then
-    outputVAR+="$battSTAT"
+    outputVAR+=" $battSTAT"
 elif [[ $battART -lt 50 ]];
 then
-    outputVAR+="$battSTAT"
+    outputVAR+=" $battSTAT"
 elif [[ $battART -lt 75 ]];
 then
-    outputVAR+="$battSTAT"
+    outputVAR+=" $battSTAT"
 elif [[ $battART -lt 100 ]];
 then
-    outputVAR+="$battSTAT"
+    outputVAR+=" $battSTAT"
 else
-    outputVAR=" 100"
+    outputVAR+=" FULL"
 fi
 
 echo $outputVAR

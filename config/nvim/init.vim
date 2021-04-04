@@ -49,9 +49,10 @@ augroup END
 call plug#begin('~/.vim/plugged')
 "
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'rust-lang/rust.vim'
+"    Plug 'rust-lang/rust.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+"   Plug 'chrisbra/Colorizer'
 "
     call plug#end()
 
@@ -70,6 +71,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " remaps
 
+    map <Leader>m :! binrun %:t %:t <CR>
     " quick save and exit
     map zz :wq<CR>
     map zx :q!<CR>

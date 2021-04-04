@@ -36,3 +36,4 @@ zle -N zle-keymap-select
 
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 source $HOME/.config/zsh/aliases
+# figlet -f speed $(lsb_release -a | awk 'NR==2' | awk '{print($3)}')

@@ -2,4 +2,5 @@
 
 export \
     VISUAL=nvim \
-    EDITOR=nvim
+    EDITOR=nvim \
+    PATH=$PATH:~/.config/sucklessutils/addons_dwm

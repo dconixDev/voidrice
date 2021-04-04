@@ -32,6 +32,7 @@ xautolock & # Autolock
 
 vol set 75 & # Custom script to set volume
 mpd & # Start mpd
+mpc pause &
 # transmission-daemon --download-dir "~/files/downloads/" # Start transmission
 
 libinput-gestures-setup start & # Prevent accidental touchpad touches

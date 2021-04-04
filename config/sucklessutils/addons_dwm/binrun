@@ -1,0 +1,17 @@
+#!/bin/bash
+
+binary="bin_$(echo $2 | sed -r 's/\..*$//g')"
+extension=$(echo $1 | sed -r 's/.*\.//g')
+case $extension in
+    "cpp")
+        figlet -f shadow C + +
+        g++ -o $binary $2
+        ./$binary;;
+    "rs")
+        figlet -f shadow R U S T
+        rustc -o $binary $2
+        ./$binary;;
+    "py")
+        figlet -f shadow P y
+        python3 $1
+esac
