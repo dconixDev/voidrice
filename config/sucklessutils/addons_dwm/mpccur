@@ -1,0 +1,21 @@
+#!/bin/bash
+
+mpdP=$(mpc status | grep playing)
+#  check if mpd is playing  
+if [[ $mpdP = "" ]];
+then
+    outputVAR=" "
+else
+    outputVAR=" "
+fi
+current=$(mpc current)
+current=${current%.*}
+current=( $(echo $current | sed -r 's#.*/##g') )
+if [ ${#current[@]} -gt 7 ];
+then
+    outputVAR+="$(echo ${current[@]} | sed -r 's#.*-##g')"
+else
+    outputVAR+="${current[@]}"
+fi
+
+echo $outputVAR

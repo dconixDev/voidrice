@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# brightness level
+brightnessLVL=$(printf "%.0f\n" $(xbacklight -get))
+
+#   
+if [[ $brightnessLVL -lt 100 ]];
+then
+    outputVAR=" $brightnessLVL"
+else
+    outputVAR=" 100"
+fi
+
+echo $outputVAR

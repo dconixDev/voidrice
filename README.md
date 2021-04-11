@@ -6,7 +6,7 @@ TL;DR KISS autoricer "*made by me, for me*"
 
 ## Void Linux
 
-Void Linux is a really stable and lightweight desktop oriented Linux Distro, great for beginners and "elitists" alike.
+Void Linux is a really stable and lightweight desktop oriented Linux Distro.
 
 Void Linux:
 * Simple distro
@@ -24,7 +24,7 @@ This install is meant for fresh installations of Void Linux and may overwrite yo
 
 ## DWM
 
-DWM a is great customizable Window Manager for Xorg and requires a bit of time to learn to configure(in my opinion, less than others).
+DWM a is great customizable Window Manager for Xorg.
 
 DWM patches used in this build: *actualfullscreen, alttagsdecoration, attachbottom, bottomstack, center, fixborders, movestack, pertag, uselessgap, xrdb*
 

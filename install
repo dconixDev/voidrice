@@ -9,7 +9,7 @@ sudo xbps-install -Syu xbps
 sudo xbps-install -Syu
 
 # Install packages I like
-sudo xbps-install -Sy VeraCrypt acpi alsa-utils base-devel base-system curl dmenu dunst fd feh ffmpeg figlet figlet-fonts firefox font-awesome font-inconsolata-otf fzf giflib-devel gimp git github-cli grub-x86_64-efi htop i3lock-color imlib2-devel jq krita libXft-devel libXinerama-devel libexif-devel libinput-gestures lynx mpc mpd mpv ncmpcpp neofetch neovim notcurses picom python3-pip ranger ripgrep screenkey scrot sxhkd tectonic transmission tty-clock ueberzug vim wget xautolock xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zenity zsh
+sudo xbps-install -Sy VeraCrypt acpi alsa-utils base-devel base-system curl dmenu dunst fd feh ffmpeg figlet figlet-fonts firefox font-awesome font-inconsolata-otf fzf giflib-devel gimp git github-cli grub-x86_64-efi htop i3lock-color imlib2-devel jq krita libXft-devel libXinerama-devel libexif-devel libinput-gestures mpc mpd mpv ncmpcpp neofetch neovim picom python3-pip ranger screenkey scrot sxhkd tectonic transmission tty-clock ueberzug vim wget xautolock xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zenity zsh
 
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/
@@ -57,4 +57,5 @@ rm -rf ytfzf
 bash $HOME/.config/sucklessutils/addons_dwm/full_make
 
 echo -e "\nRun `\$ chsh -s /bin/zsh` if shell hasnt been changed for current user, do the same for root.\n"
+echo -e "Fix ScreenTearing on X11\n"
 echo -e "<>  <>  <>\n<>  <>  <>\n<>  <>  <>\nHope all went well!"
