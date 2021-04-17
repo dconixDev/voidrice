@@ -6,7 +6,6 @@ colorscheme hybrid
 
 set clipboard+=unnamedplus
 set noswapfile
-
 set nocompatible
 set encoding=utf-8
 
@@ -37,7 +36,7 @@ set wildmode=longest            " auto completion
 " cursor highlight line
 hi CursorLine   cterm=NONE ctermbg=236
 " hi CursorColumn cterm=NONE ctermbg=236
-nnoremap <Leader>c :set cursorline! <CR>
+nnoremap <Leader>b :set cursorline! <CR>
 " local cursor line
 augroup CursorLine
   au!
@@ -52,7 +51,8 @@ call plug#begin('~/.vim/plugged')
 "    Plug 'rust-lang/rust.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-"   Plug 'chrisbra/Colorizer'
+    Plug 'preservim/nerdcommenter'
+"    Plug 'chrisbra/Colorizer'
 "
     call plug#end()
 
@@ -71,7 +71,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " remaps
 
-    map <Leader>m :! binrun %:t %:t <CR>
+    map <Leader>m :w<ESC>:! binrun %:t %:t <CR>
     " quick save and exit
     map zz :wq<CR>
     map zx :q!<CR>
@@ -84,3 +84,11 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
     map <C-j> <C-w>j
     map <C-k> <C-w>k
     map <C-l> <C-w>l
+
+
+inoremap (  ()<ESC>hli
+inoremap [  []<ESC>hli
+inoremap {  {}<ESC>hli
+inoremap )  )<ESC>lxa
+inoremap ]  ]<ESC>lxa
+inoremap }  }<ESC>lxa

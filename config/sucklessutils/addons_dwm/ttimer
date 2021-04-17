@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sleep $@
+figlet $@
+dunstify -i /dev/null "  $@ have passed"

@@ -66,9 +66,9 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
 	/* { netspeed_rx,	"[ %sB/s]  ",	  "eth0" }, */
-       { run_command, " %s", "bash mpccur" },
-       { run_command, " | %s", "bash batt" },
-       { run_command, " | %s", "bash bright" },
-       { run_command, " | %3s", "bash vol vol" },
-       { datetime,	"%s",        	  " |  %d/%m/%y |  %R " },
+       { run_command, " %s",      "bash mpccur" },
+       { run_command, " | %s",    "bash batt" },
+       { run_command, " | %s",    "bash bright" },
+       { run_command, " | %3s",  "bash vol vol" },
+       { datetime,	  "%s",       " |  %d/%m/%y |  %R " },
 };

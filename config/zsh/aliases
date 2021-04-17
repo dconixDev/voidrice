@@ -62,6 +62,7 @@ alias \
 # Youtube rel
 alias \
     yt="ytfzf -t" \
+    yts="ytfzf -t --subs=3" \
     yta="bash ythelp a" \
     ytaa="bash ythelp a urlz" \
     ytv="bash ythelp v" \
