@@ -2,8 +2,6 @@
 
 # Short aliases
 alias \
-    emacs=emacsclient \
-	e=emacs \
 	vim=nvim \
 	vi=nvim \
 	v=nvim \
@@ -11,7 +9,10 @@ alias \
     rg=ranger \
     s=sxiv \
     n=ncmpcpp \
+    d=disown \
     z=zathura
+#   emacs=emacsclient \
+#   e=emacs \
 
 # PKG Manager
 alias \
@@ -43,6 +44,7 @@ alias \
 	cdm="cd $HOME/files/music/" \
 	cdmm="cd $HOME/files/manga/" \
 	cds="cd $HOME/files/pictures/screenshots/" \
+	cdpp="cd $HOME/files/pictures/" \
 	cdgv="cd $HOME/files/github/voidrice" \
 	cdd="cd $HOME/files/downloads/" \
 	cdh="cd $HOME && clear"
