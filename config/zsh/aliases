@@ -10,7 +10,8 @@ alias \
     s=sxiv \
     n=ncmpcpp \
     d=disown \
-    z=zathura
+    z=zathura \
+    h=htop
 #   emacs=emacsclient \
 #   e=emacs \
 
@@ -29,15 +30,19 @@ alias \
 	la="ll -a" \
 	cl=clear
 
-# CDs
+# .config
 alias \
 	cddwm="cd $HOME/.config/sucklessutils/dwm/" \
 	cdst="cd $HOME/.config/sucklessutils/st/" \
 	cdad="cd $HOME/.config/sucklessutils/addons_dwm/" \
 	cdsl="cd $HOME/.config/sucklessutils/" \
 	cdz="cd $HOME/.config/zsh/" \
-	cdx="cd $HOME/.config/X11/" \
+	cdx="cd $HOME/.config/X11/"
+
+# files
+alias \
 	cdf="cd $HOME/files/" \
+    cdsc="cd $HOME/files/sync/" \
 	cdp="cd $HOME/files/projects/" \
 	cdg="cd $HOME/files/github/" \
 	cdv="cd $HOME/files/videos/" \

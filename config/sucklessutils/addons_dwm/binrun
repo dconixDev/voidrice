@@ -2,6 +2,7 @@
 
 extension=$(echo $1 | sed -r 's/.*\.//g')
 binary="bin_$(echo $2 | sed -r 's/\..*$//g')"
+
 case $extension in
     "cpp")
         figlet -f shadow C + +
@@ -13,5 +14,8 @@ case $extension in
         ./$binary;;
     "py")
         figlet -f shadow P y
-        python3 $1
+        python3 $1;;
+    "tex")
+        figlet -f shadow L a T e X
+        tectonic $1;;
 esac

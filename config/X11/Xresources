@@ -14,7 +14,7 @@ Xautolock.time: 10
 Xautolock.notify: 60
 Xautolock.notifier: dunstify -i /dev/null "Screen locks in 1 min"
 ! Xautolock.locker: i3lock -u -B 10 -k --timestr "%H:%M" --timepos 300:800 --timesize 96 --timecolor $(bash dwmcfg colors 5) --datestr "%A, %d/%h" --datepos 300:840 --datesize 36 --datecolor $(bash dwmcfg colors 3)
-Xautolock: i3lock -e -u -B 10 -k --timestr "%H:%M" --timepos 250:780 --timesize 124 --timecolor $(bash dwmcfg colors 5) --datestr "%A, %d/%h" --datepos 250:820 --datesize 36 --datecolor $(bash dwmcfg colors 3)
+Xautolock.locker: i3lock -e -u -B 3 -k --timestr "%H:%M" --timepos 250:780 --timesize 124 --timecolor $(bash dwmcfg colors 5) --datestr "%A, %d/%h" --datepos 250:820 --datesize 36 --datecolor $(bash dwmcfg colors 3)
 
 ! special
 *.foreground:   #ada9b0

@@ -33,7 +33,9 @@ xautolock & # Autolock
 vol set 75 & # Custom script to set volume
 mpd & # Start mpd
 mpc pause &
-# transmission-daemon --download-dir "~/files/downloads/" # Start transmission
+touch /mnt/tmpfs/mpccur & # Show mpd progress in dwm bar
+
+transmission-daemon --download-dir "$HOME/files/downloads/" # Start transmission
 
 libinput-gestures-setup start & # Prevent accidental touchpad touches
 xbanish & # Hide cursor when using keyboard
@@ -43,6 +45,7 @@ xset r rate 280 40 & # Change key press rate
 feh --no-fehbg --bg-fill $HOME/files/pictures/backgrounds/DessertNight.jpg &
 # I dont use a picom config
 picom &
+# syncthing -no-browser &> /dev/null & disown
 
 exec slstatus &
 while :;

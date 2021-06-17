@@ -7,7 +7,7 @@ set -e
 DpreCONF=$(bash dwmcfg dmenucolor)
 
 # A list of all custom Bashscripts
-menuLIST=( "tmenu" "bmenu" "smenu" "pmenu" )
+menuLIST=( "emojis" "tmenu" "bmenu" "smenu" "pmenu" )
 menuSTR=$(echo ${menuLIST[@]} | sed -r 's/ /\\n/g')
 
 menuSEL=$(echo -e "$menuSTR" | $DpreCONF -l 5)

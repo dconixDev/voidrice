@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tmpPATH="/var/tmp/vol"
+tmpPATH="/mnt/tmpfs/vol"
 
 if [ -f $tmpPATH ];
 then
@@ -61,7 +61,7 @@ case $1 in
        else
            muteVOL=1
            notifID=$(dunstify -i /dev/null " Muted" -p)
-       amixer set Master mute
+           amixer set Master mute
        fi
        rm $tmpPATH
        touch $tmpPATH

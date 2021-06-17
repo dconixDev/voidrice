@@ -7,7 +7,7 @@ counter=0
 echo -e "\n---The found Zip files: "${selDIR[@]}
 for item in ${selDIR[@]};
 do
-    if [ $counter -lt $(($zipNR-2)) ];
+    if [[ ${counter} -lt $(($zipNR-2)) ]];
     then
         echo -e "\n>>> DELETE SUCCEDED"
         mkDIR=$(echo $item | sed -r 's/\.zip//g')

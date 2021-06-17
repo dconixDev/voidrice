@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function split_and_print {
+    Command=$(echo $@ | sed -r 's/sudo //g' )
+    temp_var=$(echo "${Command}? [y/n]" | sed -r 's/ /#/g' )
+    List=( $(echo $temp_var | grep -o .) )
+    List=( ${List[@]} "\n" )
+
+    #echo -e -n "\x1b[\x33 q"
+
+    echo ""
+    for item in ${List[@]};
+    do
+        if [ $item = "#" ];
+        then
+            echo -n " "
+            sleep 0.03s
+        else
+            # green
+            printf "\x1b[38;2;32;194;14m${item}\x1b[0m"
+            sleep 0.03s
+        fi
+    done
+
+    # red
+    printf "\x1b[38;2;129;0;0m"
+    read -p "" yesNo
+}
+
+if [[ ! -z $@ ]];
+then
+    split_and_print $@
+fi
+
+case $yesNo in
+    [yY]* )
+        $@;;
+    [nN]* )
+        exit;;
+    *);;
+esac

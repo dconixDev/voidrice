@@ -37,13 +37,15 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
 	{ "Sxiv",     NULL,       NULL,       0,            1,           1,           -1 },
 	{ "st",       NULL,       NULL,       0,            1,           0,           -1 },
+	{ "st_float", NULL,       NULL,       0,            1,           1,           -1 },
 	{ "mpv",      NULL,       NULL,       1 << 3,       0,           0,           -1 },
-	{ "Brave",    NULL,       NULL,       1 << 8,       0,           0,           -1 },
+	{ "KeePassXC",NULL,       NULL,       1 << 4,       0,           0,           -1 },
+	{ "Brave",    NULL,       NULL,       1 << 7,       0,           0,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.5;  /*0.55;  factor of master area size [0.05..0.95] */
+static const float mfact     = 0.55;  /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
@@ -77,7 +79,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_f, 	   spawn,          SHCMD("brave") },
+	{ MODKEY|ShiftMask,             XK_f, 	   spawn,          SHCMD("firefox") },
 	{ MODKEY|ShiftMask,             XK_v, 	   spawn,          SHCMD("brave https://discord.com/app") },
 	{ MODKEY,                       XK_q,      spawn,          SHCMD("pmenu") },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          SHCMD("amenu") },

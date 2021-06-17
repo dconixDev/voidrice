@@ -9,7 +9,7 @@ sudo xbps-install -Syu xbps
 sudo xbps-install -Syu
 
 # Install packages I like
-sudo xbps-install -Sy VeraCrypt acpi alsa-utils base-devel base-system curl dmenu dunst fd feh ffmpeg figlet figlet-fonts firefox font-awesome font-inconsolata-otf freeimage fzf giflib-devel gimp git github-cli grub-x86_64-efi highlight htop i3lock-color imlib2-devel jq krita libXft-devel libXinerama-devel libexif-devel libinput-gestures lua mpc mpd mpv ncmpcpp neofetch neovim picom python3-pip ranger screenkey scrot sxhkd tectonic transmission tty-clock ueberzug vim wget xautolock xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zenity zsh
+sudo xbps-install -Sy ImageMagick VeraCrypt acpi alsa-utils android-file-transfer-linux base-devel base-system cargo curl dmenu dunst fd feh ffmpeg figlet figlet-fonts firefox font-awesome font-inconsolata-otf freeimage fzf giflib-devel gimp git github-cli go gpick grub-x86_64-efi highlight htop i3lock-color imlib2-devel jq keepassxc krita libXft-devel libXinerama-devel libexif-devel libinput-gestures lua mpc mpd mpv ncmpcpp neofetch neovim nmap nodejs openjdk picom python3-pip qalculate ranger rsClock rust screenkey scrot sxhkd syncthing tectonic transmission tty-clock ueberzug vim wget xautolock xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zenity zip zsh
 
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/

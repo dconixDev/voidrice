@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DpreCONF=$(bash dwmcfg dmenucolor)
+
+cat $HOME/files/writing/emojis |
+    $DpreCONF -l 10 |
+    sed 's/\W;;.*//g;' |
+    xsel -b

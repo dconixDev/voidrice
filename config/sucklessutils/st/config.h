@@ -5,7 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Inconsolata:pixelsize=16:antialias=true:autohint=true";
+static char *font = "Inconsolata Nerd Font:pixelsize=16";
+//static char *font = "InconsolataNerd:pixelsize=16:antialias=true:autohint=true";
+//static char *font = "Inconsolata:pixelsize=16:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
 	"FontAwesome:pixelsize=16:antialias=true:autohint=true",

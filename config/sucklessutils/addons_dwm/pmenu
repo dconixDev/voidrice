@@ -4,14 +4,14 @@ set -e
 
 DpreCONF=$(bash dwmcfg dmenucolor)
 
-doVAR=$(echo -e "kill dwm\ncompile dwm\npoweroff\nreboot\nhalt\nzzz" | $DpreCONF -i -l 7 )
+do_var=$(echo -e "kill dwm\ncompile dwm\npoweroff\nreboot\nhalt\nzzz" | $DpreCONF -i -l 7 )
 
-case $doVAR in
+case $do_var in
 	"");;
 	"kill dwm")
 		pkill xinit;;
 	"compile dwm")
 		bash dwmcfg compile;;
-	poweroff|reboot|halt|zzz)
-		sudo $doVAR;;
+	poweroff|reboot|halt|zzz|ZZZ)
+		sudo $do_var;;
 esac

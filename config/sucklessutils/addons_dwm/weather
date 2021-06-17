@@ -1,0 +1,45 @@
+#!/usr/bin/python3.9
+import bs4
+import requests
+from datetime import datetime
+
+def extract_source(url):
+     agent = {"User-Agent":"Mozilla/5.0"}
+     source=requests.get(url, headers=agent).text
+     return source
+
+def extract_data(source, attr):
+     soup=bs4.BeautifulSoup(source, 'html.parser')
+     names=soup.find_all('div', attrs={'class':attr})
+     return names
+
+def extract_text(soup):
+    temps = []
+    for i in range(len(soup)):
+        temps.append(soup[i].text.split('°')[0])
+    return temps
+
+apprx_list = extract_text(extract_data(extract_source('https://www.accuweather.com/en/xk/prishtina/298740/weather-forecast/298740'), attr='temp'))
+hourly_list = extract_data(extract_source('https://www.accuweather.com/en/xk/prishtina/298740/hourly-weather-forecast/298740'), attr='temp metric')
+
+try:
+    print("Current:",apprx_list[0],
+          "\nToday:",apprx_list[1],
+          "\nTonight:",apprx_list[2],
+          "\nTomorrow:",apprx_list[3])
+except Exception:
+    print("Current:",apprx_list[0],
+          "\nTonight:",apprx_list[1],
+          "\nTomorrow:",apprx_list[2])
+
+current_hour=datetime.now().hour + 1
+
+print("\nHourly",end="")
+for i in range(len(hourly_list)):
+    print(end="\n| ")
+    if ( (current_hour + i) > 24 ):
+        print(current_hour + i - 24, end="")
+    else:
+        print(current_hour + i, end="")
+    print(" =",repr(hourly_list[i].text[0:-1])[7:-3], end=" | ")
+print()

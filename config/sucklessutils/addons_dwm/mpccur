@@ -1,5 +1,7 @@
 #!/bin/bash
 
+tmpPATH="/mnt/tmpfs/mpccur"
+time_left=$(mpc | awk 'NR==2' | awk '{print($3)}')
 mpdP=$(mpc status | grep playing)
 #  check if mpd is playing  
 if [[ $mpdP = "" ]];
@@ -18,4 +20,22 @@ else
     outputVAR+="${current[@]}"
 fi
 
-echo $outputVAR
+if [ -f $tmpPATH ];
+then
+    if [[ $1 = "time" ]];
+    then
+        rm $tmpPATH
+        echo $outputVAR
+    else
+        touch $tmpPATH
+        echo "$outputVAR ($time_left)"
+    fi
+else
+    if [[ $1 = "time" ]];
+    then
+        touch $tmpPATH
+        echo "$outputVAR ($time_left)"
+    else
+        echo $outputVAR
+    fi
+fi

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+bravePATH=~/files/github/brave
+cd $bravePATH
+./brave $@

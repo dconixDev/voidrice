@@ -5,6 +5,10 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute
     vol toggle
 
+# Toggle time progress for mpd
+ctrl + XF86AudioMute
+    bash mpccur time
+
 # Scrot
 Print
     bash ssutil ss full
@@ -33,6 +37,10 @@ alt + j
 Scroll_Lock
     xautolock -locknow
 
+# KeepassXC
+ctrl + Scroll_Lock
+    keepassxc
+
 # Screenkey enable/disable
 XF86Calculator
     screenkey --font-color \#536878 -t 2 -s small -f inconsolata --opacity 0.8
@@ -56,8 +64,7 @@ XF86MonBrightness{Up,Down}
 
 # Sleep
 XF86Sleep
-    sudo zzz;
-    xautolock -locknow
+    sudo zzz
 
 # Play lofi stream
 XF86Launch3
@@ -65,4 +72,4 @@ XF86Launch3
 
 # Poweroff with button
 XF86PowerOff
-    sudo poweroff
+    st -t "Prompt" -c "st_float" -f "Inconsolata:pixelsize=48:antialias=true:autohint=true" -g 22x4 -e bprompt "sudo poweroff"

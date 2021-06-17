@@ -1,0 +1,14 @@
+#!/bin/bash
+
+m4a_list=(*\.m4a)
+
+m4a_items=${#m4a_list[@]}
+number=0
+while [ $number -lt $m4a_items ];
+do
+    m4a_var=${m4a_list[$number]}
+    mp3_var=$(echo $m4a_var | sed -r 's/m4a/mp3/g')
+    ffmpeg -i "$m4a_var" "$mp3_var"
+    rm "$m4a_var"
+    number=$(($number + 1))
+done

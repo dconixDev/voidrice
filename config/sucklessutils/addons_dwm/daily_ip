@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Sleep 1min so internet works
+echo "Initialize scripts"
+sleep 1m
+
+# Log file
+txtPath="/home/astro/files/.ips"
+touch $txtPath
+
+# echo "Connecting..."
+# Get IP
+currentIP=$(curl -s ifconfig.me)
+Date=$(date +"%d/%m/%y %H:%M")
+
+# Echo into log file
+echo "${currentIP} ${Date}" >> "$txtPath"

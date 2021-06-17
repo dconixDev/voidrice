@@ -427,6 +427,12 @@ hi LineNr ctermfg=10
 
 let &background = s:style
 
+" Tab Colors
+
+hi TabLineFill ctermfg=NONE ctermbg=NONE
+hi TabLine ctermfg=7 ctermbg=NONE
+hi TabLineSel ctermfg=0 ctermbg=0
+
 " }}}
 " Legal:"{{{
 " ----------------------------------------------------------------------------
@@ -457,4 +463,4 @@ let &background = s:style
 " NECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
 
-" }}}
+
