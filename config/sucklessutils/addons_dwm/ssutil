@@ -22,12 +22,12 @@ case $1 in
         esac;;
     rec)
         case $2 in
-            play)
-                dunstify -t 2000 -i /dev/null "  Recording Starts in 3 seconds"
+            begin)
+                dunstify -t 2000 -i /dev/null "  Recording Starts In 3 Seconds"
                 sleep 3s
                 ffmpeg -video_size 1600x900 -framerate 25 -f x11grab -i :0.0+0,0 ${recordingPATH}screenrecording_$(($(ls $recordingPATH | wc -l)+1)).mp4
                 ;;
-            pause)
+            end)
                 pkill ffmpeg
                 dunstify -t 2000 -i /dev/null "  Recording Finished"
                 ;;

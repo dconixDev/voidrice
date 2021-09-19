@@ -8,7 +8,7 @@ sudo xbps-install -Syu xbps
 # Update system
 sudo xbps-install -Syu
 
-# Install packages I like
+# Install packages I like # NOT UPDATED
 sudo xbps-install -Sy ImageMagick VeraCrypt acpi alsa-utils android-file-transfer-linux base-devel base-system cargo curl dmenu dunst fd feh ffmpeg figlet figlet-fonts firefox font-awesome font-inconsolata-otf freeimage fzf giflib-devel gimp git github-cli go gpick grub-x86_64-efi highlight htop i3lock-color imlib2-devel jq keepassxc krita libXft-devel libXinerama-devel libexif-devel libinput-gestures lua mpc mpd mpv ncmpcpp neofetch neovim nmap nodejs openjdk picom python3-pip qalculate ranger rsClock rust screenkey scrot sxhkd syncthing tectonic transmission tty-clock ueberzug vim wget xautolock xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zenity zip zsh
 
 # Copy config/* to $HOME/.config/
@@ -26,6 +26,10 @@ mkdir -p    $HOME/files/ \
             $HOME/files/videos/ \
             $HOME/files/writing/
 cp -r ./backgrounds/ $HOME/files/pictures/
+
+# QEMU config
+#sudo usermod -aG kvm <username>
+#sudo modprobe kvm-intel
 
 # Sending .otherfiles to specific locations
 sudo cp ./config/.otherfiles/sudoers /etc/sudoers
@@ -46,12 +50,10 @@ sudo ln -s $HOME/.config/nvim/ /root/.config/
 sudo chsh -s /bin/zsh
 
 # Install YTFZF
-git clone https://github.com/pystardust/ytfzf.git
-cd ytfzf
-chmod +x ytfzf
-sudo cp ytfzf /usr/local/bin/
-cd ..
-rm -rf ytfzf
+curl -sL "https://raw.githubusercontent.com/pystardust/ytfzf/master/ytfzf" | sudo tee /usr/local/bin/ytfzf >/dev/null && sudo chmod 755 /usr/local/bin/ytfzf
+
+# Install yt-dlp
+sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /bin/youtube-dl && sudo chmod a+rx /bin/youtube-dl
 
 # Recompile everything in suckelessutils/
 bash $HOME/.config/sucklessutils/addons_dwm/full_make

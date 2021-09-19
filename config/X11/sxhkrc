@@ -21,10 +21,10 @@ ctrl + Print
 
 # Record screen with ffmpeg
 XF86TouchpadToggle
-    bash ssutil rec play
+    bash ssutil rec begin
 
 shift + XF86TouchpadToggle
-    bash ssutil rec pause
+    bash ssutil rec end
 
 # Manga
 alt + k

@@ -24,7 +24,14 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 autoload -Uz promptinit
 promptinit
+
+#Blue
+#PROMPT='%F{#5d5d5d}[%f%F{#5e81ac}anon%f%F{#5d5d5d}@%f%F{#5e81ac}shitbox%f %F{#903749}%1~%f%F{#5d5d5d}]%f%F{#5e81ac}$%f '
 PROMPT='%F{#5d5d5d}[%f%F{#5e81ac}%n%f%F{#5d5d5d}@%f%F{#5e81ac}%m%f %F{#903749}%1~%f%F{#5d5d5d}]%f%F{#5e81ac}$%f '
+
+#Pink
+#PROMPT='%F{#f1d1d0}[%f%F{#fbaccc}%n%f%F{#f1d1d0}@%f%F{#fbaccc}%m%f %F{#fbaccc}%1~%f%F{#f1d1d0}]%f%F{#fbaccc}$%f '
+#PROMPT='%F{#f1d1d0}[%f%F{#fbaccc}anon%f%F{#f1d1d0}@%f%F{#fbaccc}shitbox%f %F{#fbaccc}%1~%f%F{#f1d1d0}]%f%F{#fbaccc}$%f '
 
 function zle-keymap-select () {
     case $KEYMAP in

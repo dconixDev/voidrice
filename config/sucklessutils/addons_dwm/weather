@@ -8,9 +8,9 @@ def extract_source(url):
      source=requests.get(url, headers=agent).text
      return source
 
-def extract_data(source, attr):
+def extract_data(source, strc, tpe, attr):
      soup=bs4.BeautifulSoup(source, 'html.parser')
-     names=soup.find_all('div', attrs={'class':attr})
+     names=soup.find_all(strc, attrs={tpe:attr})
      return names
 
 def extract_text(soup):
@@ -19,8 +19,16 @@ def extract_text(soup):
         temps.append(soup[i].text.split('°')[0])
     return temps
 
-apprx_list = extract_text(extract_data(extract_source('https://www.accuweather.com/en/xk/prishtina/298740/weather-forecast/298740'), attr='temp'))
-hourly_list = extract_data(extract_source('https://www.accuweather.com/en/xk/prishtina/298740/hourly-weather-forecast/298740'), attr='temp metric')
+apprx_list = extract_text(extract_data(extract_source('https://www.accuweather.com/en/xk/prishtina/298740/weather-forecast/298740'), strc='div', tpe='class', attr='temp'))
+hourly_list = extract_data(extract_source('https://www.accuweather.com/en/xk/prishtina/298740/hourly-weather-forecast/298740'), strc='div', tpe='class', attr='temp metric')
+
+# Extract daily
+daily_site=extract_source('https://www.accuweather.com/en/xk/prishtina/298740/daily-weather-forecast/298740')
+daily_high = extract_data(daily_site, strc='span', tpe='class', attr='high')
+daily_low = extract_data(daily_site, strc='span', tpe='class', attr='low')
+daily_day = extract_data(daily_site, strc='span', tpe='class', attr='module-header dow date')
+daily_date = extract_data(daily_site, strc='span', tpe='class', attr='module-header sub date')
+
 
 try:
     print("Current:",apprx_list[0],
@@ -42,4 +50,9 @@ for i in range(len(hourly_list)):
     else:
         print(current_hour + i, end="")
     print(" =",repr(hourly_list[i].text[0:-1])[7:-3], end=" | ")
+print()
+
+print("\nDaily")
+for i in range(len(daily_high)):
+    print("|", daily_day[i].text, "-", daily_date[i].text, "=",daily_high[i].text, "/", daily_low[i].text[1:], end=" | \n")
 print()

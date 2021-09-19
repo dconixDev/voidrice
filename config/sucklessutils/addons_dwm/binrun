@@ -1,16 +1,16 @@
 #!/bin/bash
 
 extension=$(echo $1 | sed -r 's/.*\.//g')
-binary="bin_$(echo $2 | sed -r 's/\..*$//g')"
+binary="bin_$(echo $1 | sed -r 's/\..*$//g')"
 
 case $extension in
     "cpp")
         figlet -f shadow C + +
-        g++ -o $binary $2
+        g++ -o $binary $1
         ./$binary;;
     "rs")
         figlet -f shadow R U S T
-        rustc -o $binary $2
+        rustc -o $binary $1
         ./$binary;;
     "py")
         figlet -f shadow P y
@@ -18,4 +18,11 @@ case $extension in
     "tex")
         figlet -f shadow L a T e X
         tectonic $1;;
+    "java")
+        figlet -f shadow J a v a
+        java $1;;
+    "kt")
+        figlet -f shadow K o t l i n
+        kotlinc $1 -include-runtime -d $binary.jar
+        java -jar $binary.jar;;
 esac

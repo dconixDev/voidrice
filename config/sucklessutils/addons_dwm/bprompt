@@ -17,7 +17,7 @@ function split_and_print {
             sleep 0.03s
         else
             # green
-            printf "\x1b[38;2;32;194;14m${item}\x1b[0m"
+            printf "\x1b[38;2;83;104;120m${item}\x1b[0m"
             sleep 0.03s
         fi
     done
@@ -37,5 +37,6 @@ case $yesNo in
         $@;;
     [nN]* )
         exit;;
-    *);;
+    *)
+        exit;;
 esac

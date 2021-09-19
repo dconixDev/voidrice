@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# STARTING UP PROGRAMS
+
+# MPD configure
+vol set 75 & # Custom script to set volume
+mpd & # Start mpd
+mpc pause &
+touch /mnt/tmpfs/mpccur & # Show mpd progress in dwm bar
+
+# Start transmission
+transmission-daemon --download-dir "$HOME/files/downloads/" & # Start transmission
+
+# Start Syncthing
+/bin/syncthing serve --no-browser &>/dev/null &

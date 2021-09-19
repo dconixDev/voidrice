@@ -1,5 +1,4 @@
 #!/bin/sh
-#
 # ~/.xinitrc
 #
 
@@ -26,26 +25,28 @@ if [ -f "$userexport" ]; then
     . "$userexport"
 fi
 
-xrandr -s 1600x900 & # Screen resolution
+
+#xrandr --output HDMI1 --mode 1920x1080 --output LVDS1 --mode 1600x900 --right-of HDMI1
+#xrandr -s 1600x900 & # Screen resolution
 sxhkd -c $HOME/.config/X11/sxhkrc & # Some keybinds
 xautolock & # Autolock
 
-vol set 75 & # Custom script to set volume
-mpd & # Start mpd
-mpc pause &
-touch /mnt/tmpfs/mpccur & # Show mpd progress in dwm bar
+#vol set 75 & # Custom script to set volume
+#mpd & # Start mpd
+#mpc pause &
+#touch /mnt/tmpfs/mpccur & # Show mpd progress in dwm bar
 
-transmission-daemon --download-dir "$HOME/files/downloads/" # Start transmission
+#transmission-daemon --download-dir "$HOME/files/downloads/" # Start transmission
 
 libinput-gestures-setup start & # Prevent accidental touchpad touches
-xbanish & # Hide cursor when using keyboard
+xbanish -i mod4 & # Hide cursor when using keyboard
 xset r rate 280 40 & # Change key press rate
 
 # Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
 feh --no-fehbg --bg-fill $HOME/files/pictures/backgrounds/DessertNight.jpg &
+
 # I dont use a picom config
 picom &
-# syncthing -no-browser &> /dev/null & disown
 
 exec slstatus &
 while :;

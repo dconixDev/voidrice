@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Short aliases
 alias \
@@ -6,7 +6,9 @@ alias \
 	vi=nvim \
 	v=nvim \
 	x=startx \
+    ranger="ranger --cachedir=/dev/null" \
     rg=ranger \
+    sxiv="sxiv -pq" \
     s=sxiv \
     n=ncmpcpp \
     d=disown \
@@ -18,6 +20,7 @@ alias \
 # PKG Manager
 alias \
 	xbi="sudo xbps-install -S" \
+	xbu="sudo xbps-install -Su" \
 	xbr="sudo xbps-remove" \
 	xbq="xbps-query" \
 	xbqr="xbps-query -Rs" \
@@ -27,6 +30,7 @@ alias \
 alias \
 	ls="ls --color=auto" \
 	ll="ls -lGh" \
+	lm="ls -lSh" \
 	la="ll -a" \
 	cl=clear
 
@@ -47,7 +51,6 @@ alias \
 	cdg="cd $HOME/files/github/" \
 	cdv="cd $HOME/files/videos/" \
 	cdm="cd $HOME/files/music/" \
-	cdmm="cd $HOME/files/manga/" \
 	cds="cd $HOME/files/pictures/screenshots/" \
 	cdpp="cd $HOME/files/pictures/" \
 	cdgv="cd $HOME/files/github/voidrice" \
@@ -62,9 +65,9 @@ alias \
     gp="git push -u origin main"
 
 # Manga-py
-alias \
-    mgi="manga-py -d ~/files/manga -r -R" \
-    mgl="manga-py -d ~/files/manga -r -R -c 1"
+#alias \
+#    mgi="manga-py -d ~/files/manga -r -R" \
+#    mgl="manga-py -d ~/files/manga -r -R -c 1"
 
 # Youtube rel
 alias \
@@ -73,7 +76,21 @@ alias \
     yta="bash ythelp a" \
     ytaa="bash ythelp a urlz" \
     ytv="bash ythelp v" \
-    ytvv="bash ythelp v urlz"
+    ytvv="bash ythelp v urlz" \
+    mpv="mpv -ytdl-format='bestvideo[ext=mp4][width<=1920][height<=1080]+bestaudio[ext=m4a]'"
+
+# Mpc
+alias \
+    mn="mpc next" \
+    mp="mpc prev" \
+    vinc="bash vol inc 3" \
+    vdec="bash vol dec 3" \
+    vtog="bash vol toggle"
+
+# transmission
+alias \
+    magnet="transmission-remote -a" \
+    torrent="transmission-remote -n 'transmission:transmission' -a"
 
 # Random
 alias \

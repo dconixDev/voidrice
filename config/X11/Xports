@@ -3,4 +3,6 @@
 export \
     VISUAL=nvim \
     EDITOR=nvim \
-    PATH=$PATH:~/.config/sucklessutils/addons_dwm
+    PATH=$PATH:~/.config/sucklessutils/addons_dwm:~/.local/bin \
+    _JAVA_AWT_WM_NONREPARENTING=1
+# so java shit doesnt cum white

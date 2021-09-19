@@ -19,6 +19,10 @@ else
     echo "You're not using it correctly, are you?"
     exit
 fi
+function resolution {
+    echo "Fetching available formats for ${ytURL}..."
+    echo $FORMAT
+}
 
 case $1 in
     a)
@@ -31,8 +35,9 @@ case $1 in
     v)
         echo "Video download"
         youtube-dl \
-            -f mp4 \
             --restrict-filenames \
             -o "~/files/videos/%(title)s.%(ext)s" \
+            -f best \
+            --write-srt --sub-lang en \
             $ytURL;;
 esac
