@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "AutoRiceVoidDesktopLinux\n<>  <>  <>\n<>  <>  <>\n<>  <>  <>"
+echo -e "AutoRiceVoidDesktopLinux\n><>\n"
 
 # Fail proofing
 sudo xbps-install -Syu xbps
@@ -8,8 +8,12 @@ sudo xbps-install -Syu xbps
 # Update system
 sudo xbps-install -Syu
 
-# Install packages I like # NOT UPDATED
-sudo xbps-install -Sy ImageMagick VeraCrypt acpi alsa-utils android-file-transfer-linux base-devel base-system cargo curl dmenu dunst fd feh ffmpeg figlet figlet-fonts firefox font-awesome font-inconsolata-otf freeimage fzf giflib-devel gimp git github-cli go gpick grub-x86_64-efi highlight htop i3lock-color imlib2-devel jq keepassxc krita libXft-devel libXinerama-devel libexif-devel libinput-gestures lua mpc mpd mpv ncmpcpp neofetch neovim nmap nodejs openjdk picom python3-pip qalculate ranger rsClock rust screenkey scrot sxhkd syncthing tectonic transmission tty-clock ueberzug vim wget xautolock xbanish xdg-utils xdotool xorg xsel youtube-dl zathura zathura-pdf-poppler zenity zip zsh
+# Install packages I like
+sudo xbps-install -Sy ImageMagick VeraCrypt acpi aircrack-ng alsa-utils android-file-transfer-linux audacity base-devel base-system bat cargo curl dmenu dunst fd feh ffmpeg figlet figlet-fonts filezilla firefox font-awesome font-inconsolata-otf freeimage fzf gallery-dl geckodriver giflib-devel gimp git github-cli go gparted gpick heimdall highlight htop i3lock-color imlib2-devel jq keepassxc kotlin-bin krita libXft-devel libXinerama-devel libexif-devel libinput-gestures lua mpc mpd mpv ncmpcpp neofetch neovim nginx nmap nodejs ntfs-3g okular openjdk openjdk-jre openjdk11 pandoc picom python-pip python3-pip qalculate qemu ranger refind rsClock rust scrcpy screenkey scrot streamlink sxhkd syncthing tectonic transmission tty-clock ueberzug vim virt-manager wget wireless_tools wireshark wireshark-qt xautolock xbanish xdg-utils xdotool xorg xournalpp xsel xtools yt-dlp zathura zathura-pdf-poppler zenity zip zsh
+
+# Install android studio
+sudo xbps-install -S android-studio
+
 
 # Copy config/* to $HOME/.config/
 mkdir -p $HOME/.config/
@@ -24,6 +28,7 @@ mkdir -p    $HOME/files/ \
             $HOME/files/github/ \
             $HOME/files/music/ \
             $HOME/files/videos/ \
+            $HOME/files/sync/ \
             $HOME/files/writing/
 cp -r ./backgrounds/ $HOME/files/pictures/
 
@@ -49,15 +54,17 @@ sudo mkdir -p /root/.config/
 sudo ln -s $HOME/.config/nvim/ /root/.config/
 sudo chsh -s /bin/zsh
 
-# Install YTFZF
-curl -sL "https://raw.githubusercontent.com/pystardust/ytfzf/master/ytfzf" | sudo tee /usr/local/bin/ytfzf >/dev/null && sudo chmod 755 /usr/local/bin/ytfzf
+# Install YTFZF and ani-cli
+#curl -sL "https://raw.githubusercontent.com/pystardust/ytfzf/master/ytfzf" | sudo tee /usr/local/bin/ytfzf >/dev/null && sudo chmod 755 /usr/local/bin/ytfzf
+curl -sL "https://raw.githubusercontent.com/pystardust/ani-cli/master/ani-cli" | sudo tee /usr/local/bin/ani-cli >/dev/null && sudo chmod 755 /usr/local/bin/ani-cli
+#curl -sL "https://raw.githubusercontent.com/pystardust/waldl/master/waldl" | sudo tee /usr/local/bin/waldl >/dev/null && sudo chmod 755 /usr/local/bin/waldl
 
-# Install yt-dlp
-sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /bin/youtube-dl && sudo chmod a+rx /bin/youtube-dl
+# Install yt-dlp (on repos now)
+#sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /bin/youtube-dl && sudo chmod a+rx /bin/youtube-dl
 
 # Recompile everything in suckelessutils/
 bash $HOME/.config/sucklessutils/addons_dwm/full_make
 
 echo -e "\nRun `\$ chsh -s /bin/zsh` if shell hasnt been changed for current user, do the same for root.\n"
-echo -e "Fix ScreenTearing on X11\n"
-echo -e "<>  <>  <>\n<>  <>  <>\n<>  <>  <>\nHope all went well!"
+echo -e "Fix ScreenTearing on X11, example file on .otherfiles\n"
+echo -e "><>\nHope all went well!\n"

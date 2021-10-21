@@ -41,6 +41,7 @@ xautolock & # Autolock
 libinput-gestures-setup start & # Prevent accidental touchpad touches
 xbanish -i mod4 & # Hide cursor when using keyboard
 xset r rate 280 40 & # Change key press rate
+vol set 75 & # Custom script to set volume
 
 # Set wallpaper Xorg starts with, --no-fehbg doesnt create a ~/.fehbg file
 feh --no-fehbg --bg-fill $HOME/files/pictures/backgrounds/DessertNight.jpg &

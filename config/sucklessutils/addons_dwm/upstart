@@ -3,10 +3,9 @@
 # STARTING UP PROGRAMS
 
 # MPD configure
-vol set 75 & # Custom script to set volume
 mpd & # Start mpd
 mpc pause &
-touch /mnt/tmpfs/mpccur & # Show mpd progress in dwm bar
+touch /mnt/tmpfs/mpccur & # Show song progress in dwm bar
 
 # Start transmission
 transmission-daemon --download-dir "$HOME/files/downloads/" & # Start transmission

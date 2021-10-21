@@ -8,7 +8,7 @@ alias \
 	x=startx \
     ranger="ranger --cachedir=/dev/null" \
     rg=ranger \
-    sxiv="sxiv -pq" \
+    sxiv="sxiv -pqa" \
     s=sxiv \
     n=ncmpcpp \
     d=disown \
@@ -78,6 +78,10 @@ alias \
     ytv="bash ythelp v" \
     ytvv="bash ythelp v urlz" \
     mpv="mpv -ytdl-format='bestvideo[ext=mp4][width<=1920][height<=1080]+bestaudio[ext=m4a]'"
+
+# Streamlink
+alias \
+    sl="streamlink --default-stream best --twitch-disable-ads --player mpv"
 
 # Mpc
 alias \

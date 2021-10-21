@@ -14,7 +14,7 @@ then
     cp -r $HOME/.config/mpv/ ./config/
     cp -r $HOME/.config/ncmpcpp/config ./config/ncmpcpp/
     cp -r $HOME/files/pictures/backgrounds ./
-    # cp -r $HOME/files/pictures/backgrounds/ ./
+    cp -r $HOME/files/pictures/backgrounds/ ./
     sudo cp /etc/sudoers ./config/.otherfiles/sudoers
     sudo cp /root/.zshrc ./config/zsh/
     rm ./config/nvim/.netrwhist

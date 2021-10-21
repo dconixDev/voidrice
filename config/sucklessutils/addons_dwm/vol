@@ -34,7 +34,7 @@ case $1 in
        amixer set Master unmute
        amixer set Master $2%
        muteVOL=0
-       currentVOL=$(echo $2)
+       currentVOL=$2
        rm $tmpPATH
        touch $tmpPATH
        echo -e "VOL $currentVOL\nID $notifID\nMUTE $muteVOL" >> $tmpPATH;;
