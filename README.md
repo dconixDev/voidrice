@@ -1,6 +1,7 @@
 # Automatic Void Ricer
 
 ![Rice](https://github.com/dconixDev/voidrice/blob/main/config/.otherfiles/Rice.png?raw=true)
+*Image does not represent the Rice 1:1*
 
 TL;DR KISS autoricer "*made by me, for me*"
 
